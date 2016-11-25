@@ -8,6 +8,8 @@ package project;
 ;
 import java.io.*;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -25,7 +27,9 @@ public class UI extends javax.swing.JFrame {
         initComponents();
     }
     Authentication setup = new Authentication();
-
+  File filebus = new File("./BusRoutes.txt");
+   Routes route1 = new Routes();
+   
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -118,7 +122,7 @@ public class UI extends javax.swing.JFrame {
         ViewBusRoutes = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         bus = new javax.swing.JTable();
-        jButton13 = new javax.swing.JButton();
+        refresh = new javax.swing.JButton();
         back4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -928,10 +932,10 @@ public class UI extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(bus);
 
-        jButton13.setText("Refresh Table");
-        jButton13.addActionListener(new java.awt.event.ActionListener() {
+        refresh.setText("Refresh Table");
+        refresh.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton13ActionPerformed(evt);
+                refreshActionPerformed(evt);
             }
         });
 
@@ -952,7 +956,7 @@ public class UI extends javax.swing.JFrame {
                 .addGroup(ViewBusRoutesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(ViewBusRoutesLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
-                        .addComponent(jButton13)
+                        .addComponent(refresh)
                         .addGap(69, 69, 69))
                     .addGroup(ViewBusRoutesLayout.createSequentialGroup()
                         .addGap(79, 79, 79)
@@ -965,7 +969,7 @@ public class UI extends javax.swing.JFrame {
                 .addGroup(ViewBusRoutesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(ViewBusRoutesLayout.createSequentialGroup()
                         .addGap(215, 215, 215)
-                        .addComponent(jButton13)
+                        .addComponent(refresh)
                         .addGap(64, 64, 64)
                         .addComponent(back4))
                     .addGroup(ViewBusRoutesLayout.createSequentialGroup()
@@ -1159,19 +1163,26 @@ public class UI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_ArriveActionPerformed
 
-    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
+    private void refreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshActionPerformed
         // TODO add your handling code here:
         String row;
         Routes display = new Routes();
+        try {
+            route1.setBrr(new BufferedReader(new FileReader(filebus)));
+            route1.getBrr().mark(0);
+            route1.getBrr().reset();
+            
+        } catch (IOException ex) {
+            Logger.getLogger(UI.class.getName()).log(Level.SEVERE, null, ex);
+        }
         DefaultTableModel model = (DefaultTableModel) bus.getModel();
-        StringTokenizer st2 = new StringTokenizer(display.viewRoute());
+        StringTokenizer st2 = new StringTokenizer(display.viewRoute(route1.getFilebus(),route1.getBrr()));
         model.addRow(new Object[]{st2.nextToken(),st2.nextToken(),st2.nextToken(), st2.nextToken(),st2.nextToken()});
-        while (!((row=display.viewRoute()).isEmpty())){
+        while (!((row=display.viewRoute(route1.getFilebus(),route1.getBrr())).isEmpty())){
             st2 = new StringTokenizer(row);
            model.addRow(new Object[]{st2.nextToken(),st2.nextToken(),st2.nextToken(), st2.nextToken(),st2.nextToken()}); 
         }
-        
-    }//GEN-LAST:event_jButton13ActionPerformed
+    }//GEN-LAST:event_refreshActionPerformed
 
     private void back4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back4ActionPerformed
         // TODO add your handling code here:
@@ -1244,7 +1255,6 @@ public class UI extends javax.swing.JFrame {
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
-    private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton15;
     private javax.swing.JButton jButton16;
     private javax.swing.JButton jButton17;
@@ -1301,5 +1311,6 @@ public class UI extends javax.swing.JFrame {
     private javax.swing.JTextArea jTextArea2;
     private javax.swing.JPanel login1;
     private javax.swing.JPanel login2;
+    private javax.swing.JButton refresh;
     // End of variables declaration//GEN-END:variables
 }
