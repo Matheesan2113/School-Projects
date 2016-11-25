@@ -8,6 +8,7 @@ package project;
 ;
 import java.io.*;
 import java.util.*;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -116,7 +117,9 @@ public class UI extends javax.swing.JFrame {
         Arrive = new javax.swing.JTextField();
         ViewBusRoutes = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        routes = new javax.swing.JTable();
+        bus = new javax.swing.JTable();
+        jButton13 = new javax.swing.JButton();
+        back4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAlwaysOnTop(true);
@@ -907,48 +910,68 @@ public class UI extends javax.swing.JFrame {
 
         getContentPane().add(FindBusRoutes, "card8");
 
-        routes.setModel(new javax.swing.table.DefaultTableModel(
+        bus.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Bus Number", "Depart", "Arrive", "Time"
+                "Depart", "Arrive", "DepartTime", "Arrive Time", "Price"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(routes);
+        jScrollPane1.setViewportView(bus);
+
+        jButton13.setText("Refresh Table");
+        jButton13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton13ActionPerformed(evt);
+            }
+        });
+
+        back4.setText("Back");
+        back4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                back4ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout ViewBusRoutesLayout = new javax.swing.GroupLayout(ViewBusRoutes);
         ViewBusRoutes.setLayout(ViewBusRoutesLayout);
         ViewBusRoutesLayout.setHorizontalGroup(
             ViewBusRoutesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ViewBusRoutesLayout.createSequentialGroup()
-                .addGap(151, 151, 151)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(238, Short.MAX_VALUE))
+                .addGap(146, 146, 146)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(ViewBusRoutesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(ViewBusRoutesLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
+                        .addComponent(jButton13)
+                        .addGap(69, 69, 69))
+                    .addGroup(ViewBusRoutesLayout.createSequentialGroup()
+                        .addGap(79, 79, 79)
+                        .addComponent(back4)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         ViewBusRoutesLayout.setVerticalGroup(
             ViewBusRoutesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ViewBusRoutesLayout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(268, Short.MAX_VALUE))
+                .addGroup(ViewBusRoutesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(ViewBusRoutesLayout.createSequentialGroup()
+                        .addGap(215, 215, 215)
+                        .addComponent(jButton13)
+                        .addGap(64, 64, 64)
+                        .addComponent(back4))
+                    .addGroup(ViewBusRoutesLayout.createSequentialGroup()
+                        .addGap(78, 78, 78)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(110, Short.MAX_VALUE))
         );
 
         getContentPane().add(ViewBusRoutes, "card9");
@@ -1061,6 +1084,8 @@ public class UI extends javax.swing.JFrame {
 
     private void jButton22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton22ActionPerformed
         // TODO add your handling code here:
+        ViewBusRoutes.setVisible(true);
+        ServiceRepMenu.setVisible(false);
     }//GEN-LAST:event_jButton22ActionPerformed
 
     private void jButton23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton23ActionPerformed
@@ -1095,6 +1120,7 @@ public class UI extends javax.swing.JFrame {
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
         LoginFail.setVisible(false);
+        CustLogin.setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void CustPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CustPassKeyPressed
@@ -1132,6 +1158,26 @@ public class UI extends javax.swing.JFrame {
     private void ArriveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ArriveActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_ArriveActionPerformed
+
+    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
+        // TODO add your handling code here:
+        String row;
+        Routes display = new Routes();
+        DefaultTableModel model = (DefaultTableModel) bus.getModel();
+        StringTokenizer st2 = new StringTokenizer(display.viewRoute());
+        model.addRow(new Object[]{st2.nextToken(),st2.nextToken(),st2.nextToken(), st2.nextToken(),st2.nextToken()});
+        while (!((row=display.viewRoute()).isEmpty())){
+            st2 = new StringTokenizer(row);
+           model.addRow(new Object[]{st2.nextToken(),st2.nextToken(),st2.nextToken(), st2.nextToken(),st2.nextToken()}); 
+        }
+        
+    }//GEN-LAST:event_jButton13ActionPerformed
+
+    private void back4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back4ActionPerformed
+        // TODO add your handling code here:
+        ServiceRepMenu.setVisible(true);
+        ViewBusRoutes.setVisible(false);
+    }//GEN-LAST:event_back4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1192,10 +1238,13 @@ public class UI extends javax.swing.JFrame {
     private javax.swing.JButton back1;
     private javax.swing.JButton back2;
     private javax.swing.JButton back3;
+    private javax.swing.JButton back4;
+    private javax.swing.JTable bus;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
+    private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton15;
     private javax.swing.JButton jButton16;
     private javax.swing.JButton jButton17;
@@ -1252,6 +1301,5 @@ public class UI extends javax.swing.JFrame {
     private javax.swing.JTextArea jTextArea2;
     private javax.swing.JPanel login1;
     private javax.swing.JPanel login2;
-    private javax.swing.JTable routes;
     // End of variables declaration//GEN-END:variables
 }

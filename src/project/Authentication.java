@@ -55,10 +55,10 @@ public class Authentication {
             fw = new FileWriter(file.getAbsoluteFile()); // COMMA TRUE TO APPEND MANAGER LOG IN DETAILS
             BufferedWriter bw = new BufferedWriter(fw);
             bw.write("test1");
-            bw.write(" test1");
+            bw.write(" test2");
             bw.newLine();
             bw.write("test2");
-            bw.write(" test2");
+            bw.write(" test3");
             bw.newLine();
             bw.flush();
         } catch (IOException ex) {
