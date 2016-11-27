@@ -27,9 +27,9 @@ public class UI extends javax.swing.JFrame {
         initComponents();
     }
     Authentication setup = new Authentication();
-  File filebus = new File("./BusRoutes.txt");
-   Routes route1 = new Routes();
-   
+    File filebus = new File("./BusRoutes.txt");
+    Routes route1 = new Routes();
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -117,7 +117,7 @@ public class UI extends javax.swing.JFrame {
         FindBusRoutes = new javax.swing.JPanel();
         jLabel34 = new javax.swing.JLabel();
         jLabel35 = new javax.swing.JLabel();
-        Reset = new javax.swing.JButton();
+        ViewAll = new javax.swing.JButton();
         backfindriutecust = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         model2 = new javax.swing.JTable();
@@ -650,7 +650,7 @@ public class UI extends javax.swing.JFrame {
                     .addComponent(jLabel26))
                 .addGap(18, 18, 18)
                 .addComponent(jButton3)
-                .addContainerGap(182, Short.MAX_VALUE))
+                .addContainerGap(321, Short.MAX_VALUE))
         );
 
         getContentPane().add(CustomerMenu, "card5");
@@ -738,7 +738,7 @@ public class UI extends javax.swing.JFrame {
                     .addComponent(jLabel22))
                 .addGap(18, 18, 18)
                 .addComponent(back2)
-                .addContainerGap(250, Short.MAX_VALUE))
+                .addContainerGap(389, Short.MAX_VALUE))
         );
 
         getContentPane().add(GuestMenu, "card5");
@@ -870,7 +870,7 @@ public class UI extends javax.swing.JFrame {
                     .addComponent(jButton24))
                 .addGap(18, 18, 18)
                 .addComponent(back3)
-                .addContainerGap(203, Short.MAX_VALUE))
+                .addContainerGap(342, Short.MAX_VALUE))
         );
 
         getContentPane().add(ServiceRepMenu, "card5");
@@ -881,10 +881,10 @@ public class UI extends javax.swing.JFrame {
         jLabel35.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel35.setText("Destination City");
 
-        Reset.setText("Reset");
-        Reset.addActionListener(new java.awt.event.ActionListener() {
+        ViewAll.setText("ViewAll");
+        ViewAll.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ResetActionPerformed(evt);
+                ViewAllActionPerformed(evt);
             }
         });
 
@@ -913,9 +913,9 @@ public class UI extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(model2);
 
-        DepartureCity.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Toronto", "Montreal", "Vancouver", "Ottowa" }));
+        DepartureCity.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Toronto", "Montreal", "Vancouver", "Ottawa" }));
 
-        DestinationCity.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Toronto", "Monreal", "Vancouver", "Ottowa" }));
+        DestinationCity.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Toronto", "Montreal", "Vancouver", "Ottawa" }));
 
         RefreshCust.setText("Refresh");
         RefreshCust.addActionListener(new java.awt.event.ActionListener() {
@@ -959,16 +959,15 @@ public class UI extends javax.swing.JFrame {
                             .addComponent(DestinationCity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FindBusRoutesLayout.createSequentialGroup()
-                        .addContainerGap(96, Short.MAX_VALUE)
+                        .addContainerGap(118, Short.MAX_VALUE)
                         .addGroup(FindBusRoutesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 524, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 524, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(49, 49, 49)))
                 .addGroup(FindBusRoutesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(RefreshCust)
-                    .addGroup(FindBusRoutesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(backfindriutecust)
-                        .addComponent(Reset)))
+                    .addComponent(ViewAll)
+                    .addComponent(backfindriutecust))
                 .addGap(79, 79, 79))
         );
         FindBusRoutesLayout.setVerticalGroup(
@@ -986,13 +985,12 @@ public class UI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(FindBusRoutesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(FindBusRoutesLayout.createSequentialGroup()
-                        .addGroup(FindBusRoutesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Reset)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(221, 221, 221)
+                        .addComponent(ViewAll)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(backfindriutecust))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(68, 68, 68))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(312, 312, 312))
         );
 
         getContentPane().add(FindBusRoutes, "card8");
@@ -1058,7 +1056,7 @@ public class UI extends javax.swing.JFrame {
                     .addGroup(ViewBusRoutesLayout.createSequentialGroup()
                         .addGap(78, 78, 78)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(395, Short.MAX_VALUE))
+                .addContainerGap(249, Short.MAX_VALUE))
         );
 
         getContentPane().add(ViewBusRoutes, "card9");
@@ -1090,8 +1088,7 @@ public class UI extends javax.swing.JFrame {
                 jLabel5.setText("Welcome " + CustUser.getText());
                 CustUser.setText("");
                 CustPass.setText("");
-            }
-            else {
+            } else {
                 LoginFail.setVisible(true);
                 CustLogin.setVisible(false);
             }
@@ -1109,16 +1106,15 @@ public class UI extends javax.swing.JFrame {
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
-            if (RepUser.getText().equalsIgnoreCase("admin")&&String.valueOf(RepPass.getPassword()).equalsIgnoreCase("admin")) {
-                login2.setVisible(false);
-                ServiceRepMenu.setVisible(true);
-                RepUser.setText("");
-                RepPass.setText("");
-            }
-            else {
-                LoginFail2.setVisible(true);
-                jButton6.setVisible(false);
-            }        
+        if (RepUser.getText().equalsIgnoreCase("admin") && String.valueOf(RepPass.getPassword()).equalsIgnoreCase("admin")) {
+            login2.setVisible(false);
+            ServiceRepMenu.setVisible(true);
+            RepUser.setText("");
+            RepPass.setText("");
+        } else {
+            LoginFail2.setVisible(true);
+            jButton6.setVisible(false);
+        }
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void back1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back1ActionPerformed
@@ -1143,8 +1139,8 @@ public class UI extends javax.swing.JFrame {
 
     private void findroutesCustActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_findroutesCustActionPerformed
         // TODO add your handling code here:
-CustomerMenu.setVisible(false);
-FindBusRoutes.setVisible(true);
+        CustomerMenu.setVisible(false);
+        FindBusRoutes.setVisible(true);
     }//GEN-LAST:event_findroutesCustActionPerformed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
@@ -1252,16 +1248,16 @@ FindBusRoutes.setVisible(true);
             route1.setBrr(new BufferedReader(new FileReader(filebus)));
             route1.getBrr().mark(0);
             route1.getBrr().reset();
-            
+
         } catch (IOException ex) {
             Logger.getLogger(UI.class.getName()).log(Level.SEVERE, null, ex);
         }
         DefaultTableModel model = (DefaultTableModel) bus.getModel();
-        StringTokenizer st2 = new StringTokenizer(display.viewRoute(route1.getFilebus(),route1.getBrr()));
-        model.addRow(new Object[]{st2.nextToken(),st2.nextToken(),st2.nextToken(), st2.nextToken(),st2.nextToken()});
-        while (!((row=display.viewRoute(route1.getFilebus(),route1.getBrr())).isEmpty())){
+        StringTokenizer st2 = new StringTokenizer(display.viewRoute(route1.getFilebus(), route1.getBrr()));
+        model.addRow(new Object[]{st2.nextToken(), st2.nextToken(), st2.nextToken(), st2.nextToken(), st2.nextToken()});
+        while (!((row = display.viewRoute(route1.getFilebus(), route1.getBrr())).isEmpty())) {
             st2 = new StringTokenizer(row);
-           model.addRow(new Object[]{st2.nextToken(),st2.nextToken(),st2.nextToken(), st2.nextToken(),st2.nextToken()}); 
+            model.addRow(new Object[]{st2.nextToken(), st2.nextToken(), st2.nextToken(), st2.nextToken(), st2.nextToken()});
         }
     }//GEN-LAST:event_refreshActionPerformed
 
@@ -1277,52 +1273,55 @@ FindBusRoutes.setVisible(true);
         FindBusRoutes.setVisible(false);
     }//GEN-LAST:event_backfindriutecustActionPerformed
 
-    private void ResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ResetActionPerformed
+    private void ViewAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewAllActionPerformed
         // TODO add your handling code here:
-         model2.setVisible(true);
-       model3.setVisible(false);
-         String row;
+
+        String row;
         Routes display = new Routes();
         try {
             route1.setBrr(new BufferedReader(new FileReader(filebus)));
             route1.getBrr().mark(0);
             route1.getBrr().reset();
-            
+
         } catch (IOException ex) {
             Logger.getLogger(UI.class.getName()).log(Level.SEVERE, null, ex);
         }
         DefaultTableModel model = (DefaultTableModel) model2.getModel();
-        StringTokenizer st2 = new StringTokenizer(display.viewRoute(route1.getFilebus(),route1.getBrr()));
-        model.addRow(new Object[]{st2.nextToken(),st2.nextToken(),st2.nextToken(), st2.nextToken(),st2.nextToken()});
-        while (!((row=display.viewRoute(route1.getFilebus(),route1.getBrr())).isEmpty())){
+        model2.removeAll();
+        
+        StringTokenizer st2 = new StringTokenizer(display.viewRoute(route1.getFilebus(), route1.getBrr()));
+        model.addRow(new Object[]{st2.nextToken(), st2.nextToken(), st2.nextToken(), st2.nextToken(), st2.nextToken()});
+        while (!((row = display.viewRoute(route1.getFilebus(), route1.getBrr())).isEmpty())) {
             st2 = new StringTokenizer(row);
-           model.addRow(new Object[]{st2.nextToken(),st2.nextToken(),st2.nextToken(), st2.nextToken(),st2.nextToken()}); 
+            model.addRow(new Object[]{st2.nextToken(), st2.nextToken(), st2.nextToken(), st2.nextToken(), st2.nextToken()});
         }
-    }//GEN-LAST:event_ResetActionPerformed
+        model2.setVisible(true);
+        model3.setVisible(false);
+    }//GEN-LAST:event_ViewAllActionPerformed
 
     private void RefreshCustActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RefreshCustActionPerformed
         // TODO add your handling code here:
-       // System.out.println(DepartureCity.getSelectedItem());
-       // System.out.println(DestinationCity.getSelectedItem());
-       model2.setVisible(false);
-       model3.setVisible(true);
-       DefaultTableModel model34 = (DefaultTableModel) model3.getModel();
-        for(int i=0;i<model2.getModel().getRowCount()-1;i++){
-            if(model2.getModel().getValueAt(i, 0).equals(DepartureCity.getSelectedItem())){
+        // System.out.println(DepartureCity.getSelectedItem());
+        // System.out.println(DestinationCity.getSelectedItem());
+        DefaultTableModel model34 = (DefaultTableModel) model3.getModel();
+        for (int i = 0; i < model2.getModel().getRowCount() - 1; i++) {
+            if (model2.getModel().getValueAt(i, 0).equals(DepartureCity.getSelectedItem())) {
                 System.out.println(model2.getModel().getValueAt(i, 1));
-                model34.addRow(new Object[]{model2.getModel().getValueAt(i,0),model2.getModel().getValueAt(i,1),
-                    model2.getModel().getValueAt(i,2), model2.getModel().getValueAt(i,3),model2.getModel().getValueAt(i,4)});
-            }
-            else{
-            // model2.se
-            //have two tables, one hides, other shows
-            //one has all values
-            //other has results only
-            //instead of deleting rows
-            //you can clear all rows later.
+                model34.addRow(new Object[]{model2.getModel().getValueAt(i, 0), model2.getModel().getValueAt(i, 1),
+                    model2.getModel().getValueAt(i, 2), model2.getModel().getValueAt(i, 3), model2.getModel().getValueAt(i, 4)});
+                System.out.println("you will arrive at " + model2.getModel().getValueAt(1, 1));
+            } else {
+                // model2.se
+                //have two tables, one hides, other shows
+                //one has all values
+                //other has results only
+                //instead of deleting rows
+                //you can clear all rows later.
             }
         }
-        System.out.println("you will arrive at "+model2.getModel().getValueAt (1, 1));
+        model3.setVisible(true);
+        model2.setVisible(false);
+
     }//GEN-LAST:event_RefreshCustActionPerformed
 
     /**
@@ -1379,8 +1378,8 @@ FindBusRoutes.setVisible(true);
     private javax.swing.JButton RefreshCust;
     private javax.swing.JPasswordField RepPass;
     private javax.swing.JTextField RepUser;
-    private javax.swing.JButton Reset;
     private javax.swing.JPanel ServiceRepMenu;
+    private javax.swing.JButton ViewAll;
     private javax.swing.JPanel ViewBusRoutes;
     private javax.swing.JPanel Welcome;
     private javax.swing.JButton back1;
