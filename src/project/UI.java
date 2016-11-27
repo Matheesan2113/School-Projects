@@ -5,10 +5,19 @@
  */
 package project;
 
+;
+import java.io.*;
+import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author mathe
  */
+
+
 public class UI extends javax.swing.JFrame {
 
     /**
@@ -17,7 +26,10 @@ public class UI extends javax.swing.JFrame {
     public UI() {
         initComponents();
     }
-
+    Authentication setup = new Authentication();
+  File filebus = new File("./BusRoutes.txt");
+   Routes route1 = new Routes();
+   
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -35,21 +47,35 @@ public class UI extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jTextArea2 = new javax.swing.JTextArea();
         login1 = new javax.swing.JPanel();
-        CustLogin = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        LoginFail = new javax.swing.JInternalFrame();
+        jLabel23 = new javax.swing.JLabel();
+        jButton4 = new javax.swing.JButton();
+        CustomerLogin = new javax.swing.JPanel();
+        CustUser = new javax.swing.JTextField();
+        CustPass = new javax.swing.JPasswordField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
-        jTextField2 = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
+        CustLogin = new javax.swing.JButton();
+        GuestCard = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
-        jButton4 = new javax.swing.JButton();
+        GuestLogin = new javax.swing.JButton();
         back1 = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
+        login2 = new javax.swing.JPanel();
+        LoginFail2 = new javax.swing.JInternalFrame();
+        jLabel24 = new javax.swing.JLabel();
+        jButton12 = new javax.swing.JButton();
+        CustLogin2 = new javax.swing.JPanel();
+        RepUser = new javax.swing.JTextField();
+        RepPass = new javax.swing.JPasswordField();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        jButton6 = new javax.swing.JButton();
+        jButton7 = new javax.swing.JButton();
+        jLabel13 = new javax.swing.JLabel();
+        CustomerMenu = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         jButton5 = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
@@ -57,16 +83,54 @@ public class UI extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jButton8 = new javax.swing.JButton();
-        login2 = new javax.swing.JPanel();
-        CustLogin2 = new javax.swing.JPanel();
-        jTextField5 = new javax.swing.JTextField();
-        jPasswordField3 = new javax.swing.JPasswordField();
-        jLabel17 = new javax.swing.JLabel();
-        jLabel18 = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
-        jLabel13 = new javax.swing.JLabel();
+        jButton9 = new javax.swing.JButton();
+        findroutesCust = new javax.swing.JButton();
+        jButton11 = new javax.swing.JButton();
+        jLabel16 = new javax.swing.JLabel();
+        jButton17 = new javax.swing.JButton();
+        jLabel26 = new javax.swing.JLabel();
+        jButton3 = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        GuestMenu = new javax.swing.JPanel();
+        jLabel20 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
+        jLabel22 = new javax.swing.JLabel();
+        jButton18 = new javax.swing.JButton();
+        back2 = new javax.swing.JButton();
+        jButton15 = new javax.swing.JButton();
+        jButton16 = new javax.swing.JButton();
+        jLabel25 = new javax.swing.JLabel();
+        ServiceRepMenu = new javax.swing.JPanel();
+        jLabel28 = new javax.swing.JLabel();
+        jButton19 = new javax.swing.JButton();
+        jLabel29 = new javax.swing.JLabel();
+        jLabel30 = new javax.swing.JLabel();
+        jLabel31 = new javax.swing.JLabel();
+        jLabel32 = new javax.swing.JLabel();
+        jButton20 = new javax.swing.JButton();
+        jButton22 = new javax.swing.JButton();
+        jButton23 = new javax.swing.JButton();
+        jLabel33 = new javax.swing.JLabel();
+        jButton24 = new javax.swing.JButton();
+        back3 = new javax.swing.JButton();
+        jLabel27 = new javax.swing.JLabel();
+        FindBusRoutes = new javax.swing.JPanel();
+        jLabel34 = new javax.swing.JLabel();
+        jLabel35 = new javax.swing.JLabel();
+        Reset = new javax.swing.JButton();
+        backfindriutecust = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        model2 = new javax.swing.JTable();
+        DepartureCity = new javax.swing.JComboBox<>();
+        DestinationCity = new javax.swing.JComboBox<>();
+        RefreshCust = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        model3 = new javax.swing.JTable();
+        ViewBusRoutes = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        bus = new javax.swing.JTable();
+        refresh = new javax.swing.JButton();
+        back4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAlwaysOnTop(true);
@@ -76,6 +140,7 @@ public class UI extends javax.swing.JFrame {
 
         Welcome.setBackground(java.awt.Color.white);
         Welcome.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(0, 0, 0)));
+        Welcome.setMinimumSize(new java.awt.Dimension(841, 494));
         Welcome.setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
@@ -132,14 +197,73 @@ public class UI extends javax.swing.JFrame {
 
         getContentPane().add(Welcome, "card2");
 
+        login1.setMinimumSize(new java.awt.Dimension(840, 460));
         login1.setLayout(null);
 
-        CustLogin.setBackground(new java.awt.Color(255, 255, 255));
+        LoginFail.setBorder(null);
+        LoginFail.setTitle("Error1: Login Failure");
+        LoginFail.setToolTipText("");
+        LoginFail.setVisible(true);
 
-        jTextField1.setText("Username");
+        jLabel23.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
+        jLabel23.setText("Username or Password Incorrect");
 
-        jPasswordField1.setText("Password");
-        jPasswordField1.setPreferredSize(new java.awt.Dimension(113, 20));
+        jButton4.setText("Okay");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout LoginFailLayout = new javax.swing.GroupLayout(LoginFail.getContentPane());
+        LoginFail.getContentPane().setLayout(LoginFailLayout);
+        LoginFailLayout.setHorizontalGroup(
+            LoginFailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(LoginFailLayout.createSequentialGroup()
+                .addGroup(LoginFailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(LoginFailLayout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(jLabel23))
+                    .addGroup(LoginFailLayout.createSequentialGroup()
+                        .addGap(131, 131, 131)
+                        .addComponent(jButton4)))
+                .addContainerGap(16, Short.MAX_VALUE))
+        );
+        LoginFailLayout.setVerticalGroup(
+            LoginFailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(LoginFailLayout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addComponent(jLabel23)
+                .addGap(18, 18, 18)
+                .addComponent(jButton4)
+                .addContainerGap(36, Short.MAX_VALUE))
+        );
+
+        login1.add(LoginFail);
+        LoginFail.setBounds(0, 0, 350, 160);
+
+        CustomerLogin.setBackground(new java.awt.Color(255, 255, 255));
+
+        CustUser.setText("Username");
+        CustUser.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CustUserMouseClicked(evt);
+            }
+        });
+
+        CustPass.setText("Password");
+        CustPass.setMinimumSize(new java.awt.Dimension(113, 20));
+        CustPass.setPreferredSize(new java.awt.Dimension(113, 20));
+        CustPass.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CustPassMouseClicked(evt);
+            }
+        });
+        CustPass.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                CustPassKeyPressed(evt);
+            }
+        });
 
         jLabel2.setText("Username:");
 
@@ -148,115 +272,92 @@ public class UI extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel4.setText("Customer Login");
 
-        jButton3.setText("Login");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        CustLogin.setText("Login");
+        CustLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                CustLoginActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout CustLoginLayout = new javax.swing.GroupLayout(CustLogin);
-        CustLogin.setLayout(CustLoginLayout);
-        CustLoginLayout.setHorizontalGroup(
-            CustLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(CustLoginLayout.createSequentialGroup()
-                .addGroup(CustLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(CustLoginLayout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addGroup(CustLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+        javax.swing.GroupLayout CustomerLoginLayout = new javax.swing.GroupLayout(CustomerLogin);
+        CustomerLogin.setLayout(CustomerLoginLayout);
+        CustomerLoginLayout.setHorizontalGroup(
+            CustomerLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(CustomerLoginLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(CustomerLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(CustomerLoginLayout.createSequentialGroup()
+                        .addGroup(CustomerLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(CustLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField1)
-                            .addComponent(jButton3)
-                            .addComponent(jPasswordField1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(CustLoginLayout.createSequentialGroup()
-                        .addGap(50, 50, 50)
+                        .addGroup(CustomerLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(CustUser)
+                            .addComponent(CustLogin)
+                            .addComponent(CustPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(CustomerLoginLayout.createSequentialGroup()
+                        .addGap(31, 31, 31)
                         .addComponent(jLabel4)))
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
-        CustLoginLayout.setVerticalGroup(
-            CustLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CustLoginLayout.createSequentialGroup()
+        CustomerLoginLayout.setVerticalGroup(
+            CustomerLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(CustomerLoginLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(CustLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(CustomerLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CustUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(CustLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(CustomerLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
-                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(CustPass, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(CustLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        login1.add(CustLogin);
-        CustLogin.setBounds(10, 10, 210, 120);
+        login1.add(CustomerLogin);
+        CustomerLogin.setBounds(10, 10, 210, 120);
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-
-        jTextField2.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
-        jTextField2.setText("Card Number");
-        jTextField2.setToolTipText("");
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
-            }
-        });
-
-        jLabel5.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
-        jLabel5.setText("Card Number:");
+        GuestCard.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel6.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel6.setText("Guest Login");
+        jLabel6.setText("Guest ");
 
-        jButton4.setText("Login");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        GuestLogin.setText("Purchase Tickets");
+        GuestLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                GuestLoginActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(19, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(58, 58, 58))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton4)
-                        .addGap(70, 70, 70))))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+        javax.swing.GroupLayout GuestCardLayout = new javax.swing.GroupLayout(GuestCard);
+        GuestCard.setLayout(GuestCardLayout);
+        GuestCardLayout.setHorizontalGroup(
+            GuestCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(GuestCardLayout.createSequentialGroup()
+                .addGap(65, 65, 65)
                 .addComponent(jLabel6)
-                .addGap(11, 11, 11)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, GuestCardLayout.createSequentialGroup()
+                .addContainerGap(30, Short.MAX_VALUE)
+                .addComponent(GuestLogin)
+                .addGap(27, 27, 27))
+        );
+        GuestCardLayout.setVerticalGroup(
+            GuestCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(GuestCardLayout.createSequentialGroup()
+                .addGap(6, 6, 6)
+                .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(12, 12, 12))
+                .addComponent(GuestLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(45, 45, 45))
         );
 
-        login1.add(jPanel1);
-        jPanel1.setBounds(590, 150, 200, 100);
+        login1.add(GuestCard);
+        GuestCard.setBounds(620, 180, 170, 70);
 
         back1.setText("Back");
         back1.addActionListener(new java.awt.event.ActionListener() {
@@ -274,75 +375,67 @@ public class UI extends javax.swing.JFrame {
 
         getContentPane().add(login1, "card3");
 
-        jLabel10.setText("1.");
+        login2.setMinimumSize(new java.awt.Dimension(841, 494));
+        login2.setLayout(null);
 
-        jButton5.setText("Add Funds");
+        LoginFail2.setBorder(null);
+        LoginFail2.setTitle("Error1: Login Failure");
+        LoginFail2.setToolTipText("");
+        LoginFail2.setVisible(true);
 
-        jLabel11.setText("2.");
+        jLabel24.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
+        jLabel24.setText("Username or Password Incorrect");
 
-        jLabel12.setText("3.");
-
-        jLabel14.setText("5.");
-
-        jLabel15.setText("4.");
-
-        jButton8.setText("Tap On");
-        jButton8.addActionListener(new java.awt.event.ActionListener() {
+        jButton12.setText("Okay");
+        jButton12.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton8ActionPerformed(evt);
+                jButton12ActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(184, 184, 184)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel15)
-                    .addComponent(jLabel14)
-                    .addComponent(jLabel12)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel11)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel10)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton5)))
-                .addContainerGap(538, Short.MAX_VALUE))
+        javax.swing.GroupLayout LoginFail2Layout = new javax.swing.GroupLayout(LoginFail2.getContentPane());
+        LoginFail2.getContentPane().setLayout(LoginFail2Layout);
+        LoginFail2Layout.setHorizontalGroup(
+            LoginFail2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(LoginFail2Layout.createSequentialGroup()
+                .addGroup(LoginFail2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(LoginFail2Layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(jLabel24))
+                    .addGroup(LoginFail2Layout.createSequentialGroup()
+                        .addGap(131, 131, 131)
+                        .addComponent(jButton12)))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(133, 133, 133)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton5)
-                    .addComponent(jLabel10))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel11)
-                    .addComponent(jButton8))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel12)
-                .addGap(13, 13, 13)
-                .addComponent(jLabel15)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel14)
-                .addContainerGap(188, Short.MAX_VALUE))
+        LoginFail2Layout.setVerticalGroup(
+            LoginFail2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(LoginFail2Layout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addComponent(jLabel24)
+                .addGap(18, 18, 18)
+                .addComponent(jButton12)
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jPanel2, "card5");
-
-        login2.setLayout(null);
+        login2.add(LoginFail2);
+        LoginFail2.setBounds(10, 270, 350, 160);
 
         CustLogin2.setBackground(new java.awt.Color(255, 255, 255));
 
-        jTextField5.setText("Username");
+        RepUser.setText("Username");
+        RepUser.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                RepUserMouseClicked(evt);
+            }
+        });
 
-        jPasswordField3.setText("Password");
-        jPasswordField3.setPreferredSize(new java.awt.Dimension(113, 20));
+        RepPass.setText("Password");
+        RepPass.setPreferredSize(new java.awt.Dimension(113, 20));
+        RepPass.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                RepPassFocusGained(evt);
+            }
+        });
 
         jLabel17.setText("Username:");
 
@@ -372,9 +465,9 @@ public class UI extends javax.swing.JFrame {
                             .addComponent(jLabel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(CustLogin2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField5)
+                            .addComponent(RepUser)
                             .addComponent(jButton6)
-                            .addComponent(jPasswordField3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(RepPass, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(24, Short.MAX_VALUE))
         );
         CustLogin2Layout.setVerticalGroup(
@@ -384,12 +477,12 @@ public class UI extends javax.swing.JFrame {
                 .addComponent(jLabel19)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(CustLogin2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(RepUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel17))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(CustLogin2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel18)
-                    .addComponent(jPasswordField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(RepPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -414,54 +507,823 @@ public class UI extends javax.swing.JFrame {
 
         getContentPane().add(login2, "card4");
 
+        jLabel10.setText("1.");
+
+        jButton5.setText("Add Funds");
+
+        jLabel11.setText("2.");
+
+        jLabel12.setText("3.");
+
+        jLabel14.setText("5.");
+
+        jLabel15.setText("4.");
+
+        jButton8.setText("Tap On");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
+
+        jButton9.setText("View Funds");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
+
+        findroutesCust.setText("Find Bus Routes");
+        findroutesCust.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                findroutesCustActionPerformed(evt);
+            }
+        });
+
+        jButton11.setText("Purchase Day Pass");
+        jButton11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton11ActionPerformed(evt);
+            }
+        });
+
+        jLabel16.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
+        jLabel16.setText("Customer Menu");
+
+        jButton17.setText("Purchase Week Pass");
+        jButton17.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton17ActionPerformed(evt);
+            }
+        });
+
+        jLabel26.setText("6.");
+
+        jButton3.setText("Back");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        jLabel5.setText("Welcome ___");
+        jLabel5.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                jLabel5ComponentShown(evt);
+            }
+        });
+
+        javax.swing.GroupLayout CustomerMenuLayout = new javax.swing.GroupLayout(CustomerMenu);
+        CustomerMenu.setLayout(CustomerMenuLayout);
+        CustomerMenuLayout.setHorizontalGroup(
+            CustomerMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(CustomerMenuLayout.createSequentialGroup()
+                .addGroup(CustomerMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(CustomerMenuLayout.createSequentialGroup()
+                        .addGap(66, 66, 66)
+                        .addGroup(CustomerMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(CustomerMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel16)
+                                .addGroup(CustomerMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(CustomerMenuLayout.createSequentialGroup()
+                                        .addComponent(jLabel15)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(findroutesCust, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGroup(CustomerMenuLayout.createSequentialGroup()
+                                        .addComponent(jLabel12)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jButton9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGroup(CustomerMenuLayout.createSequentialGroup()
+                                        .addComponent(jLabel11)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGroup(CustomerMenuLayout.createSequentialGroup()
+                                        .addComponent(jLabel10)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGroup(CustomerMenuLayout.createSequentialGroup()
+                                        .addGroup(CustomerMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jLabel14)
+                                            .addComponent(jLabel26))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(CustomerMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jButton17, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addGroup(CustomerMenuLayout.createSequentialGroup()
+                                .addGap(50, 50, 50)
+                                .addComponent(jLabel5))))
+                    .addGroup(CustomerMenuLayout.createSequentialGroup()
+                        .addGap(217, 217, 217)
+                        .addComponent(jButton3)))
+                .addContainerGap(569, Short.MAX_VALUE))
+        );
+        CustomerMenuLayout.setVerticalGroup(
+            CustomerMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(CustomerMenuLayout.createSequentialGroup()
+                .addGap(34, 34, 34)
+                .addComponent(jLabel16)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel5)
+                .addGap(8, 8, 8)
+                .addGroup(CustomerMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton5)
+                    .addComponent(jLabel10))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(CustomerMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(jButton8))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(CustomerMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel12)
+                    .addComponent(jButton9))
+                .addGap(4, 4, 4)
+                .addGroup(CustomerMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel15)
+                    .addComponent(findroutesCust))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(CustomerMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel14)
+                    .addComponent(jButton11))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(CustomerMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton17)
+                    .addComponent(jLabel26))
+                .addGap(18, 18, 18)
+                .addComponent(jButton3)
+                .addContainerGap(182, Short.MAX_VALUE))
+        );
+
+        getContentPane().add(CustomerMenu, "card5");
+
+        jLabel20.setText("1.");
+
+        jLabel21.setText("2.");
+
+        jLabel22.setText("3.");
+
+        jButton18.setText("Purchase Week Pass");
+        jButton18.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton18ActionPerformed(evt);
+            }
+        });
+
+        back2.setText("Back");
+        back2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                back2ActionPerformed(evt);
+            }
+        });
+
+        jButton15.setText("Find Bus Routes");
+        jButton15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton15ActionPerformed(evt);
+            }
+        });
+
+        jButton16.setText("Purchase Day Pass");
+        jButton16.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton16ActionPerformed(evt);
+            }
+        });
+
+        jLabel25.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
+        jLabel25.setText("Guest Menu");
+
+        javax.swing.GroupLayout GuestMenuLayout = new javax.swing.GroupLayout(GuestMenu);
+        GuestMenu.setLayout(GuestMenuLayout);
+        GuestMenuLayout.setHorizontalGroup(
+            GuestMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(GuestMenuLayout.createSequentialGroup()
+                .addGroup(GuestMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(GuestMenuLayout.createSequentialGroup()
+                        .addGap(84, 84, 84)
+                        .addGroup(GuestMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(GuestMenuLayout.createSequentialGroup()
+                                .addGap(14, 14, 14)
+                                .addComponent(jLabel25))
+                            .addGroup(GuestMenuLayout.createSequentialGroup()
+                                .addGroup(GuestMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel22)
+                                    .addComponent(jLabel21)
+                                    .addComponent(jLabel20))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(GuestMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jButton15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jButton16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jButton18)))))
+                    .addGroup(GuestMenuLayout.createSequentialGroup()
+                        .addGap(220, 220, 220)
+                        .addComponent(back2)))
+                .addContainerGap(566, Short.MAX_VALUE))
+        );
+        GuestMenuLayout.setVerticalGroup(
+            GuestMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(GuestMenuLayout.createSequentialGroup()
+                .addGap(63, 63, 63)
+                .addComponent(jLabel25)
+                .addGap(26, 26, 26)
+                .addGroup(GuestMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel20)
+                    .addComponent(jButton15))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(GuestMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton16)
+                    .addComponent(jLabel21))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(GuestMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton18)
+                    .addComponent(jLabel22))
+                .addGap(18, 18, 18)
+                .addComponent(back2)
+                .addContainerGap(250, Short.MAX_VALUE))
+        );
+
+        getContentPane().add(GuestMenu, "card5");
+
+        jLabel28.setText("1.");
+
+        jButton19.setText("Add Funds");
+
+        jLabel29.setText("2.");
+
+        jLabel30.setText("3.");
+
+        jLabel31.setText("5.");
+
+        jLabel32.setText("4.");
+
+        jButton20.setText("Create Account");
+        jButton20.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton20ActionPerformed(evt);
+            }
+        });
+
+        jButton22.setText("View Bus Routes");
+        jButton22.setMaximumSize(new java.awt.Dimension(131, 23));
+        jButton22.setMinimumSize(new java.awt.Dimension(131, 23));
+        jButton22.setName(""); // NOI18N
+        jButton22.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton22ActionPerformed(evt);
+            }
+        });
+
+        jButton23.setText("Purchase Day Pass");
+        jButton23.setMaximumSize(new java.awt.Dimension(131, 23));
+        jButton23.setMinimumSize(new java.awt.Dimension(131, 23));
+        jButton23.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton23ActionPerformed(evt);
+            }
+        });
+
+        jLabel33.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
+        jLabel33.setText("Service Rep Menu");
+
+        jButton24.setText("Purchase Week Pass");
+        jButton24.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton24ActionPerformed(evt);
+            }
+        });
+
+        back3.setText("Back");
+        back3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                back3ActionPerformed(evt);
+            }
+        });
+
+        jLabel27.setText("Welcome Admin");
+
+        javax.swing.GroupLayout ServiceRepMenuLayout = new javax.swing.GroupLayout(ServiceRepMenu);
+        ServiceRepMenu.setLayout(ServiceRepMenuLayout);
+        ServiceRepMenuLayout.setHorizontalGroup(
+            ServiceRepMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ServiceRepMenuLayout.createSequentialGroup()
+                .addGroup(ServiceRepMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(ServiceRepMenuLayout.createSequentialGroup()
+                        .addGap(53, 53, 53)
+                        .addGroup(ServiceRepMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(ServiceRepMenuLayout.createSequentialGroup()
+                                .addGap(15, 15, 15)
+                                .addGroup(ServiceRepMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(ServiceRepMenuLayout.createSequentialGroup()
+                                        .addComponent(jLabel30)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jButton22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGroup(ServiceRepMenuLayout.createSequentialGroup()
+                                        .addComponent(jLabel29)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jButton20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGroup(ServiceRepMenuLayout.createSequentialGroup()
+                                        .addComponent(jLabel28)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jButton19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGroup(ServiceRepMenuLayout.createSequentialGroup()
+                                        .addGroup(ServiceRepMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jLabel31)
+                                            .addComponent(jLabel32))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(ServiceRepMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(jButton24, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(jButton23, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                            .addComponent(jLabel33)))
+                    .addGroup(ServiceRepMenuLayout.createSequentialGroup()
+                        .addGap(220, 220, 220)
+                        .addComponent(back3))
+                    .addGroup(ServiceRepMenuLayout.createSequentialGroup()
+                        .addGap(108, 108, 108)
+                        .addComponent(jLabel27)))
+                .addContainerGap(566, Short.MAX_VALUE))
+        );
+        ServiceRepMenuLayout.setVerticalGroup(
+            ServiceRepMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ServiceRepMenuLayout.createSequentialGroup()
+                .addGap(42, 42, 42)
+                .addComponent(jLabel33)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel27)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(ServiceRepMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton19)
+                    .addComponent(jLabel28))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(ServiceRepMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel29)
+                    .addComponent(jButton20))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(ServiceRepMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel30)
+                    .addComponent(jButton22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(ServiceRepMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel32)
+                    .addComponent(jButton23, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(ServiceRepMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel31)
+                    .addComponent(jButton24))
+                .addGap(18, 18, 18)
+                .addComponent(back3)
+                .addContainerGap(203, Short.MAX_VALUE))
+        );
+
+        getContentPane().add(ServiceRepMenu, "card5");
+
+        jLabel34.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jLabel34.setText("Departure City");
+
+        jLabel35.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jLabel35.setText("Destination City");
+
+        Reset.setText("Reset");
+        Reset.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ResetActionPerformed(evt);
+            }
+        });
+
+        backfindriutecust.setText("Back");
+        backfindriutecust.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backfindriutecustActionPerformed(evt);
+            }
+        });
+
+        model2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Depart", "Arrive", "DepartTime", "Arrive Time", "Price"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(model2);
+
+        DepartureCity.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Toronto", "Montreal", "Vancouver", "Ottowa" }));
+
+        DestinationCity.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Toronto", "Monreal", "Vancouver", "Ottowa" }));
+
+        RefreshCust.setText("Refresh");
+        RefreshCust.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RefreshCustActionPerformed(evt);
+            }
+        });
+
+        model3.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Depart", "Arrive", "DepartTime", "Arrive Time", "Price"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane3.setViewportView(model3);
+
+        javax.swing.GroupLayout FindBusRoutesLayout = new javax.swing.GroupLayout(FindBusRoutes);
+        FindBusRoutes.setLayout(FindBusRoutesLayout);
+        FindBusRoutesLayout.setHorizontalGroup(
+            FindBusRoutesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FindBusRoutesLayout.createSequentialGroup()
+                .addGroup(FindBusRoutesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(FindBusRoutesLayout.createSequentialGroup()
+                        .addGap(43, 43, 43)
+                        .addGroup(FindBusRoutesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel35)
+                            .addComponent(jLabel34))
+                        .addGap(30, 30, 30)
+                        .addGroup(FindBusRoutesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(DepartureCity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(DestinationCity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FindBusRoutesLayout.createSequentialGroup()
+                        .addContainerGap(96, Short.MAX_VALUE)
+                        .addGroup(FindBusRoutesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 524, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 524, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(49, 49, 49)))
+                .addGroup(FindBusRoutesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(RefreshCust)
+                    .addGroup(FindBusRoutesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(backfindriutecust)
+                        .addComponent(Reset)))
+                .addGap(79, 79, 79))
+        );
+        FindBusRoutesLayout.setVerticalGroup(
+            FindBusRoutesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(FindBusRoutesLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(FindBusRoutesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel34)
+                    .addComponent(DepartureCity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(FindBusRoutesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel35)
+                    .addComponent(DestinationCity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(RefreshCust))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(FindBusRoutesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(FindBusRoutesLayout.createSequentialGroup()
+                        .addGroup(FindBusRoutesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Reset)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(221, 221, 221)
+                        .addComponent(backfindriutecust))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(68, 68, 68))
+        );
+
+        getContentPane().add(FindBusRoutes, "card8");
+
+        bus.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Depart", "Arrive", "DepartTime", "Arrive Time", "Price"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(bus);
+
+        refresh.setText("Refresh Table");
+        refresh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                refreshActionPerformed(evt);
+            }
+        });
+
+        back4.setText("Back");
+        back4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                back4ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout ViewBusRoutesLayout = new javax.swing.GroupLayout(ViewBusRoutes);
+        ViewBusRoutes.setLayout(ViewBusRoutesLayout);
+        ViewBusRoutesLayout.setHorizontalGroup(
+            ViewBusRoutesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ViewBusRoutesLayout.createSequentialGroup()
+                .addGap(146, 146, 146)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(ViewBusRoutesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(ViewBusRoutesLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
+                        .addComponent(refresh)
+                        .addGap(69, 69, 69))
+                    .addGroup(ViewBusRoutesLayout.createSequentialGroup()
+                        .addGap(79, 79, 79)
+                        .addComponent(back4)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+        );
+        ViewBusRoutesLayout.setVerticalGroup(
+            ViewBusRoutesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ViewBusRoutesLayout.createSequentialGroup()
+                .addGroup(ViewBusRoutesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(ViewBusRoutesLayout.createSequentialGroup()
+                        .addGap(215, 215, 215)
+                        .addComponent(refresh)
+                        .addGap(64, 64, 64)
+                        .addComponent(back4))
+                    .addGroup(ViewBusRoutesLayout.createSequentialGroup()
+                        .addGap(78, 78, 78)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(395, Short.MAX_VALUE))
+        );
+
+        getContentPane().add(ViewBusRoutes, "card9");
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-       String user="Customer";
-       login1.setVisible(true);
-       Welcome.setVisible(false);
+        login1.setVisible(true);
+        Welcome.setVisible(false);
+        LoginFail.setVisible(false);
+        CustLogin.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        String user="other";
         login2.setVisible(true);
-       Welcome.setVisible(false);
+        Welcome.setVisible(false);
+        LoginFail2.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void CustLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CustLoginActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+        try {
+            if (setup.login(CustUser.getText(), String.valueOf(CustPass.getPassword())) == true) {
+                login1.setVisible(false);
+                CustomerMenu.setVisible(true);
+                jLabel5.setText("Welcome " + CustUser.getText());
+                CustUser.setText("");
+                CustPass.setText("");
+            }
+            else {
+                LoginFail.setVisible(true);
+                CustLogin.setVisible(false);
+            }
+        } catch (IOException exx) {
+            login1.setVisible(false);
+            CustomerMenu.setVisible(true);
+        }
+    }//GEN-LAST:event_CustLoginActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void GuestLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuestLoginActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+        login1.setVisible(false);
+        GuestMenu.setVisible(true);
+    }//GEN-LAST:event_GuestLoginActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
+            if (RepUser.getText().equalsIgnoreCase("admin")&&String.valueOf(RepPass.getPassword()).equalsIgnoreCase("admin")) {
+                login2.setVisible(false);
+                ServiceRepMenu.setVisible(true);
+                RepUser.setText("");
+                RepPass.setText("");
+            }
+            else {
+                LoginFail2.setVisible(true);
+                jButton6.setVisible(false);
+            }        
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void back1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back1ActionPerformed
         // TODO add your handling code here:
         login1.setVisible(false);
-       Welcome.setVisible(true);
+        Welcome.setVisible(true);
     }//GEN-LAST:event_back1ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         // TODO add your handling code here:
-         login2.setVisible(false);
-       Welcome.setVisible(true);
+        login2.setVisible(false);
+        Welcome.setVisible(true);
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void findroutesCustActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_findroutesCustActionPerformed
+        // TODO add your handling code here:
+CustomerMenu.setVisible(false);
+FindBusRoutes.setVisible(true);
+    }//GEN-LAST:event_findroutesCustActionPerformed
+
+    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton11ActionPerformed
+
+    private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton15ActionPerformed
+
+    private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton16ActionPerformed
+
+    private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton17ActionPerformed
+
+    private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton18ActionPerformed
+
+    private void jButton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton20ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton20ActionPerformed
+
+    private void jButton22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton22ActionPerformed
+        // TODO add your handling code here:
+        ViewBusRoutes.setVisible(true);
+        ServiceRepMenu.setVisible(false);
+    }//GEN-LAST:event_jButton22ActionPerformed
+
+    private void jButton23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton23ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton23ActionPerformed
+
+    private void jButton24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton24ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton24ActionPerformed
+
+    private void CustUserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CustUserMouseClicked
+        // TODO add your handling code here:
+        CustUser.setText("");
+    }//GEN-LAST:event_CustUserMouseClicked
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        CustomerMenu.setVisible(false);
+        login1.setVisible(true);
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jLabel5ComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jLabel5ComponentShown
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_jLabel5ComponentShown
+
+    private void CustPassMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CustPassMouseClicked
+        // TODO add your handling code here:
+        CustPass.setText("");
+    }//GEN-LAST:event_CustPassMouseClicked
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        LoginFail.setVisible(false);
+        CustLogin.setVisible(true);
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void CustPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CustPassKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CustPassKeyPressed
+
+    private void back2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back2ActionPerformed
+        // TODO add your handling code here:
+        GuestMenu.setVisible(false);
+        login1.setVisible(true);
+    }//GEN-LAST:event_back2ActionPerformed
+
+    private void back3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back3ActionPerformed
+        // TODO add your handling code here:
+        ServiceRepMenu.setVisible(false);
+        login2.setVisible(true);
+    }//GEN-LAST:event_back3ActionPerformed
+
+    private void RepUserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RepUserMouseClicked
+        // TODO add your handling code here:
+        RepUser.setText("");
+    }//GEN-LAST:event_RepUserMouseClicked
+
+    private void RepPassFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_RepPassFocusGained
+        // TODO add your handling code here:
+        RepPass.setText("");
+    }//GEN-LAST:event_RepPassFocusGained
+
+    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+        // TODO add your handling code here:
+        LoginFail2.setVisible(false);
+        jButton6.setVisible(true);
+    }//GEN-LAST:event_jButton12ActionPerformed
+
+    private void refreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshActionPerformed
+        // TODO add your handling code here:
+        String row;
+        Routes display = new Routes();
+        try {
+            route1.setBrr(new BufferedReader(new FileReader(filebus)));
+            route1.getBrr().mark(0);
+            route1.getBrr().reset();
+            
+        } catch (IOException ex) {
+            Logger.getLogger(UI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        DefaultTableModel model = (DefaultTableModel) bus.getModel();
+        StringTokenizer st2 = new StringTokenizer(display.viewRoute(route1.getFilebus(),route1.getBrr()));
+        model.addRow(new Object[]{st2.nextToken(),st2.nextToken(),st2.nextToken(), st2.nextToken(),st2.nextToken()});
+        while (!((row=display.viewRoute(route1.getFilebus(),route1.getBrr())).isEmpty())){
+            st2 = new StringTokenizer(row);
+           model.addRow(new Object[]{st2.nextToken(),st2.nextToken(),st2.nextToken(), st2.nextToken(),st2.nextToken()}); 
+        }
+    }//GEN-LAST:event_refreshActionPerformed
+
+    private void back4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back4ActionPerformed
+        // TODO add your handling code here:
+        ServiceRepMenu.setVisible(true);
+        ViewBusRoutes.setVisible(false);
+    }//GEN-LAST:event_back4ActionPerformed
+
+    private void backfindriutecustActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backfindriutecustActionPerformed
+        // TODO add your handling code here:
+        CustomerMenu.setVisible(true);
+        FindBusRoutes.setVisible(false);
+    }//GEN-LAST:event_backfindriutecustActionPerformed
+
+    private void ResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ResetActionPerformed
+        // TODO add your handling code here:
+         model2.setVisible(true);
+       model3.setVisible(false);
+         String row;
+        Routes display = new Routes();
+        try {
+            route1.setBrr(new BufferedReader(new FileReader(filebus)));
+            route1.getBrr().mark(0);
+            route1.getBrr().reset();
+            
+        } catch (IOException ex) {
+            Logger.getLogger(UI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        DefaultTableModel model = (DefaultTableModel) model2.getModel();
+        StringTokenizer st2 = new StringTokenizer(display.viewRoute(route1.getFilebus(),route1.getBrr()));
+        model.addRow(new Object[]{st2.nextToken(),st2.nextToken(),st2.nextToken(), st2.nextToken(),st2.nextToken()});
+        while (!((row=display.viewRoute(route1.getFilebus(),route1.getBrr())).isEmpty())){
+            st2 = new StringTokenizer(row);
+           model.addRow(new Object[]{st2.nextToken(),st2.nextToken(),st2.nextToken(), st2.nextToken(),st2.nextToken()}); 
+        }
+    }//GEN-LAST:event_ResetActionPerformed
+
+    private void RefreshCustActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RefreshCustActionPerformed
+        // TODO add your handling code here:
+       // System.out.println(DepartureCity.getSelectedItem());
+       // System.out.println(DestinationCity.getSelectedItem());
+       model2.setVisible(false);
+       model3.setVisible(true);
+       DefaultTableModel model34 = (DefaultTableModel) model3.getModel();
+        for(int i=0;i<model2.getModel().getRowCount()-1;i++){
+            if(model2.getModel().getValueAt(i, 0).equals(DepartureCity.getSelectedItem())){
+                System.out.println(model2.getModel().getValueAt(i, 1));
+                model34.addRow(new Object[]{model2.getModel().getValueAt(i,0),model2.getModel().getValueAt(i,1),
+                    model2.getModel().getValueAt(i,2), model2.getModel().getValueAt(i,3),model2.getModel().getValueAt(i,4)});
+            }
+            else{
+            // model2.se
+            //have two tables, one hides, other shows
+            //one has all values
+            //other has results only
+            //instead of deleting rows
+            //you can clear all rows later.
+            }
+        }
+        System.out.println("you will arrive at "+model2.getModel().getValueAt (1, 1));
+    }//GEN-LAST:event_RefreshCustActionPerformed
 
     /**
      * @param args the command line arguments
@@ -495,23 +1357,59 @@ public class UI extends javax.swing.JFrame {
             public void run() {
                 new UI().setVisible(true);
             }
-            
+
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel CustLogin;
+    private javax.swing.JButton CustLogin;
     private javax.swing.JPanel CustLogin2;
+    private javax.swing.JPasswordField CustPass;
+    private javax.swing.JTextField CustUser;
+    private javax.swing.JPanel CustomerLogin;
+    private javax.swing.JPanel CustomerMenu;
+    private javax.swing.JComboBox<String> DepartureCity;
+    private javax.swing.JComboBox<String> DestinationCity;
+    private javax.swing.JPanel FindBusRoutes;
+    private javax.swing.JPanel GuestCard;
+    private javax.swing.JButton GuestLogin;
+    private javax.swing.JPanel GuestMenu;
+    private javax.swing.JInternalFrame LoginFail;
+    private javax.swing.JInternalFrame LoginFail2;
+    private javax.swing.JButton RefreshCust;
+    private javax.swing.JPasswordField RepPass;
+    private javax.swing.JTextField RepUser;
+    private javax.swing.JButton Reset;
+    private javax.swing.JPanel ServiceRepMenu;
+    private javax.swing.JPanel ViewBusRoutes;
     private javax.swing.JPanel Welcome;
     private javax.swing.JButton back1;
+    private javax.swing.JButton back2;
+    private javax.swing.JButton back3;
+    private javax.swing.JButton back4;
+    private javax.swing.JButton backfindriutecust;
+    private javax.swing.JTable bus;
+    private javax.swing.JButton findroutesCust;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton11;
+    private javax.swing.JButton jButton12;
+    private javax.swing.JButton jButton15;
+    private javax.swing.JButton jButton16;
+    private javax.swing.JButton jButton17;
+    private javax.swing.JButton jButton18;
+    private javax.swing.JButton jButton19;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton20;
+    private javax.swing.JButton jButton22;
+    private javax.swing.JButton jButton23;
+    private javax.swing.JButton jButton24;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -519,26 +1417,42 @@ public class UI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
+    private javax.swing.JLabel jLabel33;
+    private javax.swing.JLabel jLabel34;
+    private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JPasswordField jPasswordField3;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTextArea jTextArea2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField5;
     private javax.swing.JPanel login1;
     private javax.swing.JPanel login2;
+    private javax.swing.JTable model2;
+    private javax.swing.JTable model3;
+    private javax.swing.JButton refresh;
     // End of variables declaration//GEN-END:variables
 }
