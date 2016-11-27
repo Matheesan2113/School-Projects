@@ -15,20 +15,50 @@ import java.util.logging.Logger;
  * @author mathe
  */
 public class Routes {
-    
+
+    /**
+     * @param brr the brr to set
+     */
+    public void setBrr(BufferedReader brr) {
+        this.brr = brr;
+    }
+
+    /**
+     * @return the filebus
+     */
+    public File getFilebus() {
+        return filebus;
+    }
+
+    /**
+     * @return the brr
+     */
+    public BufferedReader getBrr() {
+        return brr;
+    }
+
     /**
      *
      */
-    public Routes() {
+    private BufferedReader brr;
+    private File filebus;
 
-    }
-    public String viewRoute(){
-        String current="";
+    public Routes() {
         try {
-                    File file = new File("./BusRoutes.txt");
-            BufferedReader br2 = new BufferedReader(new FileReader("./BusRoutes.txt"));
-            current=br2.readLine();
-            System.out.println("Read string is.."+current+"  File name is : ");
+            filebus = new File("./BusRoutes.txt");
+            brr = new BufferedReader(new FileReader("./BusRoutes.txt"));
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Routes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public String viewRoute(File file, BufferedReader br2) {
+        String current = "";
+        try {
+            if (br2.ready()) {
+                current = br2.readLine();
+            }
+
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Routes.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
@@ -36,5 +66,5 @@ public class Routes {
         }
         return current;
     }
-    
+
 }
