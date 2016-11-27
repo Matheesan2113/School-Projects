@@ -36,27 +36,29 @@ public class Routes {
     public BufferedReader getBrr() {
         return brr;
     }
-    
+
     /**
      *
      */
     private BufferedReader brr;
     private File filebus;
+
     public Routes() {
         try {
             filebus = new File("./BusRoutes.txt");
-            brr= new BufferedReader(new FileReader("./BusRoutes.txt"));
+            brr = new BufferedReader(new FileReader("./BusRoutes.txt"));
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Routes.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    public String viewRoute(File file,BufferedReader br2){
-        String current="";
+
+    public String viewRoute(File file, BufferedReader br2) {
+        String current = "";
         try {
-            if(br2.ready()){
-               current=br2.readLine(); 
+            if (br2.ready()) {
+                current = br2.readLine();
             }
-            
+
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Routes.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
@@ -64,5 +66,5 @@ public class Routes {
         }
         return current;
     }
-    
+
 }

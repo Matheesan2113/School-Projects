@@ -84,7 +84,7 @@ public class UI extends javax.swing.JFrame {
         jLabel15 = new javax.swing.JLabel();
         jButton8 = new javax.swing.JButton();
         jButton9 = new javax.swing.JButton();
-        jButton10 = new javax.swing.JButton();
+        findroutesCust = new javax.swing.JButton();
         jButton11 = new javax.swing.JButton();
         jLabel16 = new javax.swing.JLabel();
         jButton17 = new javax.swing.JButton();
@@ -117,8 +117,15 @@ public class UI extends javax.swing.JFrame {
         FindBusRoutes = new javax.swing.JPanel();
         jLabel34 = new javax.swing.JLabel();
         jLabel35 = new javax.swing.JLabel();
-        Depart = new javax.swing.JTextField();
-        Arrive = new javax.swing.JTextField();
+        Reset = new javax.swing.JButton();
+        backfindriutecust = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        model2 = new javax.swing.JTable();
+        DepartureCity = new javax.swing.JComboBox<>();
+        DestinationCity = new javax.swing.JComboBox<>();
+        RefreshCust = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        model3 = new javax.swing.JTable();
         ViewBusRoutes = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         bus = new javax.swing.JTable();
@@ -526,10 +533,10 @@ public class UI extends javax.swing.JFrame {
             }
         });
 
-        jButton10.setText("Find Bus Routes");
-        jButton10.addActionListener(new java.awt.event.ActionListener() {
+        findroutesCust.setText("Find Bus Routes");
+        findroutesCust.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton10ActionPerformed(evt);
+                findroutesCustActionPerformed(evt);
             }
         });
 
@@ -581,7 +588,7 @@ public class UI extends javax.swing.JFrame {
                                     .addGroup(CustomerMenuLayout.createSequentialGroup()
                                         .addComponent(jLabel15)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jButton10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addComponent(findroutesCust, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                     .addGroup(CustomerMenuLayout.createSequentialGroup()
                                         .addComponent(jLabel12)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -632,7 +639,7 @@ public class UI extends javax.swing.JFrame {
                 .addGap(4, 4, 4)
                 .addGroup(CustomerMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel15)
-                    .addComponent(jButton10))
+                    .addComponent(findroutesCust))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(CustomerMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel14)
@@ -874,42 +881,118 @@ public class UI extends javax.swing.JFrame {
         jLabel35.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel35.setText("Destination City");
 
-        Depart.setText("Depart");
-
-        Arrive.setText("Arrive");
-        Arrive.addActionListener(new java.awt.event.ActionListener() {
+        Reset.setText("Reset");
+        Reset.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ArriveActionPerformed(evt);
+                ResetActionPerformed(evt);
             }
         });
+
+        backfindriutecust.setText("Back");
+        backfindriutecust.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backfindriutecustActionPerformed(evt);
+            }
+        });
+
+        model2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Depart", "Arrive", "DepartTime", "Arrive Time", "Price"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(model2);
+
+        DepartureCity.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Toronto", "Montreal", "Vancouver", "Ottowa" }));
+
+        DestinationCity.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Toronto", "Monreal", "Vancouver", "Ottowa" }));
+
+        RefreshCust.setText("Refresh");
+        RefreshCust.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RefreshCustActionPerformed(evt);
+            }
+        });
+
+        model3.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Depart", "Arrive", "DepartTime", "Arrive Time", "Price"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane3.setViewportView(model3);
 
         javax.swing.GroupLayout FindBusRoutesLayout = new javax.swing.GroupLayout(FindBusRoutes);
         FindBusRoutes.setLayout(FindBusRoutesLayout);
         FindBusRoutesLayout.setHorizontalGroup(
             FindBusRoutesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(FindBusRoutesLayout.createSequentialGroup()
-                .addGap(162, 162, 162)
-                .addGroup(FindBusRoutesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel35)
-                    .addComponent(jLabel34))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FindBusRoutesLayout.createSequentialGroup()
                 .addGroup(FindBusRoutesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Depart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Arrive, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(540, Short.MAX_VALUE))
+                    .addGroup(FindBusRoutesLayout.createSequentialGroup()
+                        .addGap(43, 43, 43)
+                        .addGroup(FindBusRoutesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel35)
+                            .addComponent(jLabel34))
+                        .addGap(30, 30, 30)
+                        .addGroup(FindBusRoutesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(DepartureCity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(DestinationCity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FindBusRoutesLayout.createSequentialGroup()
+                        .addContainerGap(96, Short.MAX_VALUE)
+                        .addGroup(FindBusRoutesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 524, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 524, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(49, 49, 49)))
+                .addGroup(FindBusRoutesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(RefreshCust)
+                    .addGroup(FindBusRoutesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(backfindriutecust)
+                        .addComponent(Reset)))
+                .addGap(79, 79, 79))
         );
         FindBusRoutesLayout.setVerticalGroup(
             FindBusRoutesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(FindBusRoutesLayout.createSequentialGroup()
-                .addGap(142, 142, 142)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(FindBusRoutesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel34)
-                    .addComponent(Depart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(DepartureCity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(FindBusRoutesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel35)
-                    .addComponent(Arrive, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(294, Short.MAX_VALUE))
+                    .addComponent(DestinationCity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(RefreshCust))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(FindBusRoutesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(FindBusRoutesLayout.createSequentialGroup()
+                        .addGroup(FindBusRoutesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Reset)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(221, 221, 221)
+                        .addComponent(backfindriutecust))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(68, 68, 68))
         );
 
         getContentPane().add(FindBusRoutes, "card8");
@@ -975,7 +1058,7 @@ public class UI extends javax.swing.JFrame {
                     .addGroup(ViewBusRoutesLayout.createSequentialGroup()
                         .addGap(78, 78, 78)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(110, Short.MAX_VALUE))
+                .addContainerGap(395, Short.MAX_VALUE))
         );
 
         getContentPane().add(ViewBusRoutes, "card9");
@@ -1058,9 +1141,11 @@ public class UI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton9ActionPerformed
 
-    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+    private void findroutesCustActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_findroutesCustActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton10ActionPerformed
+CustomerMenu.setVisible(false);
+FindBusRoutes.setVisible(true);
+    }//GEN-LAST:event_findroutesCustActionPerformed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
         // TODO add your handling code here:
@@ -1159,10 +1244,6 @@ public class UI extends javax.swing.JFrame {
         jButton6.setVisible(true);
     }//GEN-LAST:event_jButton12ActionPerformed
 
-    private void ArriveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ArriveActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ArriveActionPerformed
-
     private void refreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshActionPerformed
         // TODO add your handling code here:
         String row;
@@ -1189,6 +1270,60 @@ public class UI extends javax.swing.JFrame {
         ServiceRepMenu.setVisible(true);
         ViewBusRoutes.setVisible(false);
     }//GEN-LAST:event_back4ActionPerformed
+
+    private void backfindriutecustActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backfindriutecustActionPerformed
+        // TODO add your handling code here:
+        CustomerMenu.setVisible(true);
+        FindBusRoutes.setVisible(false);
+    }//GEN-LAST:event_backfindriutecustActionPerformed
+
+    private void ResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ResetActionPerformed
+        // TODO add your handling code here:
+         model2.setVisible(true);
+       model3.setVisible(false);
+         String row;
+        Routes display = new Routes();
+        try {
+            route1.setBrr(new BufferedReader(new FileReader(filebus)));
+            route1.getBrr().mark(0);
+            route1.getBrr().reset();
+            
+        } catch (IOException ex) {
+            Logger.getLogger(UI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        DefaultTableModel model = (DefaultTableModel) model2.getModel();
+        StringTokenizer st2 = new StringTokenizer(display.viewRoute(route1.getFilebus(),route1.getBrr()));
+        model.addRow(new Object[]{st2.nextToken(),st2.nextToken(),st2.nextToken(), st2.nextToken(),st2.nextToken()});
+        while (!((row=display.viewRoute(route1.getFilebus(),route1.getBrr())).isEmpty())){
+            st2 = new StringTokenizer(row);
+           model.addRow(new Object[]{st2.nextToken(),st2.nextToken(),st2.nextToken(), st2.nextToken(),st2.nextToken()}); 
+        }
+    }//GEN-LAST:event_ResetActionPerformed
+
+    private void RefreshCustActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RefreshCustActionPerformed
+        // TODO add your handling code here:
+       // System.out.println(DepartureCity.getSelectedItem());
+       // System.out.println(DestinationCity.getSelectedItem());
+       model2.setVisible(false);
+       model3.setVisible(true);
+       DefaultTableModel model34 = (DefaultTableModel) model3.getModel();
+        for(int i=0;i<model2.getModel().getRowCount()-1;i++){
+            if(model2.getModel().getValueAt(i, 0).equals(DepartureCity.getSelectedItem())){
+                System.out.println(model2.getModel().getValueAt(i, 1));
+                model34.addRow(new Object[]{model2.getModel().getValueAt(i,0),model2.getModel().getValueAt(i,1),
+                    model2.getModel().getValueAt(i,2), model2.getModel().getValueAt(i,3),model2.getModel().getValueAt(i,4)});
+            }
+            else{
+            // model2.se
+            //have two tables, one hides, other shows
+            //one has all values
+            //other has results only
+            //instead of deleting rows
+            //you can clear all rows later.
+            }
+        }
+        System.out.println("you will arrive at "+model2.getModel().getValueAt (1, 1));
+    }//GEN-LAST:event_RefreshCustActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1227,22 +1362,24 @@ public class UI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField Arrive;
     private javax.swing.JButton CustLogin;
     private javax.swing.JPanel CustLogin2;
     private javax.swing.JPasswordField CustPass;
     private javax.swing.JTextField CustUser;
     private javax.swing.JPanel CustomerLogin;
     private javax.swing.JPanel CustomerMenu;
-    private javax.swing.JTextField Depart;
+    private javax.swing.JComboBox<String> DepartureCity;
+    private javax.swing.JComboBox<String> DestinationCity;
     private javax.swing.JPanel FindBusRoutes;
     private javax.swing.JPanel GuestCard;
     private javax.swing.JButton GuestLogin;
     private javax.swing.JPanel GuestMenu;
     private javax.swing.JInternalFrame LoginFail;
     private javax.swing.JInternalFrame LoginFail2;
+    private javax.swing.JButton RefreshCust;
     private javax.swing.JPasswordField RepPass;
     private javax.swing.JTextField RepUser;
+    private javax.swing.JButton Reset;
     private javax.swing.JPanel ServiceRepMenu;
     private javax.swing.JPanel ViewBusRoutes;
     private javax.swing.JPanel Welcome;
@@ -1250,9 +1387,10 @@ public class UI extends javax.swing.JFrame {
     private javax.swing.JButton back2;
     private javax.swing.JButton back3;
     private javax.swing.JButton back4;
+    private javax.swing.JButton backfindriutecust;
     private javax.swing.JTable bus;
+    private javax.swing.JButton findroutesCust;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton15;
@@ -1308,9 +1446,13 @@ public class UI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTextArea jTextArea2;
     private javax.swing.JPanel login1;
     private javax.swing.JPanel login2;
+    private javax.swing.JTable model2;
+    private javax.swing.JTable model3;
     private javax.swing.JButton refresh;
     // End of variables declaration//GEN-END:variables
 }
