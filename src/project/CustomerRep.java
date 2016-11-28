@@ -10,8 +10,14 @@ package project;
  * @author Owner
  */
 public class CustomerRep extends UserProfile {
-    
+   Customer you;
+   
     public CustomerRep(String user, String pass) {
-        super(user, pass, "customer representative");
+        super(user, pass);
     }
+public Customer CreateCustomer(String user, String pass, double bal, int cardNum, int s){
+   Customer you=new Customer(user, pass, bal,cardNum, s);
+   return you;
 }
+}
+//

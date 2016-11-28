@@ -12,12 +12,12 @@ package project;
 public abstract class UserProfile {
     private String username;
     private String password;
-    private String user;
+    //private String user;
     
-    public UserProfile (String user, String pass, String u) {
+    public UserProfile (String user, String pass) {
         username=user;
         password=pass;
-        user=u;
+        //user=u;
     }
     
     public String getUsername(){

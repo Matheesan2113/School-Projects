@@ -26,10 +26,15 @@ public class UI extends javax.swing.JFrame {
     public UI() {
         initComponents();
     }
+    File file = new File("./logindata.txt");
     Authentication setup = new Authentication();
-  File filebus = new File("./BusRoutes.txt");
-   Routes route1 = new Routes();
-   
+    CustomerRep Admin = new CustomerRep("admin", "admin");
+    static int cardcount = 10000;
+    static String CurrentUser="";
+    File filebus = new File("./BusRoutes.txt");
+    Routes route1 = new Routes();
+    ArrayList<Customer> CustomerList = new ArrayList<Customer>();
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -80,17 +85,20 @@ public class UI extends javax.swing.JFrame {
         jButton5 = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
-        jButton8 = new javax.swing.JButton();
+        PayButton = new javax.swing.JButton();
         jButton9 = new javax.swing.JButton();
         findroutesCust = new javax.swing.JButton();
-        jButton11 = new javax.swing.JButton();
         jLabel16 = new javax.swing.JLabel();
-        jButton17 = new javax.swing.JButton();
-        jLabel26 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
+        Pay = new javax.swing.JPanel();
+        BackPay = new javax.swing.JButton();
+        jButton10 = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        FareTable = new javax.swing.JTable();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        routestablepay = new javax.swing.JTable();
         GuestMenu = new javax.swing.JPanel();
         jLabel20 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
@@ -114,18 +122,31 @@ public class UI extends javax.swing.JFrame {
         jButton24 = new javax.swing.JButton();
         back3 = new javax.swing.JButton();
         jLabel27 = new javax.swing.JLabel();
+        CreateAccount = new javax.swing.JPanel();
+        back5 = new javax.swing.JButton();
+        NewCustUser = new javax.swing.JTextField();
+        NewCustPass = new javax.swing.JTextField();
+        NewCustBal = new javax.swing.JTextField();
+        jLabel36 = new javax.swing.JLabel();
+        jLabel37 = new javax.swing.JLabel();
+        jLabel38 = new javax.swing.JLabel();
+        jLabel39 = new javax.swing.JLabel();
+        jLabel40 = new javax.swing.JLabel();
+        jLabel42 = new javax.swing.JLabel();
+        NewCustType = new javax.swing.JComboBox();
+        SubmitNewCust = new javax.swing.JButton();
+        CustomerErrorMessage = new javax.swing.JLabel();
         FindBusRoutes = new javax.swing.JPanel();
         jLabel34 = new javax.swing.JLabel();
         jLabel35 = new javax.swing.JLabel();
-        Reset = new javax.swing.JButton();
+        ViewAll = new javax.swing.JButton();
         backfindriutecust = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        model2 = new javax.swing.JTable();
         DepartureCity = new javax.swing.JComboBox<>();
         DestinationCity = new javax.swing.JComboBox<>();
         RefreshCust = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         model3 = new javax.swing.JTable();
+        ErrorMessage = new javax.swing.JLabel();
         ViewBusRoutes = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         bus = new javax.swing.JTable();
@@ -515,14 +536,12 @@ public class UI extends javax.swing.JFrame {
 
         jLabel12.setText("3.");
 
-        jLabel14.setText("5.");
-
         jLabel15.setText("4.");
 
-        jButton8.setText("Tap On");
-        jButton8.addActionListener(new java.awt.event.ActionListener() {
+        PayButton.setText("Pay");
+        PayButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton8ActionPerformed(evt);
+                PayButtonActionPerformed(evt);
             }
         });
 
@@ -540,33 +559,17 @@ public class UI extends javax.swing.JFrame {
             }
         });
 
-        jButton11.setText("Purchase Day Pass");
-        jButton11.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton11ActionPerformed(evt);
-            }
-        });
-
         jLabel16.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
         jLabel16.setText("Customer Menu");
 
-        jButton17.setText("Purchase Week Pass");
-        jButton17.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton17ActionPerformed(evt);
-            }
-        });
-
-        jLabel26.setText("6.");
-
-        jButton3.setText("Back");
+        jButton3.setText("Logout");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
 
-        jLabel5.setText("Welcome ___");
+        jLabel5.setText("Welcome");
         jLabel5.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
                 jLabel5ComponentShown(evt);
@@ -580,42 +583,33 @@ public class UI extends javax.swing.JFrame {
             .addGroup(CustomerMenuLayout.createSequentialGroup()
                 .addGroup(CustomerMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(CustomerMenuLayout.createSequentialGroup()
-                        .addGap(66, 66, 66)
-                        .addGroup(CustomerMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(CustomerMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jLabel16)
-                                .addGroup(CustomerMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(CustomerMenuLayout.createSequentialGroup()
-                                        .addComponent(jLabel15)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(findroutesCust, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addGroup(CustomerMenuLayout.createSequentialGroup()
-                                        .addComponent(jLabel12)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jButton9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addGroup(CustomerMenuLayout.createSequentialGroup()
-                                        .addComponent(jLabel11)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addGroup(CustomerMenuLayout.createSequentialGroup()
-                                        .addComponent(jLabel10)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addGroup(CustomerMenuLayout.createSequentialGroup()
-                                        .addGroup(CustomerMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(jLabel14)
-                                            .addComponent(jLabel26))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(CustomerMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jButton17, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                            .addGroup(CustomerMenuLayout.createSequentialGroup()
-                                .addGap(50, 50, 50)
-                                .addComponent(jLabel5))))
+                        .addGap(131, 131, 131)
+                        .addComponent(jLabel5))
                     .addGroup(CustomerMenuLayout.createSequentialGroup()
-                        .addGap(217, 217, 217)
+                        .addGap(66, 66, 66)
+                        .addGroup(CustomerMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel16)
+                            .addGroup(CustomerMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(CustomerMenuLayout.createSequentialGroup()
+                                    .addComponent(jLabel15)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(findroutesCust, javax.swing.GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE))
+                                .addGroup(CustomerMenuLayout.createSequentialGroup()
+                                    .addComponent(jLabel12)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jButton9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGroup(CustomerMenuLayout.createSequentialGroup()
+                                    .addComponent(jLabel11)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(PayButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGroup(CustomerMenuLayout.createSequentialGroup()
+                                    .addComponent(jLabel10)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                    .addGroup(CustomerMenuLayout.createSequentialGroup()
+                        .addGap(126, 126, 126)
                         .addComponent(jButton3)))
-                .addContainerGap(569, Short.MAX_VALUE))
+                .addContainerGap(625, Short.MAX_VALUE))
         );
         CustomerMenuLayout.setVerticalGroup(
             CustomerMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -631,7 +625,7 @@ public class UI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(CustomerMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
-                    .addComponent(jButton8))
+                    .addComponent(PayButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(CustomerMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
@@ -640,20 +634,105 @@ public class UI extends javax.swing.JFrame {
                 .addGroup(CustomerMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel15)
                     .addComponent(findroutesCust))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(CustomerMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel14)
-                    .addComponent(jButton11))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(CustomerMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton17)
-                    .addComponent(jLabel26))
-                .addGap(18, 18, 18)
+                .addGap(26, 26, 26)
                 .addComponent(jButton3)
-                .addContainerGap(182, Short.MAX_VALUE))
+                .addContainerGap(615, Short.MAX_VALUE))
         );
 
         getContentPane().add(CustomerMenu, "card5");
+
+        BackPay.setText("Back");
+        BackPay.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BackPayActionPerformed(evt);
+            }
+        });
+
+        jButton10.setText("Select");
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
+            }
+        });
+
+        FareTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Card Type", "Fare"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(FareTable);
+
+        routestablepay.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Depart", "Arrive", "DepartTime", "Arrive Time", "Price"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane5.setViewportView(routestablepay);
+
+        javax.swing.GroupLayout PayLayout = new javax.swing.GroupLayout(Pay);
+        Pay.setLayout(PayLayout);
+        PayLayout.setHorizontalGroup(
+            PayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PayLayout.createSequentialGroup()
+                .addGap(8, 8, 8)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(PayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PayLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(PayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton10)
+                            .addComponent(BackPay))
+                        .addGap(88, 88, 88))
+                    .addGroup(PayLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+        );
+        PayLayout.setVerticalGroup(
+            PayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PayLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(PayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PayLayout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(71, 71, 71)
+                        .addComponent(jButton10)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(BackPay))
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(258, Short.MAX_VALUE))
+        );
+
+        getContentPane().add(Pay, "card11");
 
         jLabel20.setText("1.");
 
@@ -717,7 +796,7 @@ public class UI extends javax.swing.JFrame {
                     .addGroup(GuestMenuLayout.createSequentialGroup()
                         .addGap(220, 220, 220)
                         .addComponent(back2)))
-                .addContainerGap(566, Short.MAX_VALUE))
+                .addContainerGap(571, Short.MAX_VALUE))
         );
         GuestMenuLayout.setVerticalGroup(
             GuestMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -738,7 +817,7 @@ public class UI extends javax.swing.JFrame {
                     .addComponent(jLabel22))
                 .addGap(18, 18, 18)
                 .addComponent(back2)
-                .addContainerGap(250, Short.MAX_VALUE))
+                .addContainerGap(628, Short.MAX_VALUE))
         );
 
         getContentPane().add(GuestMenu, "card5");
@@ -807,6 +886,9 @@ public class UI extends javax.swing.JFrame {
             .addGroup(ServiceRepMenuLayout.createSequentialGroup()
                 .addGroup(ServiceRepMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(ServiceRepMenuLayout.createSequentialGroup()
+                        .addGap(220, 220, 220)
+                        .addComponent(back3))
+                    .addGroup(ServiceRepMenuLayout.createSequentialGroup()
                         .addGap(53, 53, 53)
                         .addGroup(ServiceRepMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(ServiceRepMenuLayout.createSequentialGroup()
@@ -834,12 +916,9 @@ public class UI extends javax.swing.JFrame {
                                             .addComponent(jButton23, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                             .addComponent(jLabel33)))
                     .addGroup(ServiceRepMenuLayout.createSequentialGroup()
-                        .addGap(220, 220, 220)
-                        .addComponent(back3))
-                    .addGroup(ServiceRepMenuLayout.createSequentialGroup()
                         .addGap(108, 108, 108)
                         .addComponent(jLabel27)))
-                .addContainerGap(566, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         ServiceRepMenuLayout.setVerticalGroup(
             ServiceRepMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -870,10 +949,136 @@ public class UI extends javax.swing.JFrame {
                     .addComponent(jButton24))
                 .addGap(18, 18, 18)
                 .addComponent(back3)
-                .addContainerGap(203, Short.MAX_VALUE))
+                .addContainerGap(581, Short.MAX_VALUE))
         );
 
         getContentPane().add(ServiceRepMenu, "card5");
+
+        back5.setText("Back");
+        back5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                back5ActionPerformed(evt);
+            }
+        });
+
+        NewCustPass.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NewCustPassActionPerformed(evt);
+            }
+        });
+
+        NewCustBal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NewCustBalActionPerformed(evt);
+            }
+        });
+
+        jLabel36.setText("Username:");
+
+        jLabel37.setFont(new java.awt.Font("Times New Roman", 0, 36)); // NOI18N
+        jLabel37.setText("Enter New Accout Details");
+
+        jLabel38.setText("Password:");
+
+        jLabel39.setText("Type:");
+
+        jLabel40.setText("Balance:");
+
+        NewCustType.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Adult", "Student", "Senior" }));
+
+        SubmitNewCust.setText("Submit");
+        SubmitNewCust.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SubmitNewCustActionPerformed(evt);
+            }
+        });
+
+        CustomerErrorMessage.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        CustomerErrorMessage.setForeground(new java.awt.Color(255, 0, 0));
+
+        javax.swing.GroupLayout CreateAccountLayout = new javax.swing.GroupLayout(CreateAccount);
+        CreateAccount.setLayout(CreateAccountLayout);
+        CreateAccountLayout.setHorizontalGroup(
+            CreateAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(CreateAccountLayout.createSequentialGroup()
+                .addGap(186, 186, 186)
+                .addComponent(jLabel42)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CreateAccountLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel37)
+                .addGap(177, 177, 177))
+            .addGroup(CreateAccountLayout.createSequentialGroup()
+                .addGroup(CreateAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(CreateAccountLayout.createSequentialGroup()
+                        .addGap(92, 92, 92)
+                        .addGroup(CreateAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(CreateAccountLayout.createSequentialGroup()
+                                .addGroup(CreateAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel36, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel38, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(CreateAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(NewCustUser, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)
+                                    .addComponent(NewCustPass)))
+                            .addGroup(CreateAccountLayout.createSequentialGroup()
+                                .addGap(15, 15, 15)
+                                .addComponent(jLabel39)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(NewCustType, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CreateAccountLayout.createSequentialGroup()
+                                .addComponent(jLabel40)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(NewCustBal, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(100, 100, 100)
+                        .addGroup(CreateAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(SubmitNewCust)
+                            .addComponent(back5)))
+                    .addGroup(CreateAccountLayout.createSequentialGroup()
+                        .addGap(51, 51, 51)
+                        .addComponent(CustomerErrorMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 640, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(57, Short.MAX_VALUE))
+        );
+        CreateAccountLayout.setVerticalGroup(
+            CreateAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CreateAccountLayout.createSequentialGroup()
+                .addGroup(CreateAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(CreateAccountLayout.createSequentialGroup()
+                        .addGap(37, 37, 37)
+                        .addComponent(jLabel37)
+                        .addGap(45, 45, 45)
+                        .addGroup(CreateAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(NewCustUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel36))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(CreateAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(NewCustPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel38))
+                        .addGap(1, 1, 1))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CreateAccountLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(SubmitNewCust)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(CreateAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(back5)
+                    .addGroup(CreateAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel40)
+                        .addComponent(NewCustBal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(CreateAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(NewCustType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel39))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(CustomerErrorMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 247, Short.MAX_VALUE)
+                .addComponent(jLabel42)
+                .addGap(203, 203, 203))
+        );
+
+        getContentPane().add(CreateAccount, "card10");
+
+        FindBusRoutes.setMaximumSize(new java.awt.Dimension(32767, 600));
+        FindBusRoutes.setPreferredSize(new java.awt.Dimension(846, 500));
 
         jLabel34.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel34.setText("Departure City");
@@ -881,10 +1086,10 @@ public class UI extends javax.swing.JFrame {
         jLabel35.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel35.setText("Destination City");
 
-        Reset.setText("Reset");
-        Reset.addActionListener(new java.awt.event.ActionListener() {
+        ViewAll.setText("ViewAll");
+        ViewAll.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ResetActionPerformed(evt);
+                ViewAllActionPerformed(evt);
             }
         });
 
@@ -895,27 +1100,14 @@ public class UI extends javax.swing.JFrame {
             }
         });
 
-        model2.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Depart", "Arrive", "DepartTime", "Arrive Time", "Price"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
+        DepartureCity.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Toronto", "Montreal", "Vancouver", "Ottawa" }));
+        DepartureCity.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DepartureCityActionPerformed(evt);
             }
         });
-        jScrollPane2.setViewportView(model2);
 
-        DepartureCity.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Toronto", "Montreal", "Vancouver", "Ottowa" }));
-
-        DestinationCity.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Toronto", "Monreal", "Vancouver", "Ottowa" }));
+        DestinationCity.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Toronto", "Montreal", "Vancouver", "Ottawa" }));
 
         RefreshCust.setText("Refresh");
         RefreshCust.addActionListener(new java.awt.event.ActionListener() {
@@ -942,11 +1134,14 @@ public class UI extends javax.swing.JFrame {
         });
         jScrollPane3.setViewportView(model3);
 
+        ErrorMessage.setForeground(new java.awt.Color(255, 0, 0));
+        ErrorMessage.setText("You Must Choose Different Values");
+
         javax.swing.GroupLayout FindBusRoutesLayout = new javax.swing.GroupLayout(FindBusRoutes);
         FindBusRoutes.setLayout(FindBusRoutesLayout);
         FindBusRoutesLayout.setHorizontalGroup(
             FindBusRoutesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FindBusRoutesLayout.createSequentialGroup()
+            .addGroup(FindBusRoutesLayout.createSequentialGroup()
                 .addGroup(FindBusRoutesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(FindBusRoutesLayout.createSequentialGroup()
                         .addGap(43, 43, 43)
@@ -956,20 +1151,19 @@ public class UI extends javax.swing.JFrame {
                         .addGap(30, 30, 30)
                         .addGroup(FindBusRoutesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(DepartureCity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(DestinationCity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FindBusRoutesLayout.createSequentialGroup()
-                        .addContainerGap(96, Short.MAX_VALUE)
+                            .addComponent(DestinationCity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(FindBusRoutesLayout.createSequentialGroup()
+                        .addGap(35, 35, 35)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 524, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addGroup(FindBusRoutesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 524, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 524, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(49, 49, 49)))
-                .addGroup(FindBusRoutesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(RefreshCust)
-                    .addGroup(FindBusRoutesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(backfindriutecust)
-                        .addComponent(Reset)))
-                .addGap(79, 79, 79))
+                            .addComponent(ViewAll)
+                            .addComponent(RefreshCust)
+                            .addComponent(backfindriutecust)))
+                    .addGroup(FindBusRoutesLayout.createSequentialGroup()
+                        .addGap(307, 307, 307)
+                        .addComponent(ErrorMessage)))
+                .addContainerGap(198, Short.MAX_VALUE))
         );
         FindBusRoutesLayout.setVerticalGroup(
             FindBusRoutesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -978,21 +1172,24 @@ public class UI extends javax.swing.JFrame {
                 .addGroup(FindBusRoutesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel34)
                     .addComponent(DepartureCity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(FindBusRoutesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel35)
-                    .addComponent(DestinationCity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(RefreshCust))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(FindBusRoutesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(FindBusRoutesLayout.createSequentialGroup()
-                        .addGroup(FindBusRoutesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Reset)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(221, 221, 221)
-                        .addComponent(backfindriutecust))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(68, 68, 68))
+                        .addGap(4, 4, 4)
+                        .addComponent(ErrorMessage)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(FindBusRoutesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel35)
+                            .addComponent(DestinationCity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(FindBusRoutesLayout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(RefreshCust)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ViewAll)
+                        .addGap(18, 18, 18)
+                        .addComponent(backfindriutecust)))
+                .addGap(548, 548, 548))
         );
 
         getContentPane().add(FindBusRoutes, "card8");
@@ -1038,7 +1235,7 @@ public class UI extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(ViewBusRoutesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(ViewBusRoutesLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
                         .addComponent(refresh)
                         .addGap(69, 69, 69))
                     .addGroup(ViewBusRoutesLayout.createSequentialGroup()
@@ -1058,7 +1255,7 @@ public class UI extends javax.swing.JFrame {
                     .addGroup(ViewBusRoutesLayout.createSequentialGroup()
                         .addGap(78, 78, 78)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(395, Short.MAX_VALUE))
+                .addContainerGap(488, Short.MAX_VALUE))
         );
 
         getContentPane().add(ViewBusRoutes, "card9");
@@ -1088,10 +1285,10 @@ public class UI extends javax.swing.JFrame {
                 login1.setVisible(false);
                 CustomerMenu.setVisible(true);
                 jLabel5.setText("Welcome " + CustUser.getText());
+                CurrentUser=CustUser.getSelectedText();
                 CustUser.setText("");
                 CustPass.setText("");
-            }
-            else {
+            } else {
                 LoginFail.setVisible(true);
                 CustLogin.setVisible(false);
             }
@@ -1109,16 +1306,15 @@ public class UI extends javax.swing.JFrame {
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
-            if (RepUser.getText().equalsIgnoreCase("admin")&&String.valueOf(RepPass.getPassword()).equalsIgnoreCase("admin")) {
-                login2.setVisible(false);
-                ServiceRepMenu.setVisible(true);
-                RepUser.setText("");
-                RepPass.setText("");
-            }
-            else {
-                LoginFail2.setVisible(true);
-                jButton6.setVisible(false);
-            }        
+        if (RepUser.getText().equalsIgnoreCase("admin") && String.valueOf(RepPass.getPassword()).equalsIgnoreCase("admin")) {
+            login2.setVisible(false);
+            ServiceRepMenu.setVisible(true);
+            RepUser.setText("");
+            RepPass.setText("");
+        } else {
+            LoginFail2.setVisible(true);
+            jButton6.setVisible(false);
+        }
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void back1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back1ActionPerformed
@@ -1133,9 +1329,34 @@ public class UI extends javax.swing.JFrame {
         Welcome.setVisible(true);
     }//GEN-LAST:event_jButton7ActionPerformed
 
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+    private void PayButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PayButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton8ActionPerformed
+        DefaultTableModel model = (DefaultTableModel) FareTable.getModel();
+        model.setRowCount(0);
+        model.addRow(new Object[]{"Student (14-24 high school and post-secondary)", "Base Price x 10% Discount"});
+        model.addRow(new Object[]{"Adult", "Base Price"});
+        model.addRow(new Object[]{"Senior (65+)", "Base Price x 20% Discount"});
+        String row;
+        Routes display = new Routes();
+        try {
+            route1.setBrr(new BufferedReader(new FileReader(filebus)));
+            route1.getBrr().mark(0);
+            route1.getBrr().reset();
+
+        } catch (IOException ex) {
+            Logger.getLogger(UI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        DefaultTableModel model2 = (DefaultTableModel) routestablepay.getModel();
+        model2.setRowCount(0);//not have duplicates when pressing view all
+        StringTokenizer st2 = new StringTokenizer(display.viewRoute(route1.getFilebus(), route1.getBrr()));
+        model2.addRow(new Object[]{st2.nextToken(), st2.nextToken(), st2.nextToken(), st2.nextToken(), st2.nextToken()});
+        while (!((row = display.viewRoute(route1.getFilebus(), route1.getBrr())).isEmpty())) {
+            st2 = new StringTokenizer(row);
+            model2.addRow(new Object[]{st2.nextToken(), st2.nextToken(), st2.nextToken(), st2.nextToken(), st2.nextToken()});
+        }
+        Pay.setVisible(true);
+        CustomerMenu.setVisible(false);
+    }//GEN-LAST:event_PayButtonActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         // TODO add your handling code here:
@@ -1143,13 +1364,10 @@ public class UI extends javax.swing.JFrame {
 
     private void findroutesCustActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_findroutesCustActionPerformed
         // TODO add your handling code here:
-CustomerMenu.setVisible(false);
-FindBusRoutes.setVisible(true);
+        CustomerMenu.setVisible(false);
+        FindBusRoutes.setVisible(true);
+        ErrorMessage.setVisible(false);
     }//GEN-LAST:event_findroutesCustActionPerformed
-
-    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton11ActionPerformed
 
     private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
         // TODO add your handling code here:
@@ -1159,22 +1377,21 @@ FindBusRoutes.setVisible(true);
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton16ActionPerformed
 
-    private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton17ActionPerformed
-
     private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton18ActionPerformed
 
     private void jButton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton20ActionPerformed
         // TODO add your handling code here:
+        ServiceRepMenu.setVisible(false);
+        CreateAccount.setVisible(true);
     }//GEN-LAST:event_jButton20ActionPerformed
 
     private void jButton22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton22ActionPerformed
         // TODO add your handling code here:
         ViewBusRoutes.setVisible(true);
         ServiceRepMenu.setVisible(false);
+        ErrorMessage.setVisible(false);
     }//GEN-LAST:event_jButton22ActionPerformed
 
     private void jButton23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton23ActionPerformed
@@ -1194,6 +1411,7 @@ FindBusRoutes.setVisible(true);
         // TODO add your handling code here:
         CustomerMenu.setVisible(false);
         login1.setVisible(true);
+        CurrentUser="";
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jLabel5ComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jLabel5ComponentShown
@@ -1252,16 +1470,17 @@ FindBusRoutes.setVisible(true);
             route1.setBrr(new BufferedReader(new FileReader(filebus)));
             route1.getBrr().mark(0);
             route1.getBrr().reset();
-            
+
         } catch (IOException ex) {
             Logger.getLogger(UI.class.getName()).log(Level.SEVERE, null, ex);
         }
         DefaultTableModel model = (DefaultTableModel) bus.getModel();
-        StringTokenizer st2 = new StringTokenizer(display.viewRoute(route1.getFilebus(),route1.getBrr()));
-        model.addRow(new Object[]{st2.nextToken(),st2.nextToken(),st2.nextToken(), st2.nextToken(),st2.nextToken()});
-        while (!((row=display.viewRoute(route1.getFilebus(),route1.getBrr())).isEmpty())){
+        model.setRowCount(0);//not have duplicates when pressing view all
+        StringTokenizer st2 = new StringTokenizer(display.viewRoute(route1.getFilebus(), route1.getBrr()));
+        model.addRow(new Object[]{st2.nextToken(), st2.nextToken(), st2.nextToken(), st2.nextToken(), st2.nextToken()});
+        while (!((row = display.viewRoute(route1.getFilebus(), route1.getBrr())).isEmpty())) {
             st2 = new StringTokenizer(row);
-           model.addRow(new Object[]{st2.nextToken(),st2.nextToken(),st2.nextToken(), st2.nextToken(),st2.nextToken()}); 
+            model.addRow(new Object[]{st2.nextToken(), st2.nextToken(), st2.nextToken(), st2.nextToken(), st2.nextToken()});
         }
     }//GEN-LAST:event_refreshActionPerformed
 
@@ -1277,53 +1496,129 @@ FindBusRoutes.setVisible(true);
         FindBusRoutes.setVisible(false);
     }//GEN-LAST:event_backfindriutecustActionPerformed
 
-    private void ResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ResetActionPerformed
+    private void ViewAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewAllActionPerformed
         // TODO add your handling code here:
-         model2.setVisible(true);
-       model3.setVisible(false);
-         String row;
+        model3.setVisible(true);
+        String row;
         Routes display = new Routes();
         try {
             route1.setBrr(new BufferedReader(new FileReader(filebus)));
             route1.getBrr().mark(0);
             route1.getBrr().reset();
-            
+
         } catch (IOException ex) {
             Logger.getLogger(UI.class.getName()).log(Level.SEVERE, null, ex);
         }
-        DefaultTableModel model = (DefaultTableModel) model2.getModel();
-        StringTokenizer st2 = new StringTokenizer(display.viewRoute(route1.getFilebus(),route1.getBrr()));
-        model.addRow(new Object[]{st2.nextToken(),st2.nextToken(),st2.nextToken(), st2.nextToken(),st2.nextToken()});
-        while (!((row=display.viewRoute(route1.getFilebus(),route1.getBrr())).isEmpty())){
+        DefaultTableModel model = (DefaultTableModel) model3.getModel();
+        model.setRowCount(0);//not have duplicates when pressing view all
+        StringTokenizer st2 = new StringTokenizer(display.viewRoute(route1.getFilebus(), route1.getBrr()));
+        model.addRow(new Object[]{st2.nextToken(), st2.nextToken(), st2.nextToken(), st2.nextToken(), st2.nextToken()});
+        while (!((row = display.viewRoute(route1.getFilebus(), route1.getBrr())).isEmpty())) {
             st2 = new StringTokenizer(row);
-           model.addRow(new Object[]{st2.nextToken(),st2.nextToken(),st2.nextToken(), st2.nextToken(),st2.nextToken()}); 
+            model.addRow(new Object[]{st2.nextToken(), st2.nextToken(), st2.nextToken(), st2.nextToken(), st2.nextToken()});
         }
-    }//GEN-LAST:event_ResetActionPerformed
+    }//GEN-LAST:event_ViewAllActionPerformed
 
     private void RefreshCustActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RefreshCustActionPerformed
         // TODO add your handling code here:
-       // System.out.println(DepartureCity.getSelectedItem());
-       // System.out.println(DestinationCity.getSelectedItem());
-       model2.setVisible(false);
-       model3.setVisible(true);
-       DefaultTableModel model34 = (DefaultTableModel) model3.getModel();
-        for(int i=0;i<model2.getModel().getRowCount()-1;i++){
-            if(model2.getModel().getValueAt(i, 0).equals(DepartureCity.getSelectedItem())){
-                System.out.println(model2.getModel().getValueAt(i, 1));
-                model34.addRow(new Object[]{model2.getModel().getValueAt(i,0),model2.getModel().getValueAt(i,1),
-                    model2.getModel().getValueAt(i,2), model2.getModel().getValueAt(i,3),model2.getModel().getValueAt(i,4)});
-            }
-            else{
-            // model2.se
-            //have two tables, one hides, other shows
-            //one has all values
-            //other has results only
-            //instead of deleting rows
-            //you can clear all rows later.
+        // System.out.println(DepartureCity.getSelectedItem());
+        // System.out.println(DestinationCity.getSelectedItem());
+        DefaultTableModel model34 = (DefaultTableModel) model3.getModel();
+        int size = model34.getRowCount();
+        System.out.println("size is: " + size);
+        for (int g = 0; g < 3; g++) {
+            try {//use try catch to implement 3 timeswithout crashing
+                if (!(DepartureCity.getSelectedItem().equals(DestinationCity.getSelectedItem()))) {
+                    ErrorMessage.setVisible(false);
+                    for (int i = 0; i < size; i++) {
+                        //for destination, remember the fix
+                        System.out.println("i is : " + i);
+                        if (model34.getValueAt(i, 0).equals(DepartureCity.getSelectedItem())) {
+                            System.out.print("you will arrive at " + model34.getValueAt(1, 1) + "departure city is: " + DepartureCity.getSelectedItem());//destination city is..
+                        } else {
+                            model34.removeRow(i);
+                        }
+                    }
+                } else {
+                    ErrorMessage.setVisible(true);
+                }
+            } catch (ArrayIndexOutOfBoundsException ghost) {
+
             }
         }
-        System.out.println("you will arrive at "+model2.getModel().getValueAt (1, 1));
     }//GEN-LAST:event_RefreshCustActionPerformed
+
+    private void DepartureCityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DepartureCityActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_DepartureCityActionPerformed
+
+    private void back5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back5ActionPerformed
+        // TODO add your handling code here:
+        CreateAccount.setVisible(false);
+        ServiceRepMenu.setVisible(true);
+    }//GEN-LAST:event_back5ActionPerformed
+
+    private void NewCustPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewCustPassActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_NewCustPassActionPerformed
+
+    private void NewCustBalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewCustBalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_NewCustBalActionPerformed
+
+    private void SubmitNewCustActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitNewCustActionPerformed
+        // TODO add your handling code here:
+        int red = 0;
+        Object a = NewCustType.getSelectedItem();
+        int type;
+        System.out.println("New customer user is " + NewCustUser.getText());
+        setup.Write2Text(file, NewCustUser.getText(), NewCustPass.getText());
+        if (a.equals("Senior")) {
+            type = 3;
+        } else if (a.equals("Student")) {
+            type = 2;
+        } else {
+            type = 1;
+        }
+        for (Customer i : CustomerList) {
+            if (i.getUsername().equalsIgnoreCase(NewCustUser.getText())) {
+                CustomerErrorMessage.setText("Username already Exists");
+                red = 1;
+            }
+        }
+        if (red != 1) {
+            CustomerList.add(Admin.CreateCustomer(NewCustUser.getText(), NewCustPass.getText(),
+                    Double.parseDouble(NewCustBal.getText()), cardcount++, type));
+            CustomerErrorMessage.setText("You have Created a profile for " + NewCustUser.getText() + "(" + NewCustType.getSelectedItem()
+                    + ") with a balance of $" + NewCustBal.getText() + " and a Card Number of " + cardcount);
+        }
+        CustomerErrorMessage.setVisible(true);
+        NewCustUser.setText(null);
+        NewCustPass.setText(null);
+        NewCustBal.setText(null);
+
+    }//GEN-LAST:event_SubmitNewCustActionPerformed
+
+    private void BackPayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackPayActionPerformed
+        // TODO add your handling code here:
+        CustomerMenu.setVisible(true);
+        BackPay.setVisible(false);
+    }//GEN-LAST:event_BackPayActionPerformed
+
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        // TODO add your handling code here:
+       int a=routestablepay.getSelectedRow();
+       for(Customer i :CustomerList){
+           if(i.getUsername().equalsIgnoreCase(CurrentUser)){
+              if(Double.parseDouble((String) routestablepay.getModel().getValueAt(a,4))<=i.getCard().getBalance()){
+         //  i.getCard().
+         }
+           
+       }
+       }
+       
+                
+    }//GEN-LAST:event_jButton10ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1362,40 +1657,52 @@ FindBusRoutes.setVisible(true);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BackPay;
+    private javax.swing.JPanel CreateAccount;
     private javax.swing.JButton CustLogin;
     private javax.swing.JPanel CustLogin2;
     private javax.swing.JPasswordField CustPass;
     private javax.swing.JTextField CustUser;
+    private javax.swing.JLabel CustomerErrorMessage;
     private javax.swing.JPanel CustomerLogin;
     private javax.swing.JPanel CustomerMenu;
     private javax.swing.JComboBox<String> DepartureCity;
     private javax.swing.JComboBox<String> DestinationCity;
+    private javax.swing.JLabel ErrorMessage;
+    private javax.swing.JTable FareTable;
     private javax.swing.JPanel FindBusRoutes;
     private javax.swing.JPanel GuestCard;
     private javax.swing.JButton GuestLogin;
     private javax.swing.JPanel GuestMenu;
     private javax.swing.JInternalFrame LoginFail;
     private javax.swing.JInternalFrame LoginFail2;
+    private javax.swing.JTextField NewCustBal;
+    private javax.swing.JTextField NewCustPass;
+    private javax.swing.JComboBox NewCustType;
+    private javax.swing.JTextField NewCustUser;
+    private javax.swing.JPanel Pay;
+    private javax.swing.JButton PayButton;
     private javax.swing.JButton RefreshCust;
     private javax.swing.JPasswordField RepPass;
     private javax.swing.JTextField RepUser;
-    private javax.swing.JButton Reset;
     private javax.swing.JPanel ServiceRepMenu;
+    private javax.swing.JButton SubmitNewCust;
+    private javax.swing.JButton ViewAll;
     private javax.swing.JPanel ViewBusRoutes;
     private javax.swing.JPanel Welcome;
     private javax.swing.JButton back1;
     private javax.swing.JButton back2;
     private javax.swing.JButton back3;
     private javax.swing.JButton back4;
+    private javax.swing.JButton back5;
     private javax.swing.JButton backfindriutecust;
     private javax.swing.JTable bus;
     private javax.swing.JButton findroutesCust;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton11;
+    private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton15;
     private javax.swing.JButton jButton16;
-    private javax.swing.JButton jButton17;
     private javax.swing.JButton jButton18;
     private javax.swing.JButton jButton19;
     private javax.swing.JButton jButton2;
@@ -1408,14 +1715,12 @@ FindBusRoutes.setVisible(true);
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
@@ -1428,7 +1733,6 @@ FindBusRoutes.setVisible(true);
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
-    private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
@@ -1439,7 +1743,13 @@ FindBusRoutes.setVisible(true);
     private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;
+    private javax.swing.JLabel jLabel36;
+    private javax.swing.JLabel jLabel37;
+    private javax.swing.JLabel jLabel38;
+    private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel40;
+    private javax.swing.JLabel jLabel42;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -1448,11 +1758,12 @@ FindBusRoutes.setVisible(true);
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTextArea jTextArea2;
     private javax.swing.JPanel login1;
     private javax.swing.JPanel login2;
-    private javax.swing.JTable model2;
     private javax.swing.JTable model3;
     private javax.swing.JButton refresh;
+    private javax.swing.JTable routestablepay;
     // End of variables declaration//GEN-END:variables
 }

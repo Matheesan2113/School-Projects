@@ -47,22 +47,24 @@ public class Authentication {
         }
         return r;
     }
+public Authentication(){
+    
+}
 
-    public Authentication() {
-        File file = new File("./logindata.txt");
-        FileWriter fw;
-        try {
-            fw = new FileWriter(file.getAbsoluteFile()); // COMMA TRUE TO APPEND MANAGER LOG IN DETAILS
-            BufferedWriter bw = new BufferedWriter(fw);
-            bw.write("test1");
-            bw.write(" test2");
-            bw.newLine();
-            bw.write("test2");
-            bw.write(" test3");
+    public void Write2Text(File file,String user,String pass) {  
+         FileWriter fw;           
+        try {   
+            fw = new FileWriter(file.getAbsoluteFile()); // COMMA TRUE TO APPEND MANAGER LOG IN DETAILS 
+            BufferedWriter bw= new BufferedWriter(fw); 
+            bw.write(user);
+            bw.write(" "+pass);
             bw.newLine();
             bw.flush();
         } catch (IOException ex) {
             Logger.getLogger(Authentication.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        catch (NullPointerException fs){
+            
         }
     }
 

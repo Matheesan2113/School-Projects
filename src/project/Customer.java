@@ -12,9 +12,17 @@ package project;
 public class Customer extends UserProfile {
     private MembershipCard card;
     
-    public Customer(String user, String pass, MembershipCard c) {
-        super(user, pass, "customer");
-        card=c;
+    public Customer(String user, String pass, double bal, int cardNum, int s) {
+        super(user, pass);
+        card=new MembershipCard(bal,cardNum,s);
+    }
+
+    /**
+     * @return the card
+     */
+    public MembershipCard getCard() {
+        return card;
     }
     
+
 }

@@ -13,10 +13,10 @@ public class MembershipCard {
 
     private double balance;
     private int cardNumber;
-    private String status;
+    private int status;
     private int tripCounter=0;
 
-    public MembershipCard(double bal, int cardNum, String s) {
+    public MembershipCard(double bal, int cardNum, int s) {
         balance = bal;
         cardNum = cardNumber;
         status = s;
@@ -24,7 +24,8 @@ public class MembershipCard {
     }
     public void loadCard(double amount) {
         balance=balance+amount;
-    }    
+    }  
+    
 
     public double getBalance() {
         return balance;
@@ -33,5 +34,9 @@ public class MembershipCard {
     public int getNumber() {
         return cardNumber;
     }
+        
+    public int getStatus() {
+         return status;
+        }
     
 }
