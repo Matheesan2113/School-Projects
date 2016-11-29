@@ -12,10 +12,19 @@ package project;
 public class Fare {
     private CalcFare fare;
     
+    /**
+     *
+     * @param f
+     */
     public Fare(CalcFare f) {
         fare=f;
     }
     
+    /**
+     *
+     * @param amount
+     * @return
+     */
     public double calcfare (double amount) {
         double r=0;
         r=fare.fareAmount(amount);

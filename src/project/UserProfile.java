@@ -13,15 +13,28 @@ public abstract class UserProfile {
     private String username;
     private String password;
 
+    /**
+     *
+     * @param user
+     * @param pass
+     */
     public UserProfile(String user, String pass) {
         username=user;
         password=pass;
     }
     
+    /**
+     *
+     * @return
+     */
     public String getUsername() {
         return username;
     }
 
+    /**
+     *
+     * @param amount
+     */
     public abstract void addFunds (double amount);
 
 }
