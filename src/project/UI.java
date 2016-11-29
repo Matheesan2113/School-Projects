@@ -648,7 +648,7 @@ public class UI extends javax.swing.JFrame {
         );
 
         CustomerMenu.add(AddFunds2);
-        AddFunds2.setBounds(10, 10, 320, 240);
+        AddFunds2.setBounds(400, 40, 320, 240);
 
         ViewFundsDisplay.setTitle("View Funds");
         ViewFundsDisplay.setVisible(true);
@@ -684,7 +684,7 @@ public class UI extends javax.swing.JFrame {
         );
 
         CustomerMenu.add(ViewFundsDisplay);
-        ViewFundsDisplay.setBounds(10, 50, 315, 180);
+        ViewFundsDisplay.setBounds(30, 260, 315, 180);
 
         jLabel10.setText("1.");
         CustomerMenu.add(jLabel10);
@@ -1879,14 +1879,14 @@ public class UI extends javax.swing.JFrame {
         DefaultTableModel model34 = (DefaultTableModel) model3.getModel();
         int size = model34.getRowCount();
         System.out.println("size is: " + size);
-        for (int g = 0; g < 3; g++) {
+        for (int g = 0; g < 5; g++) {
             try {//use try catch to implement 3 timeswithout crashing
                 if (!(DepartureCity.getSelectedItem().equals(DestinationCity.getSelectedItem()))) {
                     ErrorMessage.setVisible(false);
                     for (int i = 0; i < size; i++) {
                         //for destination, remember the fix
                         System.out.println("i is : " + i);
-                        if (model34.getValueAt(i, 0).equals(DepartureCity.getSelectedItem())) {
+                        if (model34.getValueAt(i, 0).equals(DepartureCity.getSelectedItem())&&model34.getValueAt(i, 1).equals(DestinationCity.getSelectedItem())) {
                             System.out.print("you will arrive at " + model34.getValueAt(1, 1) + "departure city is: " + DepartureCity.getSelectedItem());//destination city is..
                         } else {
                             model34.removeRow(i);
