@@ -93,9 +93,6 @@ public class UI extends javax.swing.JFrame {
         jLabel52 = new javax.swing.JLabel();
         Funds2Add2 = new javax.swing.JComboBox<>();
         Add2 = new javax.swing.JButton();
-        ViewFundsDisplay = new javax.swing.JInternalFrame();
-        FundsAre = new javax.swing.JLabel();
-        OkayViewFunds = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
         jButton5 = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
@@ -107,6 +104,9 @@ public class UI extends javax.swing.JFrame {
         jLabel16 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
+        ViewFundsDisplay = new javax.swing.JInternalFrame();
+        FundsAre = new javax.swing.JLabel();
+        OkayViewFunds = new javax.swing.JButton();
         Pay = new javax.swing.JPanel();
         Recipt = new javax.swing.JInternalFrame();
         jLabel14 = new javax.swing.JLabel();
@@ -614,6 +614,12 @@ public class UI extends javax.swing.JFrame {
         AddFunds2.getContentPane().setLayout(AddFunds2Layout);
         AddFunds2Layout.setHorizontalGroup(
             AddFunds2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AddFunds2Layout.createSequentialGroup()
+                .addGap(55, 55, 55)
+                .addComponent(Add2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(AddFundsOkay2)
+                .addGap(56, 56, 56))
             .addGroup(AddFunds2Layout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addGroup(AddFunds2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -625,12 +631,6 @@ public class UI extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(Funds2Add2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(47, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AddFunds2Layout.createSequentialGroup()
-                .addGap(55, 55, 55)
-                .addComponent(Add2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(AddFundsOkay2)
-                .addGap(56, 56, 56))
         );
         AddFunds2Layout.setVerticalGroup(
             AddFunds2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -640,53 +640,17 @@ public class UI extends javax.swing.JFrame {
                     .addComponent(jLabel51, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel52, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Funds2Add2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(AddFundsText2, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(AddFunds2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(AddFundsOkay2)
                     .addComponent(Add2))
-                .addGap(62, 62, 62))
+                .addGap(212, 212, 212))
         );
 
         CustomerMenu.add(AddFunds2);
-        AddFunds2.setBounds(10, 30, 320, 240);
-
-        ViewFundsDisplay.setTitle("View Funds");
-        ViewFundsDisplay.setVisible(true);
-
-        OkayViewFunds.setText("Okay");
-        OkayViewFunds.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                OkayViewFundsActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout ViewFundsDisplayLayout = new javax.swing.GroupLayout(ViewFundsDisplay.getContentPane());
-        ViewFundsDisplay.getContentPane().setLayout(ViewFundsDisplayLayout);
-        ViewFundsDisplayLayout.setHorizontalGroup(
-            ViewFundsDisplayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(ViewFundsDisplayLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(FundsAre, javax.swing.GroupLayout.DEFAULT_SIZE, 279, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(ViewFundsDisplayLayout.createSequentialGroup()
-                .addGap(113, 113, 113)
-                .addComponent(OkayViewFunds)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        ViewFundsDisplayLayout.setVerticalGroup(
-            ViewFundsDisplayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(ViewFundsDisplayLayout.createSequentialGroup()
-                .addGap(52, 52, 52)
-                .addComponent(FundsAre, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(OkayViewFunds)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        CustomerMenu.add(ViewFundsDisplay);
-        ViewFundsDisplay.setBounds(10, 70, 315, 180);
+        AddFunds2.setBounds(360, 10, 320, 240);
 
         jLabel10.setText("1.");
         CustomerMenu.add(jLabel10);
@@ -762,6 +726,42 @@ public class UI extends javax.swing.JFrame {
         });
         CustomerMenu.add(jLabel5);
         jLabel5.setBounds(120, 70, 100, 20);
+
+        ViewFundsDisplay.setTitle("View Funds");
+        ViewFundsDisplay.setVisible(true);
+
+        OkayViewFunds.setText("Okay");
+        OkayViewFunds.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                OkayViewFundsActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout ViewFundsDisplayLayout = new javax.swing.GroupLayout(ViewFundsDisplay.getContentPane());
+        ViewFundsDisplay.getContentPane().setLayout(ViewFundsDisplayLayout);
+        ViewFundsDisplayLayout.setHorizontalGroup(
+            ViewFundsDisplayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ViewFundsDisplayLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(FundsAre, javax.swing.GroupLayout.DEFAULT_SIZE, 279, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(ViewFundsDisplayLayout.createSequentialGroup()
+                .addGap(113, 113, 113)
+                .addComponent(OkayViewFunds)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        ViewFundsDisplayLayout.setVerticalGroup(
+            ViewFundsDisplayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ViewFundsDisplayLayout.createSequentialGroup()
+                .addGap(52, 52, 52)
+                .addComponent(FundsAre, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(OkayViewFunds)
+                .addContainerGap(15, Short.MAX_VALUE))
+        );
+
+        CustomerMenu.add(ViewFundsDisplay);
+        ViewFundsDisplay.setBounds(260, 190, 315, 194);
 
         getContentPane().add(CustomerMenu, "card5");
 
@@ -900,7 +900,7 @@ public class UI extends javax.swing.JFrame {
         );
 
         Pay.add(Recipt);
-        Recipt.setBounds(430, 30, 280, 380);
+        Recipt.setBounds(450, 0, 280, 380);
 
         Poor.setTitle("Error :201");
         Poor.setMaximumSize(new java.awt.Dimension(400, 400));
@@ -940,7 +940,7 @@ public class UI extends javax.swing.JFrame {
         );
 
         Pay.add(Poor);
-        Poor.setBounds(200, 60, 570, 350);
+        Poor.setBounds(190, 20, 570, 350);
 
         BackPay.setText("Back");
         BackPay.addActionListener(new java.awt.event.ActionListener() {
@@ -986,7 +986,7 @@ public class UI extends javax.swing.JFrame {
         jScrollPane2.setViewportView(FareTable);
 
         Pay.add(jScrollPane2);
-        jScrollPane2.setBounds(386, 11, 358, 115);
+        jScrollPane2.setBounds(386, 11, 358, 80);
 
         routestablepay.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -1666,6 +1666,7 @@ public class UI extends javax.swing.JFrame {
     private void PayButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PayButtonActionPerformed
         // TODO add your handling code here:
         Poor.setVisible(false);
+        model3.setVisible(false);
         Recipt.setVisible(false);
         DefaultTableModel model = (DefaultTableModel) FareTable.getModel();
         model.setRowCount(0);
@@ -1856,6 +1857,7 @@ public class UI extends javax.swing.JFrame {
     private void backfindriutecustActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backfindriutecustActionPerformed
         // TODO add your handling code here:
         CustomerMenu.setVisible(true);
+        model3.setVisible(false);
         FindBusRoutes.setVisible(false);
     }//GEN-LAST:event_backfindriutecustActionPerformed
 
@@ -1968,7 +1970,7 @@ public class UI extends javax.swing.JFrame {
     private void BackPayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackPayActionPerformed
         // TODO add your handling code here:
         CustomerMenu.setVisible(true);
-        BackPay.setVisible(false);
+        Pay.setVisible(false);
     }//GEN-LAST:event_BackPayActionPerformed
 
     private void SubmitPayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitPayActionPerformed
@@ -1976,10 +1978,8 @@ public class UI extends javax.swing.JFrame {
         int a = routestablepay.getSelectedRow();
         for (Customer i : CustomerList) {
             if (i.getUsername().equalsIgnoreCase(CurrentUser)) {
-                if (Double.parseDouble((String) routestablepay.getModel().getValueAt(a, 4)) <= i.getCard().getBalance()) {//check to see if has enough money
-                    //Deduct Price of tix
-                    double r;
-                    switch (i.getCard().getStatus()) {      
+             double r;
+             switch (i.getCard().getStatus()) {      
                         case 1:
                             r = senior.calcfare(Double.parseDouble((String) routestablepay.getModel().getValueAt(a, 4)));
                             break;
@@ -1990,6 +1990,10 @@ public class UI extends javax.swing.JFrame {
                             r = Adult.calcfare(Double.parseDouble((String) routestablepay.getModel().getValueAt(a, 4)));
                             break;
                     }
+               if (r <= i.getCard().getBalance()) {//check to see if has enough money
+                    //Deduct Price of tix
+                    
+                    
                     i.getCard().BalacePay(r);
                     //Print Recipt
                     ReciptUser.setText(i.getUsername());
