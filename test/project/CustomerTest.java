@@ -20,9 +20,28 @@ public class CustomerTest {
     
     public CustomerTest() {
     }
-     @Test (expected = IllegalArgumentException.class)
+     @Test
     public void testInvalidConstructor() {
-        Customer s = new Customer("Toronto","Ottowa", -5.6, 321,41);
+        boolean gotEx = false;
+        try {
+             Customer s = new Customer("Toronto","Ottowa", -65.9, 321,41);
+        }
+        catch(IllegalArgumentException ert) {
+            gotEx = true;
+        }
+        assertFalse(gotEx);
+    }
+
+    @Test
+    public void testValidConstructor() {
+        boolean gotEx = true;
+        try {
+             Customer s = new Customer("Toronto","Ottowa", 65, 321,41);
+        }
+        catch(IllegalArgumentException e) {
+            gotEx = false;
+        }
+        assertTrue(gotEx);
     }
 
     /**
@@ -31,12 +50,10 @@ public class CustomerTest {
     @Test
     public void testGetCard() {
         System.out.println("getCard");
-        Customer instance = null;
-        MembershipCard expResult = null;
-        MembershipCard result = instance.getCard();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Customer instance = new Customer("user","pass",100,300,1);
+        double expResult = 100;
+        double result = instance.getCard().getBalance();
+        assertEquals(expResult,result,100);
     }
 
     /**
@@ -45,11 +62,10 @@ public class CustomerTest {
     @Test
     public void testAddFunds() {
         System.out.println("addFunds");
-        double amount = 0.0;
-        Customer instance = null;
+        double amount = 10;
+        Customer instance = new Customer("user","pass",100,3001,2);
         instance.addFunds(amount);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        System.out.println("Balance is now $"+instance.getCard().getBalance());
     }
     
 }

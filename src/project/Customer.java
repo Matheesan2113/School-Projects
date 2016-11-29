@@ -25,13 +25,15 @@ public class Customer extends UserProfile {
      * @param cardNum
      * @param s
      */
-    public Customer(String user, String pass, double bal, int cardNum, int s) throws IllegalArgumentException {
+    public Customer(String user, String pass, double bal, int cardNum, int s)  {
         super(user, pass);
         try{
-             card = new MembershipCard(bal, cardNum, s);
+            if((bal<0)||(s>3)||(s<1))
+                throw new IllegalArgumentException();  
+            else
+             card = new MembershipCard(bal, cardNum, s);           
         }
-        catch (IllegalArgumentException jlh){
-            
+        catch (IllegalArgumentException jlh){           
         }
        
     }
