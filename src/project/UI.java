@@ -30,7 +30,7 @@ public class UI extends javax.swing.JFrame {
     Authentication setup = new Authentication();
     CustomerRep Admin = new CustomerRep("admin", "admin");
     static int cardcount = 10000;
-    static String CurrentUser="";
+    static String CurrentUser = "";
     File filebus = new File("./BusRoutes.txt");
     Routes route1 = new Routes();
     ArrayList<Customer> CustomerList = new ArrayList<Customer>();
@@ -81,13 +81,16 @@ public class UI extends javax.swing.JFrame {
         jButton7 = new javax.swing.JButton();
         jLabel13 = new javax.swing.JLabel();
         CustomerMenu = new javax.swing.JPanel();
+        ViewFundsDisplay = new javax.swing.JInternalFrame();
+        FundsAre = new javax.swing.JLabel();
+        OkayViewFunds = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
         jButton5 = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         PayButton = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
+        ViewFunds = new javax.swing.JButton();
         findroutesCust = new javax.swing.JButton();
         jLabel16 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
@@ -113,13 +116,9 @@ public class UI extends javax.swing.JFrame {
         jButton19 = new javax.swing.JButton();
         jLabel29 = new javax.swing.JLabel();
         jLabel30 = new javax.swing.JLabel();
-        jLabel31 = new javax.swing.JLabel();
-        jLabel32 = new javax.swing.JLabel();
         jButton20 = new javax.swing.JButton();
         jButton22 = new javax.swing.JButton();
-        jButton23 = new javax.swing.JButton();
         jLabel33 = new javax.swing.JLabel();
-        jButton24 = new javax.swing.JButton();
         back3 = new javax.swing.JButton();
         jLabel27 = new javax.swing.JLabel();
         CreateAccount = new javax.swing.JPanel();
@@ -261,7 +260,7 @@ public class UI extends javax.swing.JFrame {
         );
 
         login1.add(LoginFail);
-        LoginFail.setBounds(0, 0, 350, 160);
+        LoginFail.setBounds(10, 0, 350, 160);
 
         CustomerLogin.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -275,6 +274,11 @@ public class UI extends javax.swing.JFrame {
         CustPass.setText("Password");
         CustPass.setMinimumSize(new java.awt.Dimension(113, 20));
         CustPass.setPreferredSize(new java.awt.Dimension(113, 20));
+        CustPass.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                CustPassFocusGained(evt);
+            }
+        });
         CustPass.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 CustPassMouseClicked(evt);
@@ -528,15 +532,63 @@ public class UI extends javax.swing.JFrame {
 
         getContentPane().add(login2, "card4");
 
+        CustomerMenu.setLayout(null);
+
+        ViewFundsDisplay.setTitle("View Funds");
+        ViewFundsDisplay.setVisible(true);
+
+        OkayViewFunds.setText("Okay");
+        OkayViewFunds.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                OkayViewFundsActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout ViewFundsDisplayLayout = new javax.swing.GroupLayout(ViewFundsDisplay.getContentPane());
+        ViewFundsDisplay.getContentPane().setLayout(ViewFundsDisplayLayout);
+        ViewFundsDisplayLayout.setHorizontalGroup(
+            ViewFundsDisplayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ViewFundsDisplayLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(FundsAre, javax.swing.GroupLayout.DEFAULT_SIZE, 279, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(ViewFundsDisplayLayout.createSequentialGroup()
+                .addGap(115, 115, 115)
+                .addComponent(OkayViewFunds)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        ViewFundsDisplayLayout.setVerticalGroup(
+            ViewFundsDisplayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ViewFundsDisplayLayout.createSequentialGroup()
+                .addGap(52, 52, 52)
+                .addComponent(FundsAre, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31)
+                .addComponent(OkayViewFunds)
+                .addContainerGap(33, Short.MAX_VALUE))
+        );
+
+        CustomerMenu.add(ViewFundsDisplay);
+        ViewFundsDisplay.setBounds(230, 50, 315, 221);
+
         jLabel10.setText("1.");
+        CustomerMenu.add(jLabel10);
+        jLabel10.setBounds(76, 99, 10, 14);
 
         jButton5.setText("Add Funds");
+        CustomerMenu.add(jButton5);
+        jButton5.setBounds(90, 95, 131, 23);
 
         jLabel11.setText("2.");
+        CustomerMenu.add(jLabel11);
+        jLabel11.setBounds(76, 128, 10, 14);
 
         jLabel12.setText("3.");
+        CustomerMenu.add(jLabel12);
+        jLabel12.setBounds(76, 162, 10, 14);
 
         jLabel15.setText("4.");
+        CustomerMenu.add(jLabel15);
+        jLabel15.setBounds(76, 189, 10, 14);
 
         PayButton.setText("Pay");
         PayButton.addActionListener(new java.awt.event.ActionListener() {
@@ -544,13 +596,17 @@ public class UI extends javax.swing.JFrame {
                 PayButtonActionPerformed(evt);
             }
         });
+        CustomerMenu.add(PayButton);
+        PayButton.setBounds(90, 124, 131, 23);
 
-        jButton9.setText("View Funds");
-        jButton9.addActionListener(new java.awt.event.ActionListener() {
+        ViewFunds.setText("View Funds");
+        ViewFunds.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton9ActionPerformed(evt);
+                ViewFundsActionPerformed(evt);
             }
         });
+        CustomerMenu.add(ViewFunds);
+        ViewFunds.setBounds(90, 158, 131, 23);
 
         findroutesCust.setText("Find Bus Routes");
         findroutesCust.addActionListener(new java.awt.event.ActionListener() {
@@ -558,9 +614,13 @@ public class UI extends javax.swing.JFrame {
                 findroutesCustActionPerformed(evt);
             }
         });
+        CustomerMenu.add(findroutesCust);
+        findroutesCust.setBounds(90, 185, 131, 23);
 
         jLabel16.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
         jLabel16.setText("Customer Menu");
+        CustomerMenu.add(jLabel16);
+        jLabel16.setBounds(66, 34, 155, 28);
 
         jButton3.setText("Logout");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -568,6 +628,8 @@ public class UI extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
+        CustomerMenu.add(jButton3);
+        jButton3.setBounds(110, 220, 80, 23);
 
         jLabel5.setText("Welcome");
         jLabel5.addComponentListener(new java.awt.event.ComponentAdapter() {
@@ -575,69 +637,8 @@ public class UI extends javax.swing.JFrame {
                 jLabel5ComponentShown(evt);
             }
         });
-
-        javax.swing.GroupLayout CustomerMenuLayout = new javax.swing.GroupLayout(CustomerMenu);
-        CustomerMenu.setLayout(CustomerMenuLayout);
-        CustomerMenuLayout.setHorizontalGroup(
-            CustomerMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(CustomerMenuLayout.createSequentialGroup()
-                .addGroup(CustomerMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(CustomerMenuLayout.createSequentialGroup()
-                        .addGap(131, 131, 131)
-                        .addComponent(jLabel5))
-                    .addGroup(CustomerMenuLayout.createSequentialGroup()
-                        .addGap(66, 66, 66)
-                        .addGroup(CustomerMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel16)
-                            .addGroup(CustomerMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(CustomerMenuLayout.createSequentialGroup()
-                                    .addComponent(jLabel15)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(findroutesCust, javax.swing.GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE))
-                                .addGroup(CustomerMenuLayout.createSequentialGroup()
-                                    .addComponent(jLabel12)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jButton9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGroup(CustomerMenuLayout.createSequentialGroup()
-                                    .addComponent(jLabel11)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(PayButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGroup(CustomerMenuLayout.createSequentialGroup()
-                                    .addComponent(jLabel10)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
-                    .addGroup(CustomerMenuLayout.createSequentialGroup()
-                        .addGap(126, 126, 126)
-                        .addComponent(jButton3)))
-                .addContainerGap(625, Short.MAX_VALUE))
-        );
-        CustomerMenuLayout.setVerticalGroup(
-            CustomerMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(CustomerMenuLayout.createSequentialGroup()
-                .addGap(34, 34, 34)
-                .addComponent(jLabel16)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel5)
-                .addGap(8, 8, 8)
-                .addGroup(CustomerMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton5)
-                    .addComponent(jLabel10))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(CustomerMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel11)
-                    .addComponent(PayButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(CustomerMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel12)
-                    .addComponent(jButton9))
-                .addGap(4, 4, 4)
-                .addGroup(CustomerMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel15)
-                    .addComponent(findroutesCust))
-                .addGap(26, 26, 26)
-                .addComponent(jButton3)
-                .addContainerGap(615, Short.MAX_VALUE))
-        );
+        CustomerMenu.add(jLabel5);
+        jLabel5.setBounds(131, 73, 43, 14);
 
         getContentPane().add(CustomerMenu, "card5");
 
@@ -794,9 +795,9 @@ public class UI extends javax.swing.JFrame {
                                     .addComponent(jButton16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jButton18)))))
                     .addGroup(GuestMenuLayout.createSequentialGroup()
-                        .addGap(220, 220, 220)
+                        .addGap(132, 132, 132)
                         .addComponent(back2)))
-                .addContainerGap(571, Short.MAX_VALUE))
+                .addContainerGap(617, Short.MAX_VALUE))
         );
         GuestMenuLayout.setVerticalGroup(
             GuestMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -830,10 +831,6 @@ public class UI extends javax.swing.JFrame {
 
         jLabel30.setText("3.");
 
-        jLabel31.setText("5.");
-
-        jLabel32.setText("4.");
-
         jButton20.setText("Create Account");
         jButton20.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -851,24 +848,8 @@ public class UI extends javax.swing.JFrame {
             }
         });
 
-        jButton23.setText("Purchase Day Pass");
-        jButton23.setMaximumSize(new java.awt.Dimension(131, 23));
-        jButton23.setMinimumSize(new java.awt.Dimension(131, 23));
-        jButton23.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton23ActionPerformed(evt);
-            }
-        });
-
         jLabel33.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
         jLabel33.setText("Service Rep Menu");
-
-        jButton24.setText("Purchase Week Pass");
-        jButton24.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton24ActionPerformed(evt);
-            }
-        });
 
         back3.setText("Back");
         back3.addActionListener(new java.awt.event.ActionListener() {
@@ -886,9 +867,6 @@ public class UI extends javax.swing.JFrame {
             .addGroup(ServiceRepMenuLayout.createSequentialGroup()
                 .addGroup(ServiceRepMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(ServiceRepMenuLayout.createSequentialGroup()
-                        .addGap(220, 220, 220)
-                        .addComponent(back3))
-                    .addGroup(ServiceRepMenuLayout.createSequentialGroup()
                         .addGap(53, 53, 53)
                         .addGroup(ServiceRepMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(ServiceRepMenuLayout.createSequentialGroup()
@@ -897,7 +875,7 @@ public class UI extends javax.swing.JFrame {
                                     .addGroup(ServiceRepMenuLayout.createSequentialGroup()
                                         .addComponent(jLabel30)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jButton22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addComponent(jButton22, javax.swing.GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE))
                                     .addGroup(ServiceRepMenuLayout.createSequentialGroup()
                                         .addComponent(jLabel29)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -905,20 +883,15 @@ public class UI extends javax.swing.JFrame {
                                     .addGroup(ServiceRepMenuLayout.createSequentialGroup()
                                         .addComponent(jLabel28)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jButton19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addGroup(ServiceRepMenuLayout.createSequentialGroup()
-                                        .addGroup(ServiceRepMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(jLabel31)
-                                            .addComponent(jLabel32))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(ServiceRepMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(jButton24, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(jButton23, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                                        .addComponent(jButton19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                             .addComponent(jLabel33)))
                     .addGroup(ServiceRepMenuLayout.createSequentialGroup()
                         .addGap(108, 108, 108)
-                        .addComponent(jLabel27)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jLabel27))
+                    .addGroup(ServiceRepMenuLayout.createSequentialGroup()
+                        .addGap(114, 114, 114)
+                        .addComponent(back3)))
+                .addContainerGap(615, Short.MAX_VALUE))
         );
         ServiceRepMenuLayout.setVerticalGroup(
             ServiceRepMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -939,17 +912,9 @@ public class UI extends javax.swing.JFrame {
                 .addGroup(ServiceRepMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel30)
                     .addComponent(jButton22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(ServiceRepMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel32)
-                    .addComponent(jButton23, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(ServiceRepMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel31)
-                    .addComponent(jButton24))
                 .addGap(18, 18, 18)
                 .addComponent(back3)
-                .addContainerGap(581, Short.MAX_VALUE))
+                .addContainerGap(644, Short.MAX_VALUE))
         );
 
         getContentPane().add(ServiceRepMenu, "card5");
@@ -1280,12 +1245,13 @@ public class UI extends javax.swing.JFrame {
 
     private void CustLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CustLoginActionPerformed
         // TODO add your handling code here:
+        ViewFundsDisplay.setVisible(false);
         try {
             if (setup.login(CustUser.getText(), String.valueOf(CustPass.getPassword())) == true) {
                 login1.setVisible(false);
                 CustomerMenu.setVisible(true);
                 jLabel5.setText("Welcome " + CustUser.getText());
-                CurrentUser=CustUser.getSelectedText();
+                CurrentUser = CustUser.getText();
                 CustUser.setText("");
                 CustPass.setText("");
             } else {
@@ -1358,9 +1324,29 @@ public class UI extends javax.swing.JFrame {
         CustomerMenu.setVisible(false);
     }//GEN-LAST:event_PayButtonActionPerformed
 
-    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+    private void ViewFundsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewFundsActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton9ActionPerformed
+        int ioh=0;
+        ViewFundsDisplay.setVisible(true);
+        try {
+            if (!CustomerList.isEmpty()) {
+                for (Customer i : CustomerList) {
+                    System.out.println("You're inside for loop, count is " + ioh + "CurrentUser is " + CurrentUser);
+                    if (CurrentUser.equalsIgnoreCase(i.getUsername())) //
+                    {
+                        System.out.println("Your funds are now $" + i.getCard().getBalance());
+                        FundsAre.setText("Your funds are now $"+i.getCard().getBalance());
+                    }
+                    else
+                        System.out.println("Current User is not the same as username, counter: "+ioh);
+                }
+            } else {
+                System.out.println("CustomerList is Empty");
+            }
+        } catch (NullPointerException gho) {
+            System.out.println("NullPointerException");
+        }
+    }//GEN-LAST:event_ViewFundsActionPerformed
 
     private void findroutesCustActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_findroutesCustActionPerformed
         // TODO add your handling code here:
@@ -1394,14 +1380,6 @@ public class UI extends javax.swing.JFrame {
         ErrorMessage.setVisible(false);
     }//GEN-LAST:event_jButton22ActionPerformed
 
-    private void jButton23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton23ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton23ActionPerformed
-
-    private void jButton24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton24ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton24ActionPerformed
-
     private void CustUserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CustUserMouseClicked
         // TODO add your handling code here:
         CustUser.setText("");
@@ -1411,7 +1389,7 @@ public class UI extends javax.swing.JFrame {
         // TODO add your handling code here:
         CustomerMenu.setVisible(false);
         login1.setVisible(true);
-        CurrentUser="";
+        CurrentUser = "";
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jLabel5ComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jLabel5ComponentShown
@@ -1572,7 +1550,6 @@ public class UI extends javax.swing.JFrame {
         Object a = NewCustType.getSelectedItem();
         int type;
         System.out.println("New customer user is " + NewCustUser.getText());
-        setup.Write2Text(file, NewCustUser.getText(), NewCustPass.getText());
         if (a.equals("Senior")) {
             type = 3;
         } else if (a.equals("Student")) {
@@ -1590,8 +1567,10 @@ public class UI extends javax.swing.JFrame {
             CustomerList.add(Admin.CreateCustomer(NewCustUser.getText(), NewCustPass.getText(),
                     Double.parseDouble(NewCustBal.getText()), cardcount++, type));
             CustomerErrorMessage.setText("You have Created a profile for " + NewCustUser.getText() + "(" + NewCustType.getSelectedItem()
-                    + ") with a balance of $" + NewCustBal.getText() + " and a Card Number of " + cardcount);
+                    + ") with a balance of $" + Double.parseDouble(NewCustBal.getText()) + " and a Card Number of " + cardcount);
+            setup.Write2Text(file, NewCustUser.getText(), NewCustPass.getText());
         }
+
         CustomerErrorMessage.setVisible(true);
         NewCustUser.setText(null);
         NewCustPass.setText(null);
@@ -1607,18 +1586,28 @@ public class UI extends javax.swing.JFrame {
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
         // TODO add your handling code here:
-       int a=routestablepay.getSelectedRow();
-       for(Customer i :CustomerList){
-           if(i.getUsername().equalsIgnoreCase(CurrentUser)){
-              if(Double.parseDouble((String) routestablepay.getModel().getValueAt(a,4))<=i.getCard().getBalance()){
-         //  i.getCard().
-         }
-           
-       }
-       }
-       
-                
+        int a = routestablepay.getSelectedRow();
+        for (Customer i : CustomerList) {
+            if (i.getUsername().equalsIgnoreCase(CurrentUser)) {
+                if (Double.parseDouble((String) routestablepay.getModel().getValueAt(a, 4)) <= i.getCard().getBalance()) {
+                     
+                }
+
+            }
+        }
+
+
     }//GEN-LAST:event_jButton10ActionPerformed
+
+    private void OkayViewFundsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OkayViewFundsActionPerformed
+        // TODO add your handling code here:
+        ViewFundsDisplay.setVisible(false);
+    }//GEN-LAST:event_OkayViewFundsActionPerformed
+
+    private void CustPassFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_CustPassFocusGained
+        // TODO add your handling code here:
+        CustPass.setText("");
+    }//GEN-LAST:event_CustPassFocusGained
 
     /**
      * @param args the command line arguments
@@ -1671,6 +1660,7 @@ public class UI extends javax.swing.JFrame {
     private javax.swing.JLabel ErrorMessage;
     private javax.swing.JTable FareTable;
     private javax.swing.JPanel FindBusRoutes;
+    private javax.swing.JLabel FundsAre;
     private javax.swing.JPanel GuestCard;
     private javax.swing.JButton GuestLogin;
     private javax.swing.JPanel GuestMenu;
@@ -1680,6 +1670,7 @@ public class UI extends javax.swing.JFrame {
     private javax.swing.JTextField NewCustPass;
     private javax.swing.JComboBox NewCustType;
     private javax.swing.JTextField NewCustUser;
+    private javax.swing.JButton OkayViewFunds;
     private javax.swing.JPanel Pay;
     private javax.swing.JButton PayButton;
     private javax.swing.JButton RefreshCust;
@@ -1689,6 +1680,8 @@ public class UI extends javax.swing.JFrame {
     private javax.swing.JButton SubmitNewCust;
     private javax.swing.JButton ViewAll;
     private javax.swing.JPanel ViewBusRoutes;
+    private javax.swing.JButton ViewFunds;
+    private javax.swing.JInternalFrame ViewFundsDisplay;
     private javax.swing.JPanel Welcome;
     private javax.swing.JButton back1;
     private javax.swing.JButton back2;
@@ -1708,14 +1701,11 @@ public class UI extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton20;
     private javax.swing.JButton jButton22;
-    private javax.swing.JButton jButton23;
-    private javax.swing.JButton jButton24;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1738,8 +1728,6 @@ public class UI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
-    private javax.swing.JLabel jLabel31;
-    private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;

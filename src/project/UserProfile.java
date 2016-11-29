@@ -12,16 +12,16 @@ package project;
 public abstract class UserProfile {
     private String username;
     private String password;
-    //private String user;
-    
-    public UserProfile (String user, String pass) {
+
+    public UserProfile(String user, String pass) {
         username=user;
         password=pass;
-        //user=u;
     }
     
-    public String getUsername(){
+    public String getUsername() {
         return username;
     }
-    
+
+    public abstract void addFunds (double amount);
+
 }

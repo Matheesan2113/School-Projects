@@ -10,11 +10,12 @@ package project;
  * @author Owner
  */
 public class Customer extends UserProfile {
+
     private MembershipCard card;
-    
+
     public Customer(String user, String pass, double bal, int cardNum, int s) {
         super(user, pass);
-        card=new MembershipCard(bal,cardNum,s);
+        card = new MembershipCard(bal, cardNum, s);
     }
 
     /**
@@ -23,6 +24,8 @@ public class Customer extends UserProfile {
     public MembershipCard getCard() {
         return card;
     }
-    
 
+    public void addFunds(double amount) {
+        card.loadCard(amount);
+    }
 }

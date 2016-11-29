@@ -19,14 +19,13 @@ public class MembershipCard {
     public MembershipCard(double bal, int cardNum, int s) {
         balance = bal;
         cardNum = cardNumber;
-        status = s;
-        
+        status = s;    
     }
-    public void loadCard(double amount) {
-        balance=balance+amount;
-    }  
     
-
+    public void loadCard (double amount) {
+        balance=balance+amount;
+    }
+    
     public double getBalance() {
         return balance;
     }
