@@ -195,6 +195,7 @@ public class UI extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         bus = new javax.swing.JTable();
         back4 = new javax.swing.JButton();
+        jLabel53 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAlwaysOnTop(true);
@@ -648,7 +649,7 @@ public class UI extends javax.swing.JFrame {
         );
 
         CustomerMenu.add(AddFunds2);
-        AddFunds2.setBounds(400, 40, 320, 240);
+        AddFunds2.setBounds(10, 30, 320, 240);
 
         ViewFundsDisplay.setTitle("View Funds");
         ViewFundsDisplay.setVisible(true);
@@ -684,7 +685,7 @@ public class UI extends javax.swing.JFrame {
         );
 
         CustomerMenu.add(ViewFundsDisplay);
-        ViewFundsDisplay.setBounds(30, 260, 315, 180);
+        ViewFundsDisplay.setBounds(10, 70, 315, 180);
 
         jLabel10.setText("1.");
         CustomerMenu.add(jLabel10);
@@ -1240,7 +1241,7 @@ public class UI extends javax.swing.JFrame {
         );
 
         AddFunds.add(AddFundsError);
-        AddFundsError.setBounds(360, 70, 343, 288);
+        AddFundsError.setBounds(50, 60, 343, 288);
 
         AddFundsBack.setText("Back");
         AddFundsBack.addActionListener(new java.awt.event.ActionListener() {
@@ -1556,27 +1557,35 @@ public class UI extends javax.swing.JFrame {
             }
         });
 
+        jLabel53.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        jLabel53.setForeground(new java.awt.Color(0, 0, 102));
+        jLabel53.setText("View Bus Routes");
+
         javax.swing.GroupLayout ViewBusRoutesLayout = new javax.swing.GroupLayout(ViewBusRoutes);
         ViewBusRoutes.setLayout(ViewBusRoutesLayout);
         ViewBusRoutesLayout.setHorizontalGroup(
             ViewBusRoutesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ViewBusRoutesLayout.createSequentialGroup()
-                .addGap(146, 146, 146)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(66, 66, 66)
-                .addComponent(back4)
+                .addGroup(ViewBusRoutesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(ViewBusRoutesLayout.createSequentialGroup()
+                        .addGap(146, 146, 146)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(66, 66, 66)
+                        .addComponent(back4))
+                    .addGroup(ViewBusRoutesLayout.createSequentialGroup()
+                        .addGap(278, 278, 278)
+                        .addComponent(jLabel53, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(109, Short.MAX_VALUE))
         );
         ViewBusRoutesLayout.setVerticalGroup(
             ViewBusRoutesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ViewBusRoutesLayout.createSequentialGroup()
-                .addGroup(ViewBusRoutesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(ViewBusRoutesLayout.createSequentialGroup()
-                        .addGap(78, 78, 78)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(ViewBusRoutesLayout.createSequentialGroup()
-                        .addGap(213, 213, 213)
-                        .addComponent(back4)))
+                .addGap(23, 23, 23)
+                .addComponent(jLabel53, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(ViewBusRoutesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(back4))
                 .addContainerGap(492, Short.MAX_VALUE))
         );
 
@@ -2249,6 +2258,7 @@ public class UI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel50;
     private javax.swing.JLabel jLabel51;
     private javax.swing.JLabel jLabel52;
+    private javax.swing.JLabel jLabel53;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
