@@ -16,7 +16,10 @@ public class Fare {
         fare=f;
     }
     
-    public void calcfare (double amount) {
-        fare.fareAmount(amount);
+    public double calcfare (double amount) {
+        double r=0;
+        r=fare.fareAmount(amount);
+        return r;
     }
+    
 }

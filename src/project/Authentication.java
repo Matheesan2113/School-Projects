@@ -47,15 +47,20 @@ public class Authentication {
         }
         return r;
     }
-public Authentication(){
-    
-}
-
-    public void Write2Text(File file,String user,String pass) {  
-         FileWriter fw;           
-        try {   
+public Authentication(File file){
+    this.file=file;
+        try {
             fw = new FileWriter(file.getAbsoluteFile()); // COMMA TRUE TO APPEND MANAGER LOG IN DETAILS 
-            BufferedWriter bw= new BufferedWriter(fw); 
+        } catch (IOException ex) {
+            Logger.getLogger(Authentication.class.getName()).log(Level.SEVERE, null, ex);
+        }
+           this.bw= new BufferedWriter(fw);
+}
+FileWriter fw;
+File file;
+protected BufferedWriter bw;
+    public void Write2Text(BufferedWriter bw, String user,String pass) {         
+        try {   
             bw.write(user);
             bw.write(" "+pass);
             bw.newLine();
@@ -66,6 +71,10 @@ public Authentication(){
         catch (NullPointerException fs){
             
         }
+    }
+
+    protected BufferedWriter getBw() {
+        return bw;
     }
 
 }

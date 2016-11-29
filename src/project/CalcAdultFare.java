@@ -9,7 +9,7 @@ package project;
  *
  * @author Owner
  */
-public class CalcAdultFare {
+public class CalcAdultFare extends CalcFare{
     public double fareAmount(double amount) {
         return amount;
     }

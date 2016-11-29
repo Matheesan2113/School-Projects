@@ -11,6 +11,7 @@ import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
+import static jdk.nashorn.internal.objects.NativeMath.round;
 
 /**
  *
@@ -27,12 +28,15 @@ public class UI extends javax.swing.JFrame {
         initComponents();
     }
     File file = new File("./logindata.txt");
-    Authentication setup = new Authentication();
+    Authentication setup = new Authentication(file);
     CustomerRep Admin = new CustomerRep("admin", "admin");
     static int cardcount = 10000;
     static String CurrentUser = "";
     File filebus = new File("./BusRoutes.txt");
     Routes route1 = new Routes();
+    Fare student = new Fare(new CalcStudentFare());
+    Fare senior = new Fare(new CalcSeniorFare());
+    Fare Adult = new Fare(new CalcAdultFare());
     ArrayList<Customer> CustomerList = new ArrayList<Customer>();
 
     /**
@@ -62,11 +66,11 @@ public class UI extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         CustLogin = new javax.swing.JButton();
+        back1 = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
         GuestCard = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         GuestLogin = new javax.swing.JButton();
-        back1 = new javax.swing.JButton();
-        jLabel9 = new javax.swing.JLabel();
         login2 = new javax.swing.JPanel();
         LoginFail2 = new javax.swing.JInternalFrame();
         jLabel24 = new javax.swing.JLabel();
@@ -81,6 +85,13 @@ public class UI extends javax.swing.JFrame {
         jButton7 = new javax.swing.JButton();
         jLabel13 = new javax.swing.JLabel();
         CustomerMenu = new javax.swing.JPanel();
+        AddFunds2 = new javax.swing.JInternalFrame();
+        AddFundsOkay2 = new javax.swing.JButton();
+        AddFundsText2 = new javax.swing.JLabel();
+        jLabel51 = new javax.swing.JLabel();
+        jLabel52 = new javax.swing.JLabel();
+        Funds2Add2 = new javax.swing.JComboBox<>();
+        Add2 = new javax.swing.JButton();
         ViewFundsDisplay = new javax.swing.JInternalFrame();
         FundsAre = new javax.swing.JLabel();
         OkayViewFunds = new javax.swing.JButton();
@@ -120,7 +131,7 @@ public class UI extends javax.swing.JFrame {
         PoorOkay = new javax.swing.JButton();
         PoorText = new javax.swing.JLabel();
         BackPay = new javax.swing.JButton();
-        jButton10 = new javax.swing.JButton();
+        SubmitPay = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         FareTable = new javax.swing.JTable();
         jScrollPane5 = new javax.swing.JScrollPane();
@@ -144,6 +155,17 @@ public class UI extends javax.swing.JFrame {
         jLabel33 = new javax.swing.JLabel();
         back3 = new javax.swing.JButton();
         jLabel27 = new javax.swing.JLabel();
+        AddFunds = new javax.swing.JPanel();
+        AddFundsError = new javax.swing.JInternalFrame();
+        AddFundsText = new javax.swing.JLabel();
+        AddFundsOkay = new javax.swing.JButton();
+        AddFundsBack = new javax.swing.JButton();
+        jLabel48 = new javax.swing.JLabel();
+        AddFundsUser = new javax.swing.JTextField();
+        Add = new javax.swing.JButton();
+        jLabel49 = new javax.swing.JLabel();
+        jLabel50 = new javax.swing.JLabel();
+        Funds2Add = new javax.swing.JComboBox<>();
         CreateAccount = new javax.swing.JPanel();
         back5 = new javax.swing.JButton();
         NewCustUser = new javax.swing.JTextField();
@@ -172,7 +194,6 @@ public class UI extends javax.swing.JFrame {
         ViewBusRoutes = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         bus = new javax.swing.JTable();
-        refresh = new javax.swing.JButton();
         back4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -283,7 +304,7 @@ public class UI extends javax.swing.JFrame {
         );
 
         login1.add(LoginFail);
-        LoginFail.setBounds(10, 0, 350, 160);
+        LoginFail.setBounds(10, 10, 350, 160);
 
         CustomerLogin.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -369,6 +390,20 @@ public class UI extends javax.swing.JFrame {
         login1.add(CustomerLogin);
         CustomerLogin.setBounds(10, 10, 210, 120);
 
+        back1.setText("Back");
+        back1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                back1ActionPerformed(evt);
+            }
+        });
+        login1.add(back1);
+        back1.setBounds(690, 400, 55, 23);
+
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project/background1.jpg"))); // NOI18N
+        jLabel9.setText("jLabel9");
+        login1.add(jLabel9);
+        jLabel9.setBounds(0, -10, 820, 470);
+
         GuestCard.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel6.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
@@ -406,20 +441,6 @@ public class UI extends javax.swing.JFrame {
 
         login1.add(GuestCard);
         GuestCard.setBounds(620, 180, 170, 70);
-
-        back1.setText("Back");
-        back1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                back1ActionPerformed(evt);
-            }
-        });
-        login1.add(back1);
-        back1.setBounds(690, 400, 55, 23);
-
-        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project/background1.jpg"))); // NOI18N
-        jLabel9.setText("jLabel9");
-        login1.add(jLabel9);
-        jLabel9.setBounds(0, -10, 820, 470);
 
         getContentPane().add(login1, "card3");
 
@@ -546,7 +567,7 @@ public class UI extends javax.swing.JFrame {
             }
         });
         login2.add(jButton7);
-        jButton7.setBounds(710, 390, 55, 23);
+        jButton7.setBounds(370, 400, 55, 23);
 
         jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project/background2.png"))); // NOI18N
         jLabel13.setText("jLabel9");
@@ -556,6 +577,78 @@ public class UI extends javax.swing.JFrame {
         getContentPane().add(login2, "card4");
 
         CustomerMenu.setLayout(null);
+
+        AddFunds2.setTitle("Add Funds");
+        AddFunds2.setVisible(true);
+
+        AddFundsOkay2.setText("Exit");
+        AddFundsOkay2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AddFundsOkay2ActionPerformed(evt);
+            }
+        });
+
+        AddFundsText2.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        AddFundsText2.setForeground(new java.awt.Color(255, 0, 0));
+
+        jLabel51.setText("Funds to be Added:");
+
+        jLabel52.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jLabel52.setText("$");
+
+        Funds2Add2.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+        Funds2Add2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "50.00", "100.00", "200.00", "500.00" }));
+        Funds2Add2.setSelectedIndex(3);
+        Funds2Add2.setToolTipText("");
+
+        Add2.setText("Add");
+        Add2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Add2ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout AddFunds2Layout = new javax.swing.GroupLayout(AddFunds2.getContentPane());
+        AddFunds2.getContentPane().setLayout(AddFunds2Layout);
+        AddFunds2Layout.setHorizontalGroup(
+            AddFunds2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(AddFunds2Layout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addGroup(AddFunds2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(AddFundsText2, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(AddFunds2Layout.createSequentialGroup()
+                        .addComponent(jLabel51, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(9, 9, 9)
+                        .addComponent(jLabel52)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(Funds2Add2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(47, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AddFunds2Layout.createSequentialGroup()
+                .addGap(55, 55, 55)
+                .addComponent(Add2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(AddFundsOkay2)
+                .addGap(56, 56, 56))
+        );
+        AddFunds2Layout.setVerticalGroup(
+            AddFunds2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AddFunds2Layout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addGroup(AddFunds2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel51, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel52, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Funds2Add2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                .addComponent(AddFundsText2, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(AddFunds2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(AddFundsOkay2)
+                    .addComponent(Add2))
+                .addGap(62, 62, 62))
+        );
+
+        CustomerMenu.add(AddFunds2);
+        AddFunds2.setBounds(10, 10, 320, 240);
 
         ViewFundsDisplay.setTitle("View Funds");
         ViewFundsDisplay.setVisible(true);
@@ -576,7 +669,7 @@ public class UI extends javax.swing.JFrame {
                 .addComponent(FundsAre, javax.swing.GroupLayout.DEFAULT_SIZE, 279, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(ViewFundsDisplayLayout.createSequentialGroup()
-                .addGap(115, 115, 115)
+                .addGap(113, 113, 113)
                 .addComponent(OkayViewFunds)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -585,19 +678,24 @@ public class UI extends javax.swing.JFrame {
             .addGroup(ViewFundsDisplayLayout.createSequentialGroup()
                 .addGap(52, 52, 52)
                 .addComponent(FundsAre, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31)
+                .addGap(18, 18, 18)
                 .addComponent(OkayViewFunds)
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         CustomerMenu.add(ViewFundsDisplay);
-        ViewFundsDisplay.setBounds(20, 40, 315, 221);
+        ViewFundsDisplay.setBounds(10, 50, 315, 180);
 
         jLabel10.setText("1.");
         CustomerMenu.add(jLabel10);
         jLabel10.setBounds(76, 99, 10, 14);
 
         jButton5.setText("Add Funds");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
         CustomerMenu.add(jButton5);
         jButton5.setBounds(90, 95, 131, 23);
 
@@ -661,7 +759,7 @@ public class UI extends javax.swing.JFrame {
             }
         });
         CustomerMenu.add(jLabel5);
-        jLabel5.setBounds(131, 73, 43, 14);
+        jLabel5.setBounds(120, 70, 100, 20);
 
         getContentPane().add(CustomerMenu, "card5");
 
@@ -796,11 +894,11 @@ public class UI extends javax.swing.JFrame {
                             .addComponent(jLabel44))
                         .addGap(28, 28, 28)
                         .addComponent(jButton8)))
-                .addContainerGap(92, Short.MAX_VALUE))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
 
         Pay.add(Recipt);
-        Recipt.setBounds(390, 30, 280, 443);
+        Recipt.setBounds(430, 30, 280, 380);
 
         Poor.setTitle("Error :201");
         Poor.setMaximumSize(new java.awt.Dimension(400, 400));
@@ -851,14 +949,14 @@ public class UI extends javax.swing.JFrame {
         Pay.add(BackPay);
         BackPay.setBounds(615, 231, 100, 23);
 
-        jButton10.setText("Select");
-        jButton10.addActionListener(new java.awt.event.ActionListener() {
+        SubmitPay.setText("Select");
+        SubmitPay.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton10ActionPerformed(evt);
+                SubmitPayActionPerformed(evt);
             }
         });
-        Pay.add(jButton10);
-        jButton10.setBounds(615, 197, 100, 23);
+        Pay.add(SubmitPay);
+        SubmitPay.setBounds(615, 197, 100, 23);
 
         FareTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -994,7 +1092,7 @@ public class UI extends javax.swing.JFrame {
                     .addComponent(jLabel22))
                 .addGap(18, 18, 18)
                 .addComponent(back2)
-                .addContainerGap(628, Short.MAX_VALUE))
+                .addContainerGap(632, Short.MAX_VALUE))
         );
 
         getContentPane().add(GuestMenu, "card5");
@@ -1002,6 +1100,11 @@ public class UI extends javax.swing.JFrame {
         jLabel28.setText("1.");
 
         jButton19.setText("Add Funds");
+        jButton19.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton19ActionPerformed(evt);
+            }
+        });
 
         jLabel29.setText("2.");
 
@@ -1027,7 +1130,7 @@ public class UI extends javax.swing.JFrame {
         jLabel33.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
         jLabel33.setText("Service Rep Menu");
 
-        back3.setText("Back");
+        back3.setText("Logout");
         back3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 back3ActionPerformed(evt);
@@ -1045,6 +1148,7 @@ public class UI extends javax.swing.JFrame {
                     .addGroup(ServiceRepMenuLayout.createSequentialGroup()
                         .addGap(53, 53, 53)
                         .addGroup(ServiceRepMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel33)
                             .addGroup(ServiceRepMenuLayout.createSequentialGroup()
                                 .addGap(15, 15, 15)
                                 .addGroup(ServiceRepMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -1060,13 +1164,12 @@ public class UI extends javax.swing.JFrame {
                                         .addComponent(jLabel28)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jButton19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                            .addComponent(jLabel33)))
+                            .addGroup(ServiceRepMenuLayout.createSequentialGroup()
+                                .addGap(61, 61, 61)
+                                .addComponent(back3))))
                     .addGroup(ServiceRepMenuLayout.createSequentialGroup()
                         .addGap(108, 108, 108)
-                        .addComponent(jLabel27))
-                    .addGroup(ServiceRepMenuLayout.createSequentialGroup()
-                        .addGap(114, 114, 114)
-                        .addComponent(back3)))
+                        .addComponent(jLabel27)))
                 .addContainerGap(615, Short.MAX_VALUE))
         );
         ServiceRepMenuLayout.setVerticalGroup(
@@ -1090,10 +1193,103 @@ public class UI extends javax.swing.JFrame {
                     .addComponent(jButton22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(back3)
-                .addContainerGap(644, Short.MAX_VALUE))
+                .addContainerGap(648, Short.MAX_VALUE))
         );
 
         getContentPane().add(ServiceRepMenu, "card5");
+
+        AddFunds.setMaximumSize(new java.awt.Dimension(400, 400));
+        AddFunds.setLayout(null);
+
+        AddFundsError.setTitle("Error:301");
+        AddFundsError.setVisible(true);
+
+        AddFundsText.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        AddFundsText.setForeground(new java.awt.Color(0, 0, 204));
+        AddFundsText.setText("Username Doesn't Exist");
+        AddFundsText.setFocusable(false);
+
+        AddFundsOkay.setText("Okay");
+        AddFundsOkay.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AddFundsOkayActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout AddFundsErrorLayout = new javax.swing.GroupLayout(AddFundsError.getContentPane());
+        AddFundsError.getContentPane().setLayout(AddFundsErrorLayout);
+        AddFundsErrorLayout.setHorizontalGroup(
+            AddFundsErrorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AddFundsErrorLayout.createSequentialGroup()
+                .addContainerGap(40, Short.MAX_VALUE)
+                .addComponent(AddFundsText, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24))
+            .addGroup(AddFundsErrorLayout.createSequentialGroup()
+                .addGap(129, 129, 129)
+                .addComponent(AddFundsOkay)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        AddFundsErrorLayout.setVerticalGroup(
+            AddFundsErrorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(AddFundsErrorLayout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addComponent(AddFundsText, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(54, 54, 54)
+                .addComponent(AddFundsOkay)
+                .addContainerGap(84, Short.MAX_VALUE))
+        );
+
+        AddFunds.add(AddFundsError);
+        AddFundsError.setBounds(360, 70, 343, 288);
+
+        AddFundsBack.setText("Back");
+        AddFundsBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AddFundsBackActionPerformed(evt);
+            }
+        });
+        AddFunds.add(AddFundsBack);
+        AddFundsBack.setBounds(276, 250, 62, 23);
+
+        jLabel48.setText("Enter Username:");
+        AddFunds.add(jLabel48);
+        jLabel48.setBounds(93, 138, 133, 35);
+
+        AddFundsUser.setText("Username");
+        AddFundsUser.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                AddFundsUserMouseClicked(evt);
+            }
+        });
+        AddFunds.add(AddFundsUser);
+        AddFundsUser.setBounds(230, 138, 108, 35);
+
+        Add.setText("Add");
+        Add.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AddActionPerformed(evt);
+            }
+        });
+        AddFunds.add(Add);
+        Add.setBounds(276, 221, 62, 23);
+
+        jLabel49.setText("Enter Funds:");
+        AddFunds.add(jLabel49);
+        jLabel49.setBounds(93, 180, 111, 35);
+
+        jLabel50.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabel50.setText("$");
+        AddFunds.add(jLabel50);
+        jLabel50.setBounds(222, 179, 10, 35);
+
+        Funds2Add.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+        Funds2Add.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "50.00", "100.00", "200.00", "500.00" }));
+        Funds2Add.setSelectedIndex(3);
+        Funds2Add.setToolTipText("");
+        AddFunds.add(Funds2Add);
+        Funds2Add.setBounds(236, 187, 100, 20);
+
+        getContentPane().add(AddFunds, "card12");
 
         back5.setText("Back");
         back5.addActionListener(new java.awt.event.ActionListener() {
@@ -1211,7 +1407,7 @@ public class UI extends javax.swing.JFrame {
                     .addComponent(jLabel39))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(CustomerErrorMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 247, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 380, Short.MAX_VALUE)
                 .addComponent(jLabel42)
                 .addGap(203, 203, 203))
         );
@@ -1353,13 +1549,6 @@ public class UI extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(bus);
 
-        refresh.setText("Refresh Table");
-        refresh.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                refreshActionPerformed(evt);
-            }
-        });
-
         back4.setText("Back");
         back4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1374,29 +1563,21 @@ public class UI extends javax.swing.JFrame {
             .addGroup(ViewBusRoutesLayout.createSequentialGroup()
                 .addGap(146, 146, 146)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(ViewBusRoutesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(ViewBusRoutesLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
-                        .addComponent(refresh)
-                        .addGap(69, 69, 69))
-                    .addGroup(ViewBusRoutesLayout.createSequentialGroup()
-                        .addGap(79, 79, 79)
-                        .addComponent(back4)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addGap(66, 66, 66)
+                .addComponent(back4)
+                .addContainerGap(109, Short.MAX_VALUE))
         );
         ViewBusRoutesLayout.setVerticalGroup(
             ViewBusRoutesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ViewBusRoutesLayout.createSequentialGroup()
                 .addGroup(ViewBusRoutesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(ViewBusRoutesLayout.createSequentialGroup()
-                        .addGap(215, 215, 215)
-                        .addComponent(refresh)
-                        .addGap(64, 64, 64)
-                        .addComponent(back4))
-                    .addGroup(ViewBusRoutesLayout.createSequentialGroup()
                         .addGap(78, 78, 78)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(488, Short.MAX_VALUE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(ViewBusRoutesLayout.createSequentialGroup()
+                        .addGap(213, 213, 213)
+                        .addComponent(back4)))
+                .addContainerGap(492, Short.MAX_VALUE))
         );
 
         getContentPane().add(ViewBusRoutes, "card9");
@@ -1421,6 +1602,7 @@ public class UI extends javax.swing.JFrame {
 
     private void CustLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CustLoginActionPerformed
         // TODO add your handling code here:
+        AddFunds2.setVisible(false);
         ViewFundsDisplay.setVisible(false);
         try {
             if (setup.login(CustUser.getText(), String.valueOf(CustPass.getPassword())) == true) {
@@ -1504,7 +1686,7 @@ public class UI extends javax.swing.JFrame {
 
     private void ViewFundsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewFundsActionPerformed
         // TODO add your handling code here:
-        int ioh=0;
+        int ioh = 0;
         ViewFundsDisplay.setVisible(true);
         try {
             if (!CustomerList.isEmpty()) {
@@ -1513,10 +1695,10 @@ public class UI extends javax.swing.JFrame {
                     if (CurrentUser.equalsIgnoreCase(i.getUsername())) //
                     {
                         System.out.println("Your funds are now $" + i.getCard().getBalance());
-                        FundsAre.setText("Your funds are now $"+i.getCard().getBalance());
+                        FundsAre.setText("Your funds are now $" + i.getCard().getBalance());
+                    } else {
+                        System.out.println("Current User is not the same as username, counter: " + ioh);
                     }
-                    else
-                        System.out.println("Current User is not the same as username, counter: "+ioh);
                 }
             } else {
                 System.out.println("CustomerList is Empty");
@@ -1531,6 +1713,25 @@ public class UI extends javax.swing.JFrame {
         CustomerMenu.setVisible(false);
         FindBusRoutes.setVisible(true);
         ErrorMessage.setVisible(false);
+        model3.setVisible(true);
+        String row;
+        Routes display = new Routes();
+        try {
+            route1.setBrr(new BufferedReader(new FileReader(filebus)));
+            route1.getBrr().mark(0);
+            route1.getBrr().reset();
+
+        } catch (IOException ex) {
+            Logger.getLogger(UI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        DefaultTableModel model = (DefaultTableModel) model3.getModel();
+        model.setRowCount(0);//not have duplicates when pressing view all
+        StringTokenizer st2 = new StringTokenizer(display.viewRoute(route1.getFilebus(), route1.getBrr()));
+        model.addRow(new Object[]{st2.nextToken(), st2.nextToken(), st2.nextToken(), st2.nextToken(), st2.nextToken()});
+        while (!((row = display.viewRoute(route1.getFilebus(), route1.getBrr())).isEmpty())) {
+            st2 = new StringTokenizer(row);
+            model.addRow(new Object[]{st2.nextToken(), st2.nextToken(), st2.nextToken(), st2.nextToken(), st2.nextToken()});
+        }
     }//GEN-LAST:event_findroutesCustActionPerformed
 
     private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
@@ -1556,6 +1757,24 @@ public class UI extends javax.swing.JFrame {
         ViewBusRoutes.setVisible(true);
         ServiceRepMenu.setVisible(false);
         ErrorMessage.setVisible(false);
+         String row;
+        Routes display = new Routes();
+        try {
+            route1.setBrr(new BufferedReader(new FileReader(filebus)));
+            route1.getBrr().mark(0);
+            route1.getBrr().reset();
+
+        } catch (IOException ex) {
+            Logger.getLogger(UI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        DefaultTableModel model = (DefaultTableModel) bus.getModel();
+        model.setRowCount(0);//not have duplicates when pressing view all
+        StringTokenizer st2 = new StringTokenizer(display.viewRoute(route1.getFilebus(), route1.getBrr()));
+        model.addRow(new Object[]{st2.nextToken(), st2.nextToken(), st2.nextToken(), st2.nextToken(), st2.nextToken()});
+        while (!((row = display.viewRoute(route1.getFilebus(), route1.getBrr())).isEmpty())) {
+            st2 = new StringTokenizer(row);
+            model.addRow(new Object[]{st2.nextToken(), st2.nextToken(), st2.nextToken(), st2.nextToken(), st2.nextToken()});
+        }
     }//GEN-LAST:event_jButton22ActionPerformed
 
     private void CustUserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CustUserMouseClicked
@@ -1617,28 +1836,6 @@ public class UI extends javax.swing.JFrame {
         LoginFail2.setVisible(false);
         jButton6.setVisible(true);
     }//GEN-LAST:event_jButton12ActionPerformed
-
-    private void refreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshActionPerformed
-        // TODO add your handling code here:
-        String row;
-        Routes display = new Routes();
-        try {
-            route1.setBrr(new BufferedReader(new FileReader(filebus)));
-            route1.getBrr().mark(0);
-            route1.getBrr().reset();
-
-        } catch (IOException ex) {
-            Logger.getLogger(UI.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        DefaultTableModel model = (DefaultTableModel) bus.getModel();
-        model.setRowCount(0);//not have duplicates when pressing view all
-        StringTokenizer st2 = new StringTokenizer(display.viewRoute(route1.getFilebus(), route1.getBrr()));
-        model.addRow(new Object[]{st2.nextToken(), st2.nextToken(), st2.nextToken(), st2.nextToken(), st2.nextToken()});
-        while (!((row = display.viewRoute(route1.getFilebus(), route1.getBrr())).isEmpty())) {
-            st2 = new StringTokenizer(row);
-            model.addRow(new Object[]{st2.nextToken(), st2.nextToken(), st2.nextToken(), st2.nextToken(), st2.nextToken()});
-        }
-    }//GEN-LAST:event_refreshActionPerformed
 
     private void back4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back4ActionPerformed
         // TODO add your handling code here:
@@ -1728,12 +1925,13 @@ public class UI extends javax.swing.JFrame {
         Object a = NewCustType.getSelectedItem();
         int type;
         System.out.println("New customer user is " + NewCustUser.getText());
+        setup.Write2Text(setup.getBw(), NewCustUser.getText(), NewCustPass.getText());
         if (a.equals("Senior")) {
-            type = 3;
+            type = 1;
         } else if (a.equals("Student")) {
             type = 2;
         } else {
-            type = 1;
+            type = 3;
         }
         for (Customer i : CustomerList) {
             if (i.getUsername().equalsIgnoreCase(NewCustUser.getText())) {
@@ -1746,7 +1944,7 @@ public class UI extends javax.swing.JFrame {
                     Double.parseDouble(NewCustBal.getText()), cardcount++, type));
             CustomerErrorMessage.setText("You have Created a profile for " + NewCustUser.getText() + "(" + NewCustType.getSelectedItem()
                     + ") with a balance of $" + Double.parseDouble(NewCustBal.getText()) + " and a Card Number of " + cardcount);
-            setup.Write2Text(file, NewCustUser.getText(), NewCustPass.getText());
+
         }
 
         CustomerErrorMessage.setVisible(true);
@@ -1762,34 +1960,44 @@ public class UI extends javax.swing.JFrame {
         BackPay.setVisible(false);
     }//GEN-LAST:event_BackPayActionPerformed
 
-    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+    private void SubmitPayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitPayActionPerformed
         // TODO add your handling code here:
         int a = routestablepay.getSelectedRow();
         for (Customer i : CustomerList) {
             if (i.getUsername().equalsIgnoreCase(CurrentUser)) {
                 if (Double.parseDouble((String) routestablepay.getModel().getValueAt(a, 4)) <= i.getCard().getBalance()) {//check to see if has enough money
-                     i.getCard().BalacePay(Double.parseDouble((String) routestablepay.getModel().getValueAt(a, 4)));//Deduct Price of tix
-                     //Print Recipt
-                     ReciptUser.setText(i.getUsername());
-                     DepartingRecipt.setText((String)routestablepay.getModel().getValueAt(a, 0));
-                     DestinationRecipt.setText((String)routestablepay.getModel().getValueAt(a, 1));
-                     DepartureRecipt.setText((String)routestablepay.getModel().getValueAt(a, 2)+"");
-                     ArrivalRecipt.setText((String)routestablepay.getModel().getValueAt(a, 3));
-                     CostRecipt.setText((String)routestablepay.getModel().getValueAt(a, 4));
-                     BalanceRecipt.setText(String.valueOf(i.getCard().getBalance()));
-                     ReciptNumber.setText(""+Math.random()*1000);
-                     Recipt.setVisible(true);
-                }
-                else{
+                    //Deduct Price of tix
+                    double r;
+                    switch (i.getCard().getStatus()) {      
+                        case 1:
+                            r = senior.calcfare(Double.parseDouble((String) routestablepay.getModel().getValueAt(a, 4)));
+                            break;
+                        case 2:
+                            r = student.calcfare(Double.parseDouble((String) routestablepay.getModel().getValueAt(a, 4)));
+                            break;
+                        default:
+                            r = Adult.calcfare(Double.parseDouble((String) routestablepay.getModel().getValueAt(a, 4)));
+                            break;
+                    }
+                    i.getCard().BalacePay(r);
+                    //Print Recipt
+                    ReciptUser.setText(i.getUsername());
+                    DepartingRecipt.setText((String) routestablepay.getModel().getValueAt(a, 0));
+                    DestinationRecipt.setText((String) routestablepay.getModel().getValueAt(a, 1));
+                    DepartureRecipt.setText((String) routestablepay.getModel().getValueAt(a, 2) + "");
+                    ArrivalRecipt.setText((String) routestablepay.getModel().getValueAt(a, 3));
+                    CostRecipt.setText("" + r);
+                    BalanceRecipt.setText(String.valueOf(i.getCard().getBalance()));
+                    ReciptNumber.setText("" + Math.random());
+                    Recipt.setVisible(true);
+                } else {
                     Poor.setVisible(true);
                     PoorText.setText("You don't have enough Money");
                 }
-                   
+
             }
         }
-
-
-    }//GEN-LAST:event_jButton10ActionPerformed
+    }//GEN-LAST:event_SubmitPayActionPerformed
 
     private void OkayViewFundsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OkayViewFundsActionPerformed
         // TODO add your handling code here:
@@ -1811,6 +2019,64 @@ public class UI extends javax.swing.JFrame {
         Pay.setVisible(false);
         CustomerMenu.setVisible(true);
     }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
+        // TODO add your handling code here:
+        ServiceRepMenu.setVisible(false);
+        AddFunds.setVisible(true);
+        AddFundsError.setVisible(false);
+    }//GEN-LAST:event_jButton19ActionPerformed
+
+    private void AddFundsUserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AddFundsUserMouseClicked
+        // TODO add your handling code here:
+        AddFundsUser.setText("");
+    }//GEN-LAST:event_AddFundsUserMouseClicked
+
+    private void AddFundsBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddFundsBackActionPerformed
+        // TODO add your handling code here:
+        ServiceRepMenu.setVisible(true);
+        AddFunds.setVisible(false);
+    }//GEN-LAST:event_AddFundsBackActionPerformed
+
+    private void AddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddActionPerformed
+        // TODO add your handling code here:
+        for (Customer i: CustomerList){
+            if(i.getUsername().equalsIgnoreCase(AddFundsUser.getText())){
+                i.addFunds(Double.parseDouble((String)Funds2Add.getSelectedItem()));
+                AddFundsText.setText("Balance= $"+i.getCard().getBalance()); 
+                AddFundsError.setVisible(true);
+            }
+            else{
+               AddFundsText.setText("User Doesn't Exist");
+               AddFundsError.setVisible(true);
+            }     
+        }
+    }//GEN-LAST:event_AddActionPerformed
+
+    private void AddFundsOkayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddFundsOkayActionPerformed
+        // TODO add your handling code here:
+        AddFundsError.setVisible(false);
+    }//GEN-LAST:event_AddFundsOkayActionPerformed
+
+    private void AddFundsOkay2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddFundsOkay2ActionPerformed
+        // TODO add your handling code here:
+        AddFunds2.setVisible(false);
+    }//GEN-LAST:event_AddFundsOkay2ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        AddFunds2.setVisible(true);
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void Add2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Add2ActionPerformed
+        // TODO add your handling code here:
+        for(Customer i:CustomerList){
+            if(i.getUsername().equalsIgnoreCase(CurrentUser)){
+                i.addFunds(Double.parseDouble((String)Funds2Add2.getSelectedItem()));
+                AddFundsText2.setText("Balance is $"+i.getCard().getBalance());
+            }
+        }
+    }//GEN-LAST:event_Add2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1849,6 +2115,17 @@ public class UI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Add;
+    private javax.swing.JButton Add2;
+    private javax.swing.JPanel AddFunds;
+    private javax.swing.JInternalFrame AddFunds2;
+    private javax.swing.JButton AddFundsBack;
+    private javax.swing.JInternalFrame AddFundsError;
+    private javax.swing.JButton AddFundsOkay;
+    private javax.swing.JButton AddFundsOkay2;
+    private javax.swing.JLabel AddFundsText;
+    private javax.swing.JLabel AddFundsText2;
+    private javax.swing.JTextField AddFundsUser;
     private javax.swing.JLabel ArrivalRecipt;
     private javax.swing.JButton BackPay;
     private javax.swing.JLabel BalanceRecipt;
@@ -1869,6 +2146,8 @@ public class UI extends javax.swing.JFrame {
     private javax.swing.JLabel ErrorMessage;
     private javax.swing.JTable FareTable;
     private javax.swing.JPanel FindBusRoutes;
+    private javax.swing.JComboBox<String> Funds2Add;
+    private javax.swing.JComboBox<String> Funds2Add2;
     private javax.swing.JLabel FundsAre;
     private javax.swing.JPanel GuestCard;
     private javax.swing.JButton GuestLogin;
@@ -1893,6 +2172,7 @@ public class UI extends javax.swing.JFrame {
     private javax.swing.JTextField RepUser;
     private javax.swing.JPanel ServiceRepMenu;
     private javax.swing.JButton SubmitNewCust;
+    private javax.swing.JButton SubmitPay;
     private javax.swing.JButton ViewAll;
     private javax.swing.JPanel ViewBusRoutes;
     private javax.swing.JButton ViewFunds;
@@ -1907,7 +2187,6 @@ public class UI extends javax.swing.JFrame {
     private javax.swing.JTable bus;
     private javax.swing.JButton findroutesCust;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton15;
     private javax.swing.JButton jButton16;
@@ -1964,7 +2243,12 @@ public class UI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel45;
     private javax.swing.JLabel jLabel46;
     private javax.swing.JLabel jLabel47;
+    private javax.swing.JLabel jLabel48;
+    private javax.swing.JLabel jLabel49;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel50;
+    private javax.swing.JLabel jLabel51;
+    private javax.swing.JLabel jLabel52;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -1977,7 +2261,6 @@ public class UI extends javax.swing.JFrame {
     private javax.swing.JPanel login1;
     private javax.swing.JPanel login2;
     private javax.swing.JTable model3;
-    private javax.swing.JButton refresh;
     private javax.swing.JTable routestablepay;
     // End of variables declaration//GEN-END:variables
 }
