@@ -14,7 +14,7 @@ package project;
  * Abstraction function: The ProfileMaker works with the abstract type of
  * UserProfile which is extended by Customer and Service Rep
  * <p>
- * Rep invariant: Customer can't have duplicates
+ * Rep invariant: Customer can't have duplicates because of username conflicts
  */
 public class ProfileMaker {
 
@@ -55,7 +55,7 @@ public class ProfileMaker {
     }
 
     /**
-     * Modifies:Modifies Balance for Customer's Card{@MembershipCard} Through Service Rep 
+     * Modifies:Modifies Balance for Customer's Card Through Service Rep 
      * Requires: positive amount taken from
      * item-box in UI which is always set as String which can be converted to
      * Double 
@@ -70,8 +70,7 @@ public class ProfileMaker {
 
     /**
      * Modifies:Modifies Balance for Customer's Card{
-     *
-     * @MembershipCard} Through @Customer Requires: positive amount taken from
+     * Requires: positive amount taken from
      * item-box in UI which is always set as String which can be converted to
      * Double Effects:Adjusts card balance by desired amount of Money
      * @param amount set as 50,100,200 or 500 in item-box from UI, gets sent to

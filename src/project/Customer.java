@@ -1,5 +1,9 @@
 package project;
 
+import java.io.*;
+import java.util.*;
+
+import java.lang.*;
 /**
  *
  * Overview: A customer is an immutable object representing the
@@ -15,10 +19,21 @@ public class Customer extends UserProfile {
 
     /**
      * Constructor Requires: non negative double for bal Modifies: this
+     * @param user
+     * @param pass
+     * @param bal
+     * @param cardNum
+     * @param s
      */
-    public Customer(String user, String pass, double bal, int cardNum, int s) {
+    public Customer(String user, String pass, double bal, int cardNum, int s) throws IllegalArgumentException {
         super(user, pass);
-        card = new MembershipCard(bal, cardNum, s);
+        try{
+             card = new MembershipCard(bal, cardNum, s);
+        }
+        catch (IllegalArgumentException jlh){
+            
+        }
+       
     }
 
     /**

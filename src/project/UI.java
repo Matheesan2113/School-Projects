@@ -29,7 +29,7 @@ public class UI extends javax.swing.JFrame {
     }
     File file = new File("./logindata.txt");
     Authentication setup = new Authentication(file);
-    ProfileMaker Admin = new ProfileMaker ("Admin","Admin");
+    ProfileMaker Admin = new ProfileMaker("Admin", "Admin");
 
     static int cardcount = 10000;
     static String CurrentUser = "";
@@ -249,14 +249,14 @@ public class UI extends javax.swing.JFrame {
         Welcome.add(jLabel7);
         jLabel7.setBounds(440, 160, 350, 250);
 
+        jTextArea2.setEditable(false);
         jTextArea2.setColumns(50);
         jTextArea2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jTextArea2.setLineWrap(true);
         jTextArea2.setRows(5);
         jTextArea2.setTabSize(14);
-        jTextArea2.setText("This app serves Customers using OTC to get around and those who help  adminstor and monitor account details of our clients. Before you procede, please select your intended role for this application. ");
+        jTextArea2.setText("This app serves Customers using OTC to get around and those who help  administer and monitor account details of our clients. Before you proced, please select your intended role for this application. ");
         jTextArea2.setAutoscrolls(false);
-        jTextArea2.setBorder(null);
         jTextArea2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         Welcome.add(jTextArea2);
         jTextArea2.setBounds(210, 90, 470, 70);
@@ -266,7 +266,6 @@ public class UI extends javax.swing.JFrame {
         login1.setMinimumSize(new java.awt.Dimension(840, 460));
         login1.setLayout(null);
 
-        LoginFail.setBorder(null);
         LoginFail.setTitle("Error1: Login Failure");
         LoginFail.setToolTipText("");
         LoginFail.setVisible(true);
@@ -293,7 +292,7 @@ public class UI extends javax.swing.JFrame {
                     .addGroup(LoginFailLayout.createSequentialGroup()
                         .addGap(131, 131, 131)
                         .addComponent(jButton4)))
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         LoginFailLayout.setVerticalGroup(
             LoginFailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -302,7 +301,7 @@ public class UI extends javax.swing.JFrame {
                 .addComponent(jLabel23)
                 .addGap(18, 18, 18)
                 .addComponent(jButton4)
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
 
         login1.add(LoginFail);
@@ -449,7 +448,6 @@ public class UI extends javax.swing.JFrame {
         login2.setMinimumSize(new java.awt.Dimension(841, 494));
         login2.setLayout(null);
 
-        LoginFail2.setBorder(null);
         LoginFail2.setTitle("Error1: Login Failure");
         LoginFail2.setToolTipText("");
         LoginFail2.setVisible(true);
@@ -476,7 +474,7 @@ public class UI extends javax.swing.JFrame {
                     .addGroup(LoginFail2Layout.createSequentialGroup()
                         .addGap(131, 131, 131)
                         .addComponent(jButton12)))
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         LoginFail2Layout.setVerticalGroup(
             LoginFail2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -485,7 +483,7 @@ public class UI extends javax.swing.JFrame {
                 .addComponent(jLabel24)
                 .addGap(18, 18, 18)
                 .addComponent(jButton12)
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
 
         login2.add(LoginFail2);
@@ -757,11 +755,11 @@ public class UI extends javax.swing.JFrame {
                 .addComponent(FundsAre, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(OkayViewFunds)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         CustomerMenu.add(ViewFundsDisplay);
-        ViewFundsDisplay.setBounds(260, 190, 315, 194);
+        ViewFundsDisplay.setBounds(260, 190, 315, 198);
 
         getContentPane().add(CustomerMenu, "card5");
 
@@ -1768,7 +1766,7 @@ public class UI extends javax.swing.JFrame {
         ViewBusRoutes.setVisible(true);
         ServiceRepMenu.setVisible(false);
         ErrorMessage.setVisible(false);
-         String row;
+        String row;
         Routes display = new Routes();
         try {
             route1.setBrr(new BufferedReader(new FileReader(filebus)));
@@ -1898,7 +1896,7 @@ public class UI extends javax.swing.JFrame {
                     for (int i = 0; i < size; i++) {
                         //for destination, remember the fix
                         System.out.println("i is : " + i);
-                        if (model34.getValueAt(i, 0).equals(DepartureCity.getSelectedItem())&&model34.getValueAt(i, 1).equals(DestinationCity.getSelectedItem())) {
+                        if (model34.getValueAt(i, 0).equals(DepartureCity.getSelectedItem()) && model34.getValueAt(i, 1).equals(DestinationCity.getSelectedItem())) {
                             System.out.print("you will arrive at " + model34.getValueAt(1, 1) + "departure city is: " + DepartureCity.getSelectedItem());//destination city is..
                         } else {
                             model34.removeRow(i);
@@ -1937,7 +1935,6 @@ public class UI extends javax.swing.JFrame {
         Object a = NewCustType.getSelectedItem();
         int type;
         System.out.println("New customer user is " + NewCustUser.getText());
-        setup.Write2Text(setup.getBw(), NewCustUser.getText(), NewCustPass.getText());
         if (a.equals("Senior")) {
             type = 1;
         } else if (a.equals("Student")) {
@@ -1952,7 +1949,8 @@ public class UI extends javax.swing.JFrame {
             }
         }
         if (red != 1) {
-            ProfileMaker fog=new ProfileMaker(NewCustUser.getText(), NewCustPass.getText(),
+            setup.Write2Text(setup.getBw(), NewCustUser.getText(), NewCustPass.getText());
+            ProfileMaker fog = new ProfileMaker(NewCustUser.getText(), NewCustPass.getText(),
                     Double.parseDouble(NewCustBal.getText()), cardcount++, type);
             CustomerList.add((Customer) fog.customer);
             CustomerErrorMessage.setText("You have Created a profile for " + NewCustUser.getText() + "(" + NewCustType.getSelectedItem()
@@ -1976,22 +1974,20 @@ public class UI extends javax.swing.JFrame {
         int a = routestablepay.getSelectedRow();
         for (Customer i : CustomerList) {
             if (i.getUsername().equalsIgnoreCase(CurrentUser)) {
-             double r;
-             switch (i.getCard().getStatus()) {      
-                        case 1:
-                            r = senior.calcfare(Double.parseDouble((String) routestablepay.getModel().getValueAt(a, 4)));
-                            break;
-                        case 2:
-                            r = student.calcfare(Double.parseDouble((String) routestablepay.getModel().getValueAt(a, 4)));
-                            break;
-                        default:
-                            r = Adult.calcfare(Double.parseDouble((String) routestablepay.getModel().getValueAt(a, 4)));
-                            break;
-                    }
-               if (r <= i.getCard().getBalance()) {//check to see if has enough money
+                double r;
+                switch (i.getCard().getStatus()) {
+                    case 1:
+                        r = senior.calcfare(Double.parseDouble((String) routestablepay.getModel().getValueAt(a, 4)));
+                        break;
+                    case 2:
+                        r = student.calcfare(Double.parseDouble((String) routestablepay.getModel().getValueAt(a, 4)));
+                        break;
+                    default:
+                        r = Adult.calcfare(Double.parseDouble((String) routestablepay.getModel().getValueAt(a, 4)));
+                        break;
+                }
+                if (r <= i.getCard().getBalance()) {//check to see if has enough money
                     //Deduct Price of tix
-                    
-                    
                     i.getCard().BalacePay(r);
                     //Print Recipt
                     ReciptUser.setText(i.getUsername());
@@ -2053,21 +2049,20 @@ public class UI extends javax.swing.JFrame {
 
     private void AddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddActionPerformed
         // TODO add your handling code here:
-        int poi=0;
-        for (Customer i: CustomerList){
-            if(i.getUsername().equalsIgnoreCase(AddFundsUser.getText())){
-                poi=1;     
-            }
-            else{
-               AddFundsText.setText("User Doesn't Exist");
-               AddFundsError.setVisible(true);
-            }  
-            if(poi==1){ 
-               i.addFunds(Double.parseDouble((String)Funds2Add.getSelectedItem()));
-               AddFundsText.setText("Balance= $"+i.getCard().getBalance()); 
+        int poi = 0;
+        for (Customer i : CustomerList) {
+            if (i.getUsername().equalsIgnoreCase(AddFundsUser.getText())) {
+                poi = 1;
+            } else {
+                AddFundsText.setText("User Doesn't Exist");
                 AddFundsError.setVisible(true);
             }
-                
+            if (poi == 1) {
+                i.addFunds(Double.parseDouble((String) Funds2Add.getSelectedItem()));
+                AddFundsText.setText("Balance= $" + i.getCard().getBalance());
+                AddFundsError.setVisible(true);
+            }
+
         }
     }//GEN-LAST:event_AddActionPerformed
 
@@ -2088,10 +2083,10 @@ public class UI extends javax.swing.JFrame {
 
     private void Add2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Add2ActionPerformed
         // TODO add your handling code here:
-        for(Customer i:CustomerList){
-            if(i.getUsername().equalsIgnoreCase(CurrentUser)){
-                i.addFunds(Double.parseDouble((String)Funds2Add2.getSelectedItem()));
-                AddFundsText2.setText("Balance is $"+i.getCard().getBalance());
+        for (Customer i : CustomerList) {
+            if (i.getUsername().equalsIgnoreCase(CurrentUser)) {
+                i.addFunds(Double.parseDouble((String) Funds2Add2.getSelectedItem()));
+                AddFundsText2.setText("Balance is $" + i.getCard().getBalance());
             }
         }
     }//GEN-LAST:event_Add2ActionPerformed

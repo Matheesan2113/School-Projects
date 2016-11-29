@@ -140,6 +140,7 @@
         </Component>
         <Component class="javax.swing.JTextArea" name="jTextArea2">
           <Properties>
+            <Property name="editable" type="boolean" value="false"/>
             <Property name="columns" type="int" value="50"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="14" style="0"/>
@@ -147,11 +148,8 @@
             <Property name="lineWrap" type="boolean" value="true"/>
             <Property name="rows" type="int" value="5"/>
             <Property name="tabSize" type="int" value="14"/>
-            <Property name="text" type="java.lang.String" value="This app serves Customers using OTC to get around and those who help  adminstor and monitor account details of our clients. Before you procede, please select your intended role for this application. "/>
+            <Property name="text" type="java.lang.String" value="This app serves Customers using OTC to get around and those who help  administer and monitor account details of our clients. Before you proced, please select your intended role for this application. "/>
             <Property name="autoscrolls" type="boolean" value="false"/>
-            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-              <Border info="null"/>
-            </Property>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
               <Color id="Default Cursor"/>
             </Property>
@@ -182,9 +180,6 @@
       <SubComponents>
         <Container class="javax.swing.JInternalFrame" name="LoginFail">
           <Properties>
-            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-              <Border info="null"/>
-            </Property>
             <Property name="title" type="java.lang.String" value="Error1: Login Failure"/>
             <Property name="toolTipText" type="java.lang.String" value=""/>
             <Property name="visible" type="boolean" value="true"/>
@@ -209,7 +204,7 @@
                               <Component id="jButton4" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="16" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -220,7 +215,7 @@
                       <Component id="jLabel23" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jButton4" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="36" max="32767" attributes="0"/>
+                      <EmptySpace pref="33" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -462,9 +457,6 @@
       <SubComponents>
         <Container class="javax.swing.JInternalFrame" name="LoginFail2">
           <Properties>
-            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-              <Border info="null"/>
-            </Property>
             <Property name="title" type="java.lang.String" value="Error1: Login Failure"/>
             <Property name="toolTipText" type="java.lang.String" value=""/>
             <Property name="visible" type="boolean" value="true"/>
@@ -489,7 +481,7 @@
                               <Component id="jButton12" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="16" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -500,7 +492,7 @@
                       <Component id="jLabel24" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jButton12" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="36" max="32767" attributes="0"/>
+                      <EmptySpace pref="33" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -953,7 +945,7 @@
                       <Component id="FundsAre" min="-2" pref="52" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="OkayViewFunds" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="15" max="32767" attributes="0"/>
+                      <EmptySpace pref="19" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
