@@ -1242,7 +1242,7 @@ public class UI extends javax.swing.JFrame {
         );
 
         AddFunds.add(AddFundsError);
-        AddFundsError.setBounds(50, 60, 343, 288);
+        AddFundsError.setBounds(340, 60, 343, 288);
 
         AddFundsBack.setText("Back");
         AddFundsBack.addActionListener(new java.awt.event.ActionListener() {
@@ -2051,16 +2051,21 @@ public class UI extends javax.swing.JFrame {
 
     private void AddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddActionPerformed
         // TODO add your handling code here:
+        int poi=0;
         for (Customer i: CustomerList){
             if(i.getUsername().equalsIgnoreCase(AddFundsUser.getText())){
-                i.addFunds(Double.parseDouble((String)Funds2Add.getSelectedItem()));
-                AddFundsText.setText("Balance= $"+i.getCard().getBalance()); 
-                AddFundsError.setVisible(true);
+                poi=1;     
             }
             else{
                AddFundsText.setText("User Doesn't Exist");
                AddFundsError.setVisible(true);
-            }     
+            }  
+            if(poi==1){ 
+               i.addFunds(Double.parseDouble((String)Funds2Add.getSelectedItem()));
+               AddFundsText.setText("Balance= $"+i.getCard().getBalance()); 
+                AddFundsError.setVisible(true);
+            }
+                
         }
     }//GEN-LAST:event_AddActionPerformed
 
