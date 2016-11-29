@@ -1957,9 +1957,7 @@ public class UI extends javax.swing.JFrame {
             CustomerList.add((Customer) fog.customer);
             CustomerErrorMessage.setText("You have Created a profile for " + NewCustUser.getText() + "(" + NewCustType.getSelectedItem()
                     + ") with a balance of $" + Double.parseDouble(NewCustBal.getText()) + " and a Card Number of " + cardcount);
-
         }
-
         CustomerErrorMessage.setVisible(true);
         NewCustUser.setText(null);
         NewCustPass.setText(null);
