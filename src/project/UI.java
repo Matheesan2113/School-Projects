@@ -29,7 +29,8 @@ public class UI extends javax.swing.JFrame {
     }
     File file = new File("./logindata.txt");
     Authentication setup = new Authentication(file);
-    CustomerRep Admin = new CustomerRep("admin", "admin");
+    ProfileMaker Admin = new ProfileMaker ("Admin","Admin");
+
     static int cardcount = 10000;
     static String CurrentUser = "";
     File filebus = new File("./BusRoutes.txt");
@@ -1949,8 +1950,9 @@ public class UI extends javax.swing.JFrame {
             }
         }
         if (red != 1) {
-            CustomerList.add(Admin.CreateCustomer(NewCustUser.getText(), NewCustPass.getText(),
-                    Double.parseDouble(NewCustBal.getText()), cardcount++, type));
+            ProfileMaker fog=new ProfileMaker(NewCustUser.getText(), NewCustPass.getText(),
+                    Double.parseDouble(NewCustBal.getText()), cardcount++, type);
+            CustomerList.add((Customer) fog.customer);
             CustomerErrorMessage.setText("You have Created a profile for " + NewCustUser.getText() + "(" + NewCustType.getSelectedItem()
                     + ") with a balance of $" + Double.parseDouble(NewCustBal.getText()) + " and a Card Number of " + cardcount);
 
