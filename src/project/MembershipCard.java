@@ -30,6 +30,11 @@ public class MembershipCard {
         return balance;
     }
     
+    public double BalacePay(double cost) {
+        balance=balance-cost;
+        return balance;
+    }
+    
     public int getNumber() {
         return cardNumber;
     }

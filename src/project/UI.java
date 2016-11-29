@@ -96,6 +96,29 @@ public class UI extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         Pay = new javax.swing.JPanel();
+        Recipt = new javax.swing.JInternalFrame();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel26 = new javax.swing.JLabel();
+        jLabel31 = new javax.swing.JLabel();
+        jLabel32 = new javax.swing.JLabel();
+        jLabel41 = new javax.swing.JLabel();
+        jLabel43 = new javax.swing.JLabel();
+        jLabel44 = new javax.swing.JLabel();
+        jLabel45 = new javax.swing.JLabel();
+        jLabel46 = new javax.swing.JLabel();
+        DepartingRecipt = new javax.swing.JLabel();
+        DestinationRecipt = new javax.swing.JLabel();
+        DepartureRecipt = new javax.swing.JLabel();
+        ArrivalRecipt = new javax.swing.JLabel();
+        CostRecipt = new javax.swing.JLabel();
+        ReciptNumber = new javax.swing.JLabel();
+        ReciptUser = new javax.swing.JLabel();
+        BalanceRecipt = new javax.swing.JLabel();
+        jLabel47 = new javax.swing.JLabel();
+        jButton8 = new javax.swing.JButton();
+        Poor = new javax.swing.JInternalFrame();
+        PoorOkay = new javax.swing.JButton();
+        PoorText = new javax.swing.JLabel();
         BackPay = new javax.swing.JButton();
         jButton10 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -568,7 +591,7 @@ public class UI extends javax.swing.JFrame {
         );
 
         CustomerMenu.add(ViewFundsDisplay);
-        ViewFundsDisplay.setBounds(230, 50, 315, 221);
+        ViewFundsDisplay.setBounds(20, 40, 315, 221);
 
         jLabel10.setText("1.");
         CustomerMenu.add(jLabel10);
@@ -642,12 +665,191 @@ public class UI extends javax.swing.JFrame {
 
         getContentPane().add(CustomerMenu, "card5");
 
+        Pay.setLayout(null);
+
+        Recipt.setTitle("Succesful Purchase");
+        Recipt.setMaximumSize(new java.awt.Dimension(400, 400));
+        Recipt.setVisible(true);
+
+        jLabel14.setText("UserName:");
+
+        jLabel26.setText("Cost of Ticket:");
+
+        jLabel31.setText("Departing City:");
+
+        jLabel32.setText("Destination City:");
+
+        jLabel41.setText("Departure Time:");
+
+        jLabel43.setText("Arrival Time:");
+
+        jLabel44.setText("Recipt Number:");
+
+        jLabel46.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        jLabel46.setForeground(new java.awt.Color(0, 0, 204));
+        jLabel46.setText("Recipt");
+
+        DepartingRecipt.setText("jLabel45");
+
+        DestinationRecipt.setText("jLabel45");
+
+        DepartureRecipt.setText("jLabel45");
+
+        ArrivalRecipt.setText("jLabel45");
+
+        CostRecipt.setText("jLabel45");
+
+        ReciptNumber.setText("jLabel45");
+
+        ReciptUser.setText("jLabel45");
+
+        BalanceRecipt.setText("jLabel45");
+
+        jLabel47.setText("Remaining Balance:");
+
+        jButton8.setText("Print Recipt and Exit");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout ReciptLayout = new javax.swing.GroupLayout(Recipt.getContentPane());
+        Recipt.getContentPane().setLayout(ReciptLayout);
+        ReciptLayout.setHorizontalGroup(
+            ReciptLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ReciptLayout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addGroup(ReciptLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel46, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(ReciptLayout.createSequentialGroup()
+                        .addGroup(ReciptLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel26)
+                            .addComponent(jLabel41)
+                            .addComponent(jLabel31)
+                            .addComponent(jLabel32)
+                            .addComponent(jLabel43)
+                            .addComponent(jLabel14))
+                        .addGap(18, 18, 18)
+                        .addGroup(ReciptLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(ReciptUser)
+                            .addComponent(ArrivalRecipt)
+                            .addComponent(DestinationRecipt)
+                            .addComponent(DepartureRecipt)
+                            .addComponent(DepartingRecipt)
+                            .addComponent(CostRecipt)))
+                    .addGroup(ReciptLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(ReciptLayout.createSequentialGroup()
+                            .addComponent(jLabel47)
+                            .addGap(20, 20, 20)
+                            .addComponent(BalanceRecipt))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ReciptLayout.createSequentialGroup()
+                            .addComponent(jLabel44)
+                            .addGap(18, 18, 18)
+                            .addComponent(ReciptNumber))
+                        .addComponent(jButton8, javax.swing.GroupLayout.Alignment.TRAILING)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel45)
+                .addGap(1081, 1081, 1081))
+        );
+        ReciptLayout.setVerticalGroup(
+            ReciptLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ReciptLayout.createSequentialGroup()
+                .addGroup(ReciptLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(ReciptLayout.createSequentialGroup()
+                        .addGap(64, 64, 64)
+                        .addComponent(jLabel45))
+                    .addGroup(ReciptLayout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addComponent(jLabel46, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(23, 23, 23)
+                        .addGroup(ReciptLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel14)
+                            .addComponent(ReciptUser))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(ReciptLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel31)
+                            .addComponent(DepartingRecipt))
+                        .addGap(14, 14, 14)
+                        .addGroup(ReciptLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel32)
+                            .addComponent(DestinationRecipt))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(ReciptLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel41)
+                            .addComponent(DepartureRecipt))
+                        .addGap(11, 11, 11)
+                        .addGroup(ReciptLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel43)
+                            .addComponent(ArrivalRecipt))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(ReciptLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel26)
+                            .addComponent(CostRecipt))
+                        .addGap(11, 11, 11)
+                        .addGroup(ReciptLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel47)
+                            .addComponent(BalanceRecipt))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(ReciptLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(ReciptNumber)
+                            .addComponent(jLabel44))
+                        .addGap(28, 28, 28)
+                        .addComponent(jButton8)))
+                .addContainerGap(92, Short.MAX_VALUE))
+        );
+
+        Pay.add(Recipt);
+        Recipt.setBounds(390, 30, 280, 443);
+
+        Poor.setTitle("Error :201");
+        Poor.setMaximumSize(new java.awt.Dimension(400, 400));
+        Poor.setVisible(true);
+
+        PoorOkay.setText("Okay");
+        PoorOkay.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PoorOkayActionPerformed(evt);
+            }
+        });
+
+        PoorText.setText("ErrorMessage");
+
+        javax.swing.GroupLayout PoorLayout = new javax.swing.GroupLayout(Poor.getContentPane());
+        Poor.getContentPane().setLayout(PoorLayout);
+        PoorLayout.setHorizontalGroup(
+            PoorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PoorLayout.createSequentialGroup()
+                .addGroup(PoorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PoorLayout.createSequentialGroup()
+                        .addGap(179, 179, 179)
+                        .addComponent(PoorText, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(PoorLayout.createSequentialGroup()
+                        .addGap(224, 224, 224)
+                        .addComponent(PoorOkay)))
+                .addContainerGap(142, Short.MAX_VALUE))
+        );
+        PoorLayout.setVerticalGroup(
+            PoorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PoorLayout.createSequentialGroup()
+                .addGap(37, 37, 37)
+                .addComponent(PoorText, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(PoorOkay)
+                .addContainerGap(187, Short.MAX_VALUE))
+        );
+
+        Pay.add(Poor);
+        Poor.setBounds(200, 60, 570, 350);
+
         BackPay.setText("Back");
         BackPay.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BackPayActionPerformed(evt);
             }
         });
+        Pay.add(BackPay);
+        BackPay.setBounds(615, 231, 100, 23);
 
         jButton10.setText("Select");
         jButton10.addActionListener(new java.awt.event.ActionListener() {
@@ -655,6 +857,8 @@ public class UI extends javax.swing.JFrame {
                 jButton10ActionPerformed(evt);
             }
         });
+        Pay.add(jButton10);
+        jButton10.setBounds(615, 197, 100, 23);
 
         FareTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -681,6 +885,9 @@ public class UI extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(FareTable);
 
+        Pay.add(jScrollPane2);
+        jScrollPane2.setBounds(386, 11, 358, 115);
+
         routestablepay.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -699,39 +906,8 @@ public class UI extends javax.swing.JFrame {
         });
         jScrollPane5.setViewportView(routestablepay);
 
-        javax.swing.GroupLayout PayLayout = new javax.swing.GroupLayout(Pay);
-        Pay.setLayout(PayLayout);
-        PayLayout.setHorizontalGroup(
-            PayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PayLayout.createSequentialGroup()
-                .addGap(8, 8, 8)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(PayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(PayLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(PayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton10)
-                            .addComponent(BackPay))
-                        .addGap(88, 88, 88))
-                    .addGroup(PayLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-        );
-        PayLayout.setVerticalGroup(
-            PayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PayLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(PayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(PayLayout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(71, 71, 71)
-                        .addComponent(jButton10)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(BackPay))
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(258, Short.MAX_VALUE))
-        );
+        Pay.add(jScrollPane5);
+        jScrollPane5.setBounds(8, 11, 372, 253);
 
         getContentPane().add(Pay, "card11");
 
@@ -1297,6 +1473,8 @@ public class UI extends javax.swing.JFrame {
 
     private void PayButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PayButtonActionPerformed
         // TODO add your handling code here:
+        Poor.setVisible(false);
+        Recipt.setVisible(false);
         DefaultTableModel model = (DefaultTableModel) FareTable.getModel();
         model.setRowCount(0);
         model.addRow(new Object[]{"Student (14-24 high school and post-secondary)", "Base Price x 10% Discount"});
@@ -1589,10 +1767,24 @@ public class UI extends javax.swing.JFrame {
         int a = routestablepay.getSelectedRow();
         for (Customer i : CustomerList) {
             if (i.getUsername().equalsIgnoreCase(CurrentUser)) {
-                if (Double.parseDouble((String) routestablepay.getModel().getValueAt(a, 4)) <= i.getCard().getBalance()) {
-                     
+                if (Double.parseDouble((String) routestablepay.getModel().getValueAt(a, 4)) <= i.getCard().getBalance()) {//check to see if has enough money
+                     i.getCard().BalacePay(Double.parseDouble((String) routestablepay.getModel().getValueAt(a, 4)));//Deduct Price of tix
+                     //Print Recipt
+                     ReciptUser.setText(i.getUsername());
+                     DepartingRecipt.setText((String)routestablepay.getModel().getValueAt(a, 0));
+                     DestinationRecipt.setText((String)routestablepay.getModel().getValueAt(a, 1));
+                     DepartureRecipt.setText((String)routestablepay.getModel().getValueAt(a, 2)+"");
+                     ArrivalRecipt.setText((String)routestablepay.getModel().getValueAt(a, 3));
+                     CostRecipt.setText((String)routestablepay.getModel().getValueAt(a, 4));
+                     BalanceRecipt.setText(String.valueOf(i.getCard().getBalance()));
+                     ReciptNumber.setText(""+Math.random()*1000);
+                     Recipt.setVisible(true);
                 }
-
+                else{
+                    Poor.setVisible(true);
+                    PoorText.setText("You don't have enough Money");
+                }
+                   
             }
         }
 
@@ -1608,6 +1800,17 @@ public class UI extends javax.swing.JFrame {
         // TODO add your handling code here:
         CustPass.setText("");
     }//GEN-LAST:event_CustPassFocusGained
+
+    private void PoorOkayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PoorOkayActionPerformed
+        // TODO add your handling code here:
+        Poor.setVisible(false);
+    }//GEN-LAST:event_PoorOkayActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        // TODO add your handling code here:
+        Pay.setVisible(false);
+        CustomerMenu.setVisible(true);
+    }//GEN-LAST:event_jButton8ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1646,7 +1849,10 @@ public class UI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel ArrivalRecipt;
     private javax.swing.JButton BackPay;
+    private javax.swing.JLabel BalanceRecipt;
+    private javax.swing.JLabel CostRecipt;
     private javax.swing.JPanel CreateAccount;
     private javax.swing.JButton CustLogin;
     private javax.swing.JPanel CustLogin2;
@@ -1655,8 +1861,11 @@ public class UI extends javax.swing.JFrame {
     private javax.swing.JLabel CustomerErrorMessage;
     private javax.swing.JPanel CustomerLogin;
     private javax.swing.JPanel CustomerMenu;
+    private javax.swing.JLabel DepartingRecipt;
     private javax.swing.JComboBox<String> DepartureCity;
+    private javax.swing.JLabel DepartureRecipt;
     private javax.swing.JComboBox<String> DestinationCity;
+    private javax.swing.JLabel DestinationRecipt;
     private javax.swing.JLabel ErrorMessage;
     private javax.swing.JTable FareTable;
     private javax.swing.JPanel FindBusRoutes;
@@ -1673,6 +1882,12 @@ public class UI extends javax.swing.JFrame {
     private javax.swing.JButton OkayViewFunds;
     private javax.swing.JPanel Pay;
     private javax.swing.JButton PayButton;
+    private javax.swing.JInternalFrame Poor;
+    private javax.swing.JButton PoorOkay;
+    private javax.swing.JLabel PoorText;
+    private javax.swing.JInternalFrame Recipt;
+    private javax.swing.JLabel ReciptNumber;
+    private javax.swing.JLabel ReciptUser;
     private javax.swing.JButton RefreshCust;
     private javax.swing.JPasswordField RepPass;
     private javax.swing.JTextField RepUser;
@@ -1706,11 +1921,13 @@ public class UI extends javax.swing.JFrame {
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
@@ -1723,11 +1940,14 @@ public class UI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;
@@ -1737,7 +1957,13 @@ public class UI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel40;
+    private javax.swing.JLabel jLabel41;
     private javax.swing.JLabel jLabel42;
+    private javax.swing.JLabel jLabel43;
+    private javax.swing.JLabel jLabel44;
+    private javax.swing.JLabel jLabel45;
+    private javax.swing.JLabel jLabel46;
+    private javax.swing.JLabel jLabel47;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
