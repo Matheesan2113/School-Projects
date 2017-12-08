@@ -14,4 +14,4 @@ design pattern knowledge and create plans on how this project would be completed
 find in the folder and created a project management plan. The report unfortunatley, was also done mostly by me because one of my teamates 
 decided to focus on another one of their major assignments.... and regrettably the professor wasn't notified. My teamate who did try to
 help me however was a part of this project and assisted in creating some basic methods and I helped him learn how to effeciently use 
-Netbeans (IDE) to get work done faster. 
+Netbeans (IDE) to get work done faster. Refer to image in folder for amusement on the partner that didn't do anything.
